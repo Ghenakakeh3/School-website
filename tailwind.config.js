@@ -24,7 +24,7 @@ export default {
             Amiri: ["Amiri", "serif"],
             Gochi : ["Gochi Hand", "cursive"],
             junge  :["Junge", "cursive"],
-            Aref_Ruqaa:["Aref Ruqaa", "serif"],
+            Aref_Ruqaa:["Aref Ruqaa"],
 
           },
           backgroundSize: {

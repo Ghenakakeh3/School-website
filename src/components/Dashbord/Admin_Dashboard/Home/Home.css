@@ -1,0 +1,40 @@
+.react-datepicker{
+    /* margin-top: 10px !important; */
+    font-family:inherit;
+    height: 100%;
+    width: 100% ;
+    border: none !important;
+    
+    padding: 25px;
+ 
+}
+.react-datepicker__navigation--next{
+    top: 35px;
+}
+.react-datepicker__navigation--previous{
+    top: 35px;
+}
+
+.react-datepicker__header {
+    background-color: white !important;
+    border-bottom: none !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    
+}
+.react-datepicker__header {
+
+    color: orange !important;
+    margin-bottom: 10px;
+}
+.react-datepicker__day-names{
+  margin-top: 10px !important;
+  
+}
+.react-datepicker__week{
+    padding-top:  10px !important;
+}
+.recharts-text .recharts-cartesian-axis-tick-value{
+   margin-right: 50px !important;
+}

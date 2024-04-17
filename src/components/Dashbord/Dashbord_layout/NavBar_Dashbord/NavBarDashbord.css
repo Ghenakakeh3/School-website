@@ -1,0 +1,10 @@
+.NavBarDashbord  a.active i{
+     /* background-color: chartreuse; */
+     background: #000 !important;
+}
+.NavBarDashbord  a i{
+     /* background-color: chartreuse; */
+     color: aqua !important;
+     background: #000 !important;
+
+}

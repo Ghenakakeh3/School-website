@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { CiSearch } from "react-icons/ci";
 
 //datePik library
 import DatePicker from "react-datepicker";
@@ -213,7 +214,7 @@ export function Input({
   return (
     <div className="flex  flex-col gap-1">
       <div
-        className={`relative flex bg-white px-4 py-2 border-solid text-mySlate border-[1px] rounded-md  ${
+        className={`relative flex bg-whit px-4 py-2  border-solid text-mySlate border-[1px] rounded-md  ${
           errorMsg
             ? "border-error "
             : "border-myGray-400 focus-within:border-primary "
@@ -267,7 +268,89 @@ Input.propTypes = {
   iconOnClick: PropTypes.func,
   errorMsg: PropTypes.string.isRequired,
 };
+export function InputSearch({
+  
+  name,
+  value,
+  onBlur,
+  onChange,
+  errorMsg,
+  type,
+  handleOnclick,
+}) {
+  console.log(errorMsg);
+  return (
+    // <div className="flex  flex-col gap-1">
+    //   <div
+    //     className={`relative flex bg-white px-4 py-2 border-solid text-mySlate border-b-[1px]  ${
+    //       errorMsg
+    //         ? "border-error "
+    //         : "border-myGray-400 focus-within:border-primary "
+    //     } `}
+    //   >
+    //     <label
+    //       htmlFor={name}
+    //       className="relative z-[0] w-full  transition-all duration-100 ease-in "
+    //     >
+          
+    //       <input
+    //         className="peer w-full placeholder-transparent text-mySlate  focus:outline-none focus-within:border-primary  rounded-md transition-all duration-100 ease-in-out    rounded-s-md outline-0 placeholder:focus:opacity-0"
+    //         placeholder="bbbbbbbbbbbb"
+    //         type={type}
+    //         name={name}
+    //         value={value}
+    //         onBlur={onBlur}
+    //         onChange={onChange}
+    //         onClick={handleOnclick}
+    //       />
+    //       {/* <span className="absolute start-0 -top-[1.40rem] px-1 text-mySlate text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-mySlate peer-placeholder-shown:top-0 peer-focus:-top-[1.40rem] peer-focus:text-mySlate peer-focus:text-sm rounded-md bg-gradient-to-b from-transparent from-65% to-white to-35%">
+    //         {label}
+    //       </span> */}
+    //     </label>
+    //     <img
+    //       src={icon}
+    //       alt={name}
+    //       onClick={iconOnClick}
+    //       className={`w-4 h-w-2 ${iconOnClick ? "cursor-pointer" : ""}`}
+    //     />
+    //   </div>
+    //   <motion.div
+    //     initial={{ opacity: 0, x: -100 }}
+    //     animate={{ opacity: 1, x: 0 }}
+    //     transition={{ duration: 0.5, type: easeInOut }}
+    //     className="text-xs text-error"
+    //   >
+    //     {errorMsg}
+    //   </motion.div>
+    // </div>
+    <div className="relative hidden md:block w-[15rem]">
+    <input
+      id="search"
+      type={type}
+      name={name}
+      placeholder="Search ..."
+      className=" py-[6px] px-[16px] w-full border-b-[1px] red border-b-myGray-400 focus-within:border-primary   transition-all duration-100 ease-in-out    rounded-s-md outline-0 placeholder:focus:opacity-0"
+    />
 
+ 
+    <div  className="absolute right-4 top-3  rtl:right-[96%]">
+    <CiSearch />
+
+    </div>
+
+  </div>
+  );
+}
+InputSearch.propTypes = {
+
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  type: PropTypes.oneOf(["text", "password", "email", "number", "date"])
+    .isRequired,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
+  errorMsg: PropTypes.string.isRequired,
+};
 export function InputFile({
   className,
   label,

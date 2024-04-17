@@ -8,6 +8,7 @@ import menuIcon from "../../../assets/icons/menu.svg";
 import Container from "../../utilities/Container";
 
 import ZigZag from "../../utilities/ZigZag/zig_zag"
+import Typography from "../../utilities/Typography";
 
 const NavBar = () => {
   const { t } = useTranslation("global");
@@ -31,6 +32,7 @@ const NavBar = () => {
        
         <div className="flex justify-around items-center  pt-5 pb-3">
           <Logo />
+          {/* <Typography component="h1">m</Typography> */}
           <ul
             className={`absolute flex flex-col items-start ps-5 shadow-md lg w-full left-0 py-5 gap-x-9 gap-y-3 z-[55] transition-all duration-300 ease-in text-myGray-600
                                 lg:static lg:flex-row lg:items-center lg:pe-0 lg:shadow-none lg:w-auto lg:h-auto lg:py-0 

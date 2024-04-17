@@ -3,7 +3,7 @@ import {motion} from "framer-motion"
 
 
 export default function Typography({ component, children, className,Typography_animation }) {
-  console.log(Typography_animation)
+
   return (
     <>
       {component === "success-text" ? (
@@ -25,6 +25,10 @@ export default function Typography({ component, children, className,Typography_a
           className={`${className ? className : ""} ${
             component === "h1"
               ? "font-extrabold ltr:font-Gochi rtl:font-Aref_Ruqaa  text-[75px] text-white  "
+              
+              :  component === "h2"
+              ? "font-bold ltr:font-Gochi rtl:font-Aref_Ruqaa  text-[30px] text-orange  "
+             
               : component === "h3"
               ? "font-bold text-xl text-myGray-500 leading-[25.14px] font-junge"
               : component === "h4"

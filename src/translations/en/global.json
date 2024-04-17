@@ -7,13 +7,31 @@
     "slide_2" : ["Make a Birghter Feature For Your Child ","Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde delectus, doloremque repellendus labore quasi, nisi tempora asperiores necessitatibus dolorem aspernatur numquam eius quas","learn more","join us"]
     
   },
+  "navbar_Admin_dash": {
+    "links": ["Home", "Class", "students", "Teachers", "Notes"]
+  },
+  "home_Admin_dash": {
+    "main": ["Welcam to ", "System School", "", "Notes"],
+    "school": [ "Marh"],
+    "links": ["First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade"],
+    "back_to_school": ["Back To School"],
+    "Student _absence_chart": ["Student absence chart"],
+    "Time_record": ["Supervisors' time record","Teachers' time record","Students' time record","active","non active"],
+   "stuents_by_average_mark": ["stuents by average mark","progressive","Descending"],
+   "Admin_Settings": ["Settings","General Settings","Manage user accounts","System settings","Return to the home page"],
+   "Manage_user_accounts" : ["Admin accounts","Parents' accounts","Student accounts" ,"add account"]
 
+
+
+
+
+  },
 
 
 
   
   "login": {
-    "title": "Login in Med - Sal",
+    "title": "Login in Marh School",
     "p": "Don’t have an account with us? ",
     "create": "Create account",
     "inputFields": {
@@ -21,7 +39,7 @@
       "password": "Password"
     },
     "err": "This field is required",
-    "button": "Login in Med - Sal",
+    "button": "Login in Marh School",
     "forget": "Forget password ?",
     "TitleImg": "LogIn in Med - Sal ...",
     "resetPar": "We are a platform that seeks to connect clinical patients with doctors in various medical specialties and pharmacies all over the Emirates."
