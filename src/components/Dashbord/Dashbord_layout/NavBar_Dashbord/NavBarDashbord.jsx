@@ -26,7 +26,7 @@ const NavBarDashbord = () => {
 
   const links = [
     { name: t("navbar_Admin_dash.links.0"), to: "/Admin_dashboard" ,icon :<IoHome  />},
-    { name: t("navbar_Admin_dash.links.1"), to: "/Class",icon :<FaWindowRestore  /> },
+    { name: t("navbar_Admin_dash.links.1"), to: "/Admin_dashboard/Class",icon :<FaWindowRestore  /> },
     { name: t("navbar_Admin_dash.links.2"), to: "/students" ,icon :<FaUsersLine  /> },
     { name: t("navbar_Admin_dash.links.3"), to: "/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
     { name: t("navbar_Admin_dash.links.4"), to: "/Notes",icon :<GrNotes  /> },

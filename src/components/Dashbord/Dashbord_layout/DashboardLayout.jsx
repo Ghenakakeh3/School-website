@@ -9,12 +9,12 @@ const DashboardLayout = () => {
 
         <NavBarDashbord />
 
-        <div className=" flex justify-between     ">
-          <div className="xl:w-[10%]  bg-sky-900 shadow-md rounded-e-md">
+        <div className=" flex     ">
+          <div className="xl:w-[3%]  bg-sky-900 shadow-md rounded-e-md">
             <SideBardashbord />
           </div>
 
-          <div className="bg-gray-100   max-w-full ">
+          <div className="bg-gray-100   xl:w-[97%] ">
             <Outlet className="" />
           </div>
 

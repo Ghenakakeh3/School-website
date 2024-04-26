@@ -277,6 +277,7 @@ export function InputSearch({
   errorMsg,
   type,
   handleOnclick,
+  placeholder
 }) {
   console.log(errorMsg);
   return (
@@ -328,8 +329,8 @@ export function InputSearch({
       id="search"
       type={type}
       name={name}
-      placeholder="Search ..."
-      className=" py-[6px] px-[16px] w-full border-b-[1px] red border-b-myGray-400 focus-within:border-primary   transition-all duration-100 ease-in-out    rounded-s-md outline-0 placeholder:focus:opacity-0"
+      placeholder={placeholder}
+      className=" py-[6px] px-[16px] w-full border-b-[1px] red border-b-myGray-400 focus-within:border-primary   transition-all duration-100 ease-in-out     outline-0 placeholder:focus:opacity-0"
     />
 
  
@@ -419,12 +420,18 @@ export function DashInput({
   isDisabled,
   className,
   placeholder,
+  iconOnClick,
+  props
 }) {
+
   return (
     <div className="relatie ">
       <div
-        className={`flex  flex-row py-2 px-3 border-[1px] items-center justify-between focus-within:border-primary  ${
-          errorMsg !== "" && !isDisabled ? "border-error " : "border-myGray-400"
+        className={`flex  flex-row py-2 px-3 border-[1px] items-center justify-between focus-within:border-primary 
+
+        
+        ${
+        !isDisabled ? "border-myGray-400 " : " border-error"
         } bg-white rounded-lg transition-all duration-100 ease-in-out`}
       >
         <input
@@ -439,9 +446,16 @@ export function DashInput({
           type={type}
           disabled={isDisabled}
           placeholder={placeholder}
+          {...props}
+
         />
-        <img src={icon} width={12} height={12} alt="icon" />
-        {/* {icon} */}
+     
+        {/* <img src={icon} width={12} height={12} alt="icon" /> */}
+        <div       onClick={iconOnClick}
+          className={`w-4 h-w-4 ${iconOnClick ? "cursor-pointer" : ""}`}>
+        {icon}
+
+        </div>
       </div>
 
       {errorMsg !== "" && (
@@ -460,4 +474,5 @@ FInput.propTypes = {
   onBlur: PropTypes.func,
   icon: PropTypes.string.isRequired,
   errorMsg: PropTypes.string.isRequired,
+  iconOnClick: PropTypes.func,
 };

@@ -19,13 +19,26 @@
     "Time_record": ["Supervisors' time record","Teachers' time record","Students' time record","active","non active"],
    "stuents_by_average_mark": ["stuents by average mark","progressive","Descending"],
    "Admin_Settings": ["Settings","General Settings","Manage user accounts","System settings","Return to the home page"],
-   "Manage_user_accounts" : ["Admin accounts","Parents' accounts","Student accounts" ,"add account"]
+   "Manage_user_accounts" : ["Admin accounts","Parents' accounts","Student accounts" ,"Add Account"],
+   "Add_Account":["Add Account","You can  add new account from here.","Name","User Name","Password","Add New Admin Account"],
+   "Edit_Account":["Edit Account","You can Edit account from here.","Name","User Name","Password","Edit Admin Account"]
+  
+
+
+
 
 
 
 
 
   },
+  "Class_Admin_dash": {
+    "Class":["Class","Division "],
+    "Class_Table":["ID","Class","Division name","Action"],
+
+    "Class_filter":["All","First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade","First Division","Second Division"]
+  },
+
 
 
 

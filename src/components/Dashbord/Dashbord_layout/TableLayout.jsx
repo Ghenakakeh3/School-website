@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import Dropdown from "../../utilities/Dropdown";
 import mini_menu from "../../../assets/icons/mini-menu.svg";
 import pdf from "../../../assets/icons/pdf.svg";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Table = ({ columns, rows, points, handlepoint, point, className ,rowclassName,option}) => {
+import { AiOutlineEdit } from "react-icons/ai";
+import { Link, NavLink } from "react-router-dom";
+
+
+
+const Table = ({ RowlinK,columns, rows, points, handlepoint, point, className ,rowclassName,option,action,handleEdit,handleDelte}) => {
+  
   return (
     <div
       className={` ${
         className ? className : ""
-      }   overflow-x-auto overflow-hidden    `}
+      }   overflow-x-auto overflow-hidden `}
     >
       <table className="table-auto w-full overflow-x-auto">
         <thead className="">
@@ -21,21 +28,85 @@ const Table = ({ columns, rows, points, handlepoint, point, className ,rowclassN
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, rowIndex) => (
+          {RowlinK ? rows.map((row, rowIndex) => {
+            return (
+              
+              <tr  key={rowIndex}  className={`relative ${
+                            rowIndex % 2 === 0 ? "bg-myGray-200 border-b " : ""
+                           }`}>
+                          
+                {Object.entries(row).map(([key, value], cellIndex) => (
+                    
+                     <td
+                                     key={cellIndex}
+                                     className={`text-center py-6 text-sm ${
+                                       key === "status"
+                                         ? value === "Active"
+                                           ? "text-success"
+                                           : value === "Not Active"
+                                           ? "text-error"
+                                           : "text-gray-500"
+                                         : "text-gray-500"
+                                     }`}
+                                   >
+                                    <Link to={`/Admin_dashboard/Class/${row.ID}`}>
+                                {value}
+                                     </Link>
+                                   </td>
+                                
+                                  
+                                 ))}
+
+{
+              action ? <td className="flex justify-center items-center py-6">
+                   <div className="flex gap-5 transition-all ">
+               
+                   {action.update ?  <div className="cursor-pointer text-[18px] hover:text-success " onClick={()=>{ handleEdit(row.ID)}}>
+                   <AiOutlineEdit />
+                 
+                   </div> :""}
+                   {action.delete ? <div className="cursor-pointer text-[18px] hover:text-error " onClick={()=>{ handleDelte(row.ID)}}>
+                  <RiDeleteBin5Line />
+                    </div>:""}
+
+                    </div>
+            </td>
+            :""
+             }
+                                
+
+              </tr>
+            
+            )
+
+            
+            
+
+
+             
+
+
+
+
+          
+          }
+        )
+        
+         :  rows.map((row, rowIndex) => (
             <tr
               key={rowIndex}
               className={`relative ${
                 rowIndex % 2 === 0 ? "bg-myGray-200 border-b " : ""
               }`}
             >
-              {columns[0]==="ID" ? (   <td className=" text-sm text-gray-500 flex justify-center  p-6 ">
+              {/* {columns[0]==="ID" ? (   <td className=" text-sm text-gray-500 flex justify-center  p-6 ">
                 {(rowIndex + 1).toString().padStart(2, "0")}
-              </td>) : "" }
+              </td>) : "" } */}
            
               {Object.entries(row).map(([key, value], cellIndex) => (
                 <td
                   key={cellIndex}
-                  className={`text-center py-6 text-sm ${
+                  className={`text-center py-6 text-sm  ${
                     key === "status"
                       ? value === "Active"
                         ? "text-success"
@@ -63,6 +134,23 @@ const Table = ({ columns, rows, points, handlepoint, point, className ,rowclassN
                   )}
                 </td>
               ))}
+              {
+                action ? <td className="flex justify-center items-center py-6">
+                     <div className="flex gap-5 transition-all ">
+                 
+                     {action.update ?  <div className="cursor-pointer text-[18px] hover:text-success " onClick={()=>{ handleEdit(row.ID)}}>
+                     <AiOutlineEdit />
+                   
+
+                     </div> :""}
+                     {action.delete ? <div className="cursor-pointer text-[18px] hover:text-error " onClick={()=>{ handleDelte(row.ID)}}>
+                     <RiDeleteBin5Line />
+                     </div>:""}
+
+                     </div>
+              </td>
+              :""
+              }
 {option ?    <td className="flex justify-center items-center">
                 <Dropdown
                   className={"text-xl text-myGray-600 text-start p-0 "}
@@ -78,6 +166,11 @@ const Table = ({ columns, rows, points, handlepoint, point, className ,rowclassN
           
             </tr>
           ))}
+
+
+
+          {/*  */}
+         
         </tbody>
       </table>
     </div>

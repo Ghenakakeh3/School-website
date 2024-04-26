@@ -3,42 +3,52 @@ import { useFormik } from "formik";
 import Typography from "../../../utilities/Typography";
 import Button from "../../../utilities/Button";
 import { DashInput, InputFile } from "../../../utilities/Inputs";
-import eye from "../../../../assets/icons/eyepass.svg";
-import iconShow from "../../../../assets/icons/View.svg";
-import { useDropzone } from "react-dropzone";
-import * as Yup from "yup";
-import upload from "../../../../assets/icons/uplode.svg";
-import done from "../../../../assets/icons/done_uplode.svg";
+import D_inputs from "./D_inputs"
 
-const Add_product = React.forwardRef(
+// import { useDropzone } from "react-dropzone";
+import * as Yup from "yup";
+
+
+const Add = React.forwardRef(
   (
     {
-      Add_Product_content,
+      Add_content,
       validation_schema,
-      addProduct_active,
-      set_addProduct_active,
-      discount = { discount },
-      setDiscount = { setDiscount },
+      add_active,
+      set_add_active,
+      showpass,
+      setshowpass,
+      rows
+
     },
     ref
   ) => {
-    const [addProductDropdown, setaddProductDropdown] = useState(null);
-    const onDrop = useCallback((acceptedFiles) => {
-      formik.setFieldValue("img", acceptedFiles[0]);
-    }, []);
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
-      onDrop,
-    });
+    //show password
+    function ShowPassword() {
+        setshowpass(!showpass);
+      }
+
+    // const [addProductDropdown, setaddProductDropdown] = useState(null);
+
+    // const onDrop = useCallback((acceptedFiles) => {
+    //   formik.setFieldValue("img", acceptedFiles[0]);
+    // }, []);
+    // const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    //   onDrop,
+    // });
     const formik = useFormik({
       initialValues: {
         inputs: [""],
       },
       validationSchema: validation_schema,
       validateOnBlur: true,
-      validateOnChange: false,
+      validateOnChange: true,
       validateOnMount: false,
       onSubmit: (values) => {
-        alert(JSON.stringify(values, null, 2));
+        console.log(values)
+        formik.handleReset();
+      
+        
       },
     });
 
@@ -48,8 +58,11 @@ const Add_product = React.forwardRef(
       { name: "Dental Repair", type: "view" },
     ];
     const handleInputChange = (index, event) => {
+
+      console.log(event.target.value)
       const { name, value } = event.target;
-      formik.setFieldValue(`inputs[${index}]`, value);
+      // formik.handleChange
+      formik.setFieldValue(`inputs[${index}]`, event.target.value);
     };
     const hangdleInputBluer = (index, event) => {
       formik.setFieldTouched(`inputs[${index}]`, true);
@@ -58,30 +71,32 @@ const Add_product = React.forwardRef(
     const handleChangeDropdown = (selected) => {
       setaddProductDropdown(selected);
     };
-    const toggle_Add_Products = () => {
-      set_addProduct_active(!addProduct_active);
+    const toggle_Add = () => {
+        set_add_active(!add_active);
     };
     return (
-      <div className="">
-        <ClickOutside onClick={toggle_Add_Products}>
-          {addProduct_active && (
+      <div className="relative text-start ">
+        <ClickOutside onClick={toggle_Add}>
+          {add_active && (
             <div
               ref={ref}
-              className="w-[17rem] sm:w-[22rem] md:w-[36rem] pb-5 rounded px-5 py-5 md:px-8 flex flex-col gap-3 absolute ltr:right-0 rtl:left-0 bg-white min-w-[45%]  shadow-md z-50 min-h-full"
+              className="w-[17rem] sm:w-[22rem] md:w-[30rem] rounded px-5 pt-5 pb-16 min-h-screen md:px-8 flex flex-col gap-3 absolute ltr:right-0 rtl:left-0  bg-white min-w-[45%]  shadow-md z-50 "
             >
               <Typography component={"h3"}>
-                {Add_Product_content.title}
+                {Add_content.title}
               </Typography>
               <Typography component={"h5"} className="mb-5">
-                {Add_Product_content.descrption}
+                {Add_content.descrption}
               </Typography>
               {/* inputs */}
 
-              <form
-                onSubmit={formik.handleSubmit}
+              <D_inputs />
+
+              {/* <form
+                onSubmit={formik.handleSubmit} 
                 className="relative space-y-5 "
               >
-                {Add_Product_content.inputs.map((input, index) => {
+                {Add_content.inputs.map((input, index) => {
                   return (
                     <>
                       <div
@@ -110,6 +125,10 @@ const Add_product = React.forwardRef(
                         ) : (
                           <div className=" w-full" key={index}>
                             <DashInput
+                            
+                            
+                              value={formik.values.email}
+                  
                               type={input.type}
                               name={`inputs[${index}]`}
                               onChange={(event) =>
@@ -122,8 +141,7 @@ const Add_product = React.forwardRef(
                               id={input.name}
                               placeholder={input.text}
                               icon={input.img}
-                              // icon={input.type === "password" ? (showpass ? eye : iconShow) : input.img}
-                              // iconOnClick={ShowPassword}
+                              iconOnClick={ShowPassword}
                               isDisabled={false}
                               errorMsg={
                                 formik.errors.inputs &&
@@ -156,7 +174,7 @@ const Add_product = React.forwardRef(
                   );
                 })}
 
-                {Add_Product_content.other && (
+                {Add_content.other && (
                   <div className="flex items-center gap-2">
                     <img src={Add_Product_content.other.img} alt="" />
                     <Typography className={"!text-error cursor-pointer"}>
@@ -165,40 +183,14 @@ const Add_product = React.forwardRef(
                   </div>
                 )}
 
-                <InputFile
-                  name={"img"}
-                  type={"file"}
-                  value={formik.values.img}
-                  onChange={(e) =>
-                    formik.setFieldValue("img", e.target.files[0])
-                  }
-                  label={
-                    formik.values.img && !formik.errors.img ? (
-                      "Click to upload two photos product or drag"
-                    ) : (
-                      <Typography component={"h5"}>
-                        Click to upload two photos product or drag
-                      </Typography>
-                    )
-                  }
-                  className={
-                    "h-24 sm:h-48 flex flex-col-reverse items-center justify-center gap-4 "
-                  }
-                  icon={formik.values.img && !formik.errors.img ? done : upload}
-                  classNameIcon={"w-[3rem] "}
-                  id={"img"}
-                  errorMsg={formik.errors.img ? formik.errors.img : ""}
-                  hasValueTrue={formik.values.img && !formik.errors.img}
-                  isInvalidType={formik.errors.img ? formik.errors.img : ""}
-                  getRootProps={{ ...getRootProps() }}
-                  getInputProps={{ ...getInputProps() }}
-                  isDragActive={isDragActive}
-                />
+       
 
-                <Button type="submit" fullWidth>
-                  {Add_Product_content.button_content}
+                <Button type="submit" fullWidth onClick={() => {
+ 
+      }}>
+                  {Add_content.button_content}
                 </Button>
-              </form>
+              </form> */}
             </div>
           )}
 
@@ -212,10 +204,26 @@ import PropTypes from "prop-types";
 import Dropdown from "../../../utilities/Dropdown";
 import ClickOutside from "../../../utilities/Click_Outsite";
 
-Add_product.propTypes = {
-  Add_Product_content: PropTypes.object.isRequired,
+Add.propTypes = {
+    Add_content: PropTypes.object.isRequired,
   validation_schema: PropTypes.any,
   Edit_user: PropTypes.bool,
   set_Edit_user: PropTypes.fun,
 };
-export default Add_product;
+export default Add;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

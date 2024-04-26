@@ -28,8 +28,11 @@ const Content = ({
     setexport(!Export);
   };
   return (
-    <div className="ltr:ps-1 rtl:pe-1 ltr:sm:px-5 rtl:sm:px-5 flex flex-col justify-between  rounded-lg     ">
+    <div className="ltr:ps-1 rtl:pe-1 ltr:sm:px-5 rtl:sm:px-5 flex flex-col justify-between  rounded-lg px-10 pt-10  ">
       <div className="flex justify-between  flex-wrap gap-2">
+      <p className="text-[16px] font-normal text-myGray-600 bg-white py-2 px-6 w-[50%] text-start  rounded-md mb-6">
+          <span className="text-secondary">{t("DashPath.0")} /</span> {path}
+        </p> 
       
         <div className="flex items-center gap-4 cursor-pointer mb-4  ">
     
@@ -78,7 +81,7 @@ const Content = ({
             setRemostartActive(!Remostartactive);
           }}
         >
-          Remostart
+         
         </span>{" "}
       </Typography>
     </div>

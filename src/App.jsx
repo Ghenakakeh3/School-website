@@ -14,6 +14,7 @@ import DashboardLayout from "./components/Dashbord/Dashbord_layout/DashboardLayo
 import Admin_Settings from './components/Dashbord/Admin_Dashboard/Settings/Admin_Settings'
 import Manage_user_accounts from './components/Dashbord/Admin_Dashboard/Settings/Manage_user_accounts'
 import Admin_accounts from './components/Dashbord/Admin_Dashboard/Settings/Accounts/Admin_accounts'
+import Class from './components/Dashbord/Admin_Dashboard/Class/Class'
 
 
 function App() {
@@ -53,6 +54,10 @@ function App() {
             
             
             </Route>
+            <Route path="Class" element={<Class />}  > 
+         
+            </Route>
+            <Route path="Class/:id" element={<Home_admin />} />
 
 
 
@@ -97,7 +102,7 @@ function App() {
           <Route path="/Admin_Settings" element={<Admin_Settings />} >
           <Route path="Manage_user_accounts" element={<Manage_user_accounts />} >
           
-          <Route path="Admin_accounts" element={<Admin_accounts />} />
+          <Route index path="Admin_accounts" element={<Admin_accounts />} />
           <Route path="Parents_accounts" element={<Admin_accounts />} />
           <Route path="Student_accounts" element={<Admin_accounts />} />
 

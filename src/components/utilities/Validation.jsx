@@ -1,6 +1,15 @@
 import * as Yup from "yup";
+export const add_acount_schema = Yup.object().shape({
+  "": Yup.string().min(3,"name shoud be longest").max(12,"name shoud be shortest").required("name is Required"),
+  "":Yup.string().min(3,"user name shoud be longest").max(12,"user name shoud be shortest").required("user name is Required"),
+     
+  "Password": Yup.string().min(8, "Change your Password, If your Forget password Click Here") .required("Password is required"),
 
 
+
+ } );
+
+//  ***********
 export const service_provider_schema = Yup.object().shape({
   "inputs[1]": Yup.string().email("Invalid Email").required("Email is required"),
   "inputs[2]":Yup.string()
@@ -18,32 +27,7 @@ export const service_provider_schema = Yup.object().shape({
 
  } );
 
- export const add_product_schema = Yup.object().shape({
-    "inputs[1]": Yup.string().required("Required"),
-    "inputs[2]":Yup.string().required("Required"),
-       
-    "inputs[3]": Yup.string(),
-    "inputs[4]": Yup.string().required("Required"),
-    "inputs[5]": Yup.number().min(1,"price shoud be longest"),
-    "inputs[6]": Yup.mixed().test(
-        "isImage",
-        "الرجاء اختيار ملف صورة صالح (JPG، PNG، GIF)",
-        function (value) {
-          if (!value) {
-            return true; // لا مشكلة إذا لم يكن هناك ملف
-          }
-    
-          const supportedFormats = ["image/jpeg", "image/png", "image/gif"];
-    
-          if (!supportedFormats.includes(value.type)) {
-            throw new Yup.ValidationError("Invalid image", value, "img");
-          }
-          return true;
-        }
-      ),
 
-
-   } );
 
 
 

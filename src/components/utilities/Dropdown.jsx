@@ -10,6 +10,7 @@ export default function Dropdown({
   showSlected,
   ulClassname,
   classNameIcon,
+  label
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(options[0].name);
@@ -43,14 +44,19 @@ export default function Dropdown({
         onClick={() => {
           setIsOpen(!isOpen);
         }}
-        className="  flex  items-center p-2 justify-between z-10 tracking-wider border-myGray-100 active:border-primary duration-150 ease-in-out"
+        className="  flex  items-center p-2   justify-between z-10 tracking-wide border-0 border-b-myGray-100 active:border-b-primary duration-150 ease-in-out"
       >
         {showSlected ? selectedItem : ""}
         <img
           className={` ${classNameIcon ? classNameIcon : ""} `}
           src={icon}
           alt=""
-        />
+        />  
+        <div className="absolute top-[-15px]">
+{label}
+
+
+        </div>
       </button>
       {isOpen && (
         <ul
@@ -58,6 +64,7 @@ export default function Dropdown({
             ulClassname ? ulClassname : ""
           } absolute shadow-md top-[100%]  z-20  mt-[4px]`}
         >
+      
           {options.map((option, index) => (
             <li
               className={`block cursor-pointer w-full whitespace-nowrap bg-myGray-200 px-4 py-2 text-sm font-normal  hover:bg-myGray-100 active:bg-myGray-100 hover:text-secondary active:text-secondary ${
