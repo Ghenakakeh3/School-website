@@ -18,10 +18,10 @@ const Table = ({ RowlinK,columns, rows, points, handlepoint, point, className ,r
       }   overflow-x-auto overflow-hidden `}
     >
       <table className="table-auto w-full overflow-x-auto">
-        <thead className="">
+        <thead className="bg-sky-900 ">
           <tr>
             {columns.map((column, index) => (
-              <th key={index} className={` ${rowclassName ? rowclassName: "" }px-4 py-4   text-myGray-500 text-sm`}>
+              <th key={index} className={` ${rowclassName ? rowclassName: "" }px-4 py-4   text-white text-sm`}>
                 {column}
               </th>
             ))}

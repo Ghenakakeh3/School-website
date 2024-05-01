@@ -15,6 +15,9 @@ import Admin_Settings from './components/Dashbord/Admin_Dashboard/Settings/Admin
 import Manage_user_accounts from './components/Dashbord/Admin_Dashboard/Settings/Manage_user_accounts'
 import Admin_accounts from './components/Dashbord/Admin_Dashboard/Settings/Accounts/Admin_accounts'
 import Class from './components/Dashbord/Admin_Dashboard/Class/Class'
+import ClassDetales from './components/Dashbord/Admin_Dashboard/Class/ClassDetales'
+import Subjects from './components/Dashbord/Admin_Dashboard/Class/Subjects'
+import Registered_students from './components/Dashbord/Admin_Dashboard/Class/Registered_students'
 
 
 function App() {
@@ -57,7 +60,15 @@ function App() {
             <Route path="Class" element={<Class />}  > 
          
             </Route>
-            <Route path="Class/:id" element={<Home_admin />} />
+           
+            <Route path="Class/:id" element={<ClassDetales />} >
+            <Route path="Subjects" element={<Subjects />} />
+            <Route path="Registered_students" element={<Registered_students />} />
+
+            
+
+
+            </Route>
 
 
 

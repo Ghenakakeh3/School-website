@@ -118,6 +118,7 @@ Textarea.propTypes = {
   rows: PropTypes.number,
 };
 import { easeInOut, motion } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
 
 export function InputDatePicker({
   label,
@@ -324,18 +325,19 @@ export function InputSearch({
     //     {errorMsg}
     //   </motion.div>
     // </div>
-    <div className="relative hidden md:block w-[15rem]">
+    <div className="relative md:block w-[15rem] flex items-center">
     <input
       id="search"
       type={type}
       name={name}
       placeholder={placeholder}
-      className=" py-[6px] px-[16px] w-full border-b-[1px] red border-b-myGray-400 focus-within:border-primary   transition-all duration-100 ease-in-out     outline-0 placeholder:focus:opacity-0"
+      onChange={(e) => onChange(e.target.value)}
+      className=" py-[6px]  px-[16px] w-full border-b-[1px]  border-b-myGray-400 focus-within:border-primary   transition-all duration-100 ease-in-out     outline-0 placeholder:focus:opacity-0"
     />
 
  
-    <div  className="absolute right-4 top-3  rtl:right-[96%]">
-    <CiSearch />
+    <div  className="absolute right-4 top-[8px] rtl:right-[96%] text-cyan-700">
+    <FaSearch id="search-icon" />
 
     </div>
 

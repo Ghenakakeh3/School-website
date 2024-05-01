@@ -227,7 +227,7 @@ const Class = () => {
 
 
   ];
-
+ 
 const options_Class =[
   {name:t("Class_Admin_dash.Class_filter.0") },
   {name:t("Class_Admin_dash.Class_filter.1") },
@@ -245,6 +245,7 @@ const options_Division=[
 
 
 ]
+console.log()
   return (
     <Content
       path={t("Class_Admin_dash.Class.0")}
@@ -266,20 +267,20 @@ const options_Division=[
 
           <div className='flex  gap-10 items-center'>
             <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {rows.length} record
+              {data.length} record
             </span>
-            {/* <InputSearch 
-            type="text"
-              label="nn"
-              placeholder={t("Class_Admin_dash.Class.1")}
-              name=""
-              value=""
-              onBlur="bbb"
-              // onChange={handleChange_Class_Dropdown}
-              icon="mmm"
-              iconOnClick="bb"
-              // errorMsg="mm"
-       /> */}
+            <Dropdown
+        // value,
+        label={t("Class_Admin_dash.Class.0")}
+        options={options_Class}
+        onChange={handleChange_Class_Dropdown}
+        icon={arrowIcon}
+        showSlected={true}
+        ulClassname={"w-full "}
+        classNameIcon=""
+        className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
+      />
+  
            <Dropdown
         // value,
         label={t("Class_Admin_dash.Class.1")}
@@ -293,17 +294,7 @@ const options_Division=[
       />
 
 
-      <Dropdown
-        // value,
-        label={t("Class_Admin_dash.Class.0")}
-        options={options_Class}
-        onChange={handleChange_Class_Dropdown}
-        icon={arrowIcon}
-        showSlected={true}
-        ulClassname={"w-full "}
-        classNameIcon=""
-        className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
-      />
+ 
 
           </div>
 
@@ -312,7 +303,7 @@ const options_Division=[
 
 
         </TabsFillter>
-        {rows.length >= 1 ? (
+        {data.length >= 1 ? (
           <Table
             columns={columns}
             rows={data}
@@ -325,8 +316,7 @@ const options_Division=[
         ) : (
           <NoData ></NoData>
         )}
-        {/* <Button className="!bg-success">bb </Button> */}
-
+        
       </div>
     </Content>
   )

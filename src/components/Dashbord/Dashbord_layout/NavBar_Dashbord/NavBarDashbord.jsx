@@ -89,7 +89,7 @@ const NavBarDashbord = () => {
  
 
   <NavLink  to={link.to} key={link.to}    className={({ isActive }) =>
-         isActive ? `${setactive(index)} active  flex items-center gap-2 py-5 px-5 rounded-lg  bg-sky-900  !text-white `  : "hover:text-orange transition text-[18px]  flex items-center gap-2  " 
+         isActive ? `${setactive(index)} ${index === active ? "bg-sky-900 text-white" : "" } active  flex items-center gap-2 py-5 px-5 rounded-lg    `  : "hover:text-orange transition text-[18px]  flex items-center gap-2  " 
         } >
         
         <div className={`text-[25px] ${index === active ? "text-white" : "text-orange" }`}>

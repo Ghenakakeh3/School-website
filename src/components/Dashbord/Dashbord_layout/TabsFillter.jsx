@@ -16,8 +16,9 @@ export default function TabsFillter({ children,sortlist }) {
 
   return (
     
-      <div className="flex justify-between flex-col-reverse sm:flex-row rounded-lg  flex-wrap bg-slate-60  sm:p-5 sm:pt-10  p-2 gap-5 border-b-2 border-solid border-myGray-200 ">
+      <div className="flex justify-between flex-col-reverse sm:flex-row  flex-wrap bg-slate-60  sm:p-5 sm:pt-10  p-2 gap-5 border-b-2 border-solid border-myGray-200 ">
         {/* <div className="flex gap-5 flex-wrap w-full sm:w-[70%]">{children}</div> */}
+       
         {children}
 
         {/* <div className="flex justify-end  gap-3  items-center   ">
@@ -34,6 +35,7 @@ export default function TabsFillter({ children,sortlist }) {
             ulClassname={" ltr:right-0 rtl:start-[-7rem]"}
           />
         </div> */}
+      
       </div>
 
   );

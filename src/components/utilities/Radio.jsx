@@ -6,7 +6,7 @@ export default function Radio({  value, onChange,name,items, })
      <>
      {items.map((item) => {
     return (
-        <div key={item.value} className=" flex items-center gap-1"> 
+        <div key={item.value} className=" flex items-center justify-center   gap-2"> 
         <input type="radio"
         name={name}
         value={item.value}
@@ -15,7 +15,7 @@ export default function Radio({  value, onChange,name,items, })
         onChange={e => onChange(e.target.value)}
         className="cursor-pointer"
         />
-        <label htmlFor={name + item.value} className=" text-[13px] font-normal text-myGray-500 leading-[20px] cursor-pointer">{item.label}</label>
+        <label htmlFor={name + item.value} className=" text-[16px] font-normal text-myGray-500 leading-[20pxz cursor-pointer">{item.label}</label>
 
         </div>
     )

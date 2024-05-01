@@ -35,8 +35,12 @@
   "Class_Admin_dash": {
     "Class":["Class","Division "],
     "Class_Table":["ID","Class","Division name","Action"],
+    "Class_filter":["All","First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade","First Division","Second Division"],
+    "ClassDetales":["Subjects","Registered students","weekly program","Time record","exams","Subject marks"],
+    "Subjects":["ID","Subject Name","Number of classes","Subject teacher","Action","Add subject","You can add a new Subject from here.","Add new subject","subject name is required","Subject teacher is required","Number of classes is required","Subject Name shoud be longest","Subject Name shoud be shortest","Number of classes must be a positive number","Subject teacher name shoud be longest","Edit Subject","You can edit Subject from here."],
+    "Subjects_filter":["Chapter one","Chapter Second"],
+    "Registered_students":["ID","Full Name","Number of marks","date of registration","Number of days of attendance","Attendance rate"]
 
-    "Class_filter":["All","First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade","First Division","Second Division"]
   },
 
 

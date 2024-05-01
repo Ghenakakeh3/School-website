@@ -1,208 +1,99 @@
 import React, { useState, useCallback } from "react";
-import { useFormik } from "formik";
-import Typography from "../../../utilities/Typography";
-import Button from "../../../utilities/Button";
-import { DashInput, InputFile } from "../../../utilities/Inputs";
-import D_inputs from "./D_inputs"
+import { useTranslation } from "react-i18next";
+import DynamicForm from "./D_inputs"
+import PropTypes from "prop-types";
+import ClickOutside from "../../../utilities/Click_Outsite";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { FaRegEye } from "react-icons/fa";
+import { PiUser } from "react-icons/pi";
+import { FaEyeSlash } from "react-icons/fa";
+
+
 
 // import { useDropzone } from "react-dropzone";
 import * as Yup from "yup";
 
 
-const Add = React.forwardRef(
+const Add= React.forwardRef(
   (
     {
-      Add_content,
-      validation_schema,
+     
       add_active,
       set_add_active,
-      showpass,
-      setshowpass,
-      rows
+      formConfig,
+
+      rows,
+      set_data
 
     },
     ref
   ) => {
+    const { t } = useTranslation("global");
+    const [showpass, setshowpass] = useState(false);
     //show password
     function ShowPassword() {
         setshowpass(!showpass);
       }
+  
 
-    // const [addProductDropdown, setaddProductDropdown] = useState(null);
 
-    // const onDrop = useCallback((acceptedFiles) => {
-    //   formik.setFieldValue("img", acceptedFiles[0]);
-    // }, []);
-    // const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    //   onDrop,
-    // });
-    const formik = useFormik({
-      initialValues: {
-        inputs: [""],
-      },
-      validationSchema: validation_schema,
-      validateOnBlur: true,
-      validateOnChange: true,
-      validateOnMount: false,
-      onSubmit: (values) => {
-        console.log(values)
-        formik.handleReset();
       
-        
-      },
-    });
+  const initialValues = {
+    name: "",
+    user_name: "",
+    password: "",
 
-    const optionsDropdown = [
-      { name: "Medical Treatment", type: "" },
-      { name: "Orthodontics", type: "" },
-      { name: "Dental Repair", type: "view" },
-    ];
-    const handleInputChange = (index, event) => {
 
-      console.log(event.target.value)
-      const { name, value } = event.target;
-      // formik.handleChange
-      formik.setFieldValue(`inputs[${index}]`, event.target.value);
-    };
-    const hangdleInputBluer = (index, event) => {
-      formik.setFieldTouched(`inputs[${index}]`, true);
-    };
+    // Initialize other fields
+  };
 
-    const handleChangeDropdown = (selected) => {
-      setaddProductDropdown(selected);
-    };
+  const handleSubmit = (values, { setSubmitting }) => {
+    console.log("bb")
+    const newRow=[...rows, values]
+    set_data(newRow)
+    // set_data(rows)
+
+    setSubmitting(false);
+    set_add_active(!add_active)
+  };
+
+
+
+
+ 
     const toggle_Add = () => {
         set_add_active(!add_active);
     };
     return (
-      <div className="relative text-start ">
+      <div className="relatve text-start shadow-lg z-50 w-[17rem] sm:w-[22rem] md:w-[32rem] absolute ltr:right-0 rtl:left-0 ">
         <ClickOutside onClick={toggle_Add}>
           {add_active && (
             <div
               ref={ref}
-              className="w-[17rem] sm:w-[22rem] md:w-[30rem] rounded px-5 pt-5 pb-16 min-h-screen md:px-8 flex flex-col gap-3 absolute ltr:right-0 rtl:left-0  bg-white min-w-[45%]  shadow-md z-50 "
+              className=" rounded px-5 pt-5 pb-16 min-h-screen md:px-8 flex flex-col gap-3    bg-white   "
             >
-              <Typography component={"h3"}>
-                {Add_content.title}
-              </Typography>
-              <Typography component={"h5"} className="mb-5">
-                {Add_content.descrption}
-              </Typography>
+  
               {/* inputs */}
 
-              <D_inputs />
+              <DynamicForm 
+                   formConfig={formConfig}
+                   initialValues={initialValues}
+                   onSubmit={handleSubmit}
+              
+              
+              />
 
-              {/* <form
-                onSubmit={formik.handleSubmit} 
-                className="relative space-y-5 "
-              >
-                {Add_content.inputs.map((input, index) => {
-                  return (
-                    <>
-                      <div
-                        className="flex justify-between items-center "
-                        key={index}
-                      >
-                        {input.input_type === "dropdown" ? (
-                          <div className="w-full flex items-center justify-between   h-[2.3rem] ease-in-out  border-[1px] rounded-md text-mySlate  border-myGray-400">
-                            <span className=" ps-2 absolute h-[2rem]">
-                              {input.text}
-                            </span>
-
-                            <Dropdown
-                              options={optionsDropdown}
-                              value={addProductDropdown}
-                              onChange={handleChangeDropdown}
-                              // onBlur={formik.handleBlur("dropdownValue")}
-                              className=" active:border-primary focus-within:border-primary duration-150 w-full"
-                              // icon={arrowIcon}
-                              showSlected={false}
-                              ulClassname={"w-full "}
-                            />
-
-                            <img src={input.img} className="relative end-4" />
-                          </div>
-                        ) : (
-                          <div className=" w-full" key={index}>
-                            <DashInput
-                            
-                            
-                              value={formik.values.email}
-                  
-                              type={input.type}
-                              name={`inputs[${index}]`}
-                              onChange={(event) =>
-                                handleInputChange(index, event)
-                              }
-                              onBlur={(event) =>
-                                hangdleInputBluer(index, event)
-                              }
-                              autoComplete="off"
-                              id={input.name}
-                              placeholder={input.text}
-                              icon={input.img}
-                              iconOnClick={ShowPassword}
-                              isDisabled={false}
-                              errorMsg={
-                                formik.errors.inputs &&
-                                formik.errors.inputs[index] &&
-                                formik.touched.inputs[index]
-                                  ? formik.errors.inputs[index]
-                                  : ""
-                              }
-                              className={`placeholder:text-mySlate placeholder:focus:opacity-0`}
-                            />
-                          </div>
-                        )}
-                      </div>
-
-                      {input.des && (
-                        <Typography component={"h5"}>
-                          {input.des.text}{" "}
-                          <span
-                            className="cursor-pointer text-primary hover:text-success"
-                            onClick={() => {
-                              setDiscount(!discount);
-                              console.log("jj")
-                            }}
-                          >
-                            {input.des.click_here}
-                          </span>
-                        </Typography>
-                      )}
-                    </>
-                  );
-                })}
-
-                {Add_content.other && (
-                  <div className="flex items-center gap-2">
-                    <img src={Add_Product_content.other.img} alt="" />
-                    <Typography className={"!text-error cursor-pointer"}>
-                      {Add_Product_content.other.des}
-                    </Typography>
-                  </div>
-                )}
-
-       
-
-                <Button type="submit" fullWidth onClick={() => {
- 
-      }}>
-                  {Add_content.button_content}
-                </Button>
-              </form> */}
+            
             </div>
           )}
 
           {/* If you click here inside this Nothing happens. */}
         </ClickOutside>
-      </div>
+     </div>
     );
   }
 );
-import PropTypes from "prop-types";
-import Dropdown from "../../../utilities/Dropdown";
-import ClickOutside from "../../../utilities/Click_Outsite";
+
 
 Add.propTypes = {
     Add_content: PropTypes.object.isRequired,
@@ -211,6 +102,22 @@ Add.propTypes = {
   set_Edit_user: PropTypes.fun,
 };
 export default Add;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
