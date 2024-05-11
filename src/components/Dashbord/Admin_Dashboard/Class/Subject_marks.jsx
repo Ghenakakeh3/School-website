@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
@@ -14,8 +18,8 @@ import Add from '../../Dashbord_layout/Mangment/Add';
 import * as Yup from "yup";
 import Edit from '../../Dashbord_layout/Mangment/Edit';
 
-const Subjects = () => {
-    const Subjects = [
+const Subject_marks = () => {
+    const Subject_marks = [
         {
           ID: "01",
           Name: "العربية لغتي _ الفصل الأول",
@@ -84,25 +88,26 @@ const Subjects = () => {
           
           
       ];
-    const[data,setdata]=useState(Subjects)
+    const[data,setdata]=useState(Subject_marks)
     const { t } = useTranslation("global");
     const[valueRadio,setValueRadio]=useState(null)
-    const[add_Subjects,setadd_Subjects]=useState(false)
-    const AddRef=useRef(null)
-    const[Edit_active,setEdit_active]=useState(false)
-    const[edit_content,set_edit_content]=useState({})
 
+    const AddRef=useRef(null)
+    
+    const[Edit_active,setEdit_active]=useState(false)
+    
+    const[edit_content,set_edit_content]=useState({})
 
 
 
   
      
   const columns = [
-    t("Class_Admin_dash.Subjects.0") ,
-    t("Class_Admin_dash.Subjects.1") ,
-    t("Class_Admin_dash.Subjects.2") ,
-    t("Class_Admin_dash.Subjects.3") ,
-    t("Class_Admin_dash.Subjects.4") ,
+    t("Class_Admin_dash.Subject_marks.0") ,
+    t("Class_Admin_dash.Subject_marks.1") ,
+    t("Class_Admin_dash.Subject_marks.2") ,
+    t("Class_Admin_dash.Subject_marks.3") ,
+    t("Class_Admin_dash.Subject_marks.4") ,
 
 
 
@@ -111,118 +116,59 @@ const Subjects = () => {
 
   ];
   const radioItems = [
-    { value: t("Class_Admin_dash.Subjects_filter.0"), label: t("Class_Admin_dash.Subjects_filter.0")},
-    { value: t("Class_Admin_dash.Subjects_filter.1"), label: t("Class_Admin_dash.Subjects_filter.1") },
+    { value: t("Class_Admin_dash.Subject_marks_filter.0"), label: t("Class_Admin_dash.Subject_marks_filter.0")},
+    { value: t("Class_Admin_dash.Subject_marks_filter.1"), label: t("Class_Admin_dash.Subject_marks_filter.1") },
   ];
 
-  const formConfig_Add = {
-    info :[
-     { title:  t("Class_Admin_dash.Subjects.5")},
-    {descrption: t("Class_Admin_dash.Subjects.6")},
-    { button_content:t("Class_Admin_dash.Subjects.7") }
-    ],
-           
-    fields: [
 
-      {
-        name: "Subject_Name",
-        label: t("Class_Admin_dash.Subjects.1"),
-        img: "<MdOutlineDriveFileRenameOutline />",
-        type: "input",
-        inputType: "text",
-        component: "input",
-
-      },
-      {
-        name: "Number_of_classes",
-        label: t("Class_Admin_dash.Subjects.2"),
-        img: "<PiUser />",
-        type: "input",
-        inputType: "number",
-        component: "input",
-
-
-      },
-  
-      {
-        name: "Subject_teacher",
-        label: t("Class_Admin_dash.Subjects.3"),
-        img:"showpass ? <FaRegEye /> : <FaEyeSlash />" ,
-        type: "input",
-        inputType: "text" ,
-        component: "input",
-
-
-      },
-     
-      // Add more fields as needed
-    ],
-
-        validationSchema: {
-          Subject_Name: Yup.string().min(3,t("Class_Admin_dash.Subjects.11") ).max(12,t("Class_Admin_dash.Subjects.12")).required(t("Class_Admin_dash.Subjects.8")),
-
-      Number_of_classes: Yup.number().required(t("Class_Admin_dash.Subjects.10")).min(0, t("Class_Admin_dash.Subjects.13")),
-      Subject_teacher: Yup.string().min(3, (t("Class_Admin_dash.Subjects.14"))).required(t("Class_Admin_dash.Subjects.9")),
-
-
-    }
-    
-  };
   const formConfig_Edit = {
     info :[
-     { title:  t("Class_Admin_dash.Subjects.15")},
-    {descrption: t("Class_Admin_dash.Subjects.16")},
-    { button_content:t("Class_Admin_dash.Subjects.15") }
+     { title:  t("Class_Admin_dash.Subject_marks.15")},
+    {descrption: t("Class_Admin_dash.Subject_marks.16")},
+    { button_content:t("Class_Admin_dash.Subject_marks.15") }
     ],
            
     fields: [
 
       {
         name: "Subject_Name",
-        label: t("Class_Admin_dash.Subjects.1"),
+        label: t("Class_Admin_dash.Subject_marks.1"),
         img: "<MdOutlineDriveFileRenameOutline />",
         type: "input",
         inputType: "text",
         component: "input",
-    
+        value: edit_content.Name
       },
       {
         name: "Number_of_classes",
-        label: t("Class_Admin_dash.Subjects.2"),
+        label: t("Class_Admin_dash.Subject_marks.2"),
         img: "<PiUser />",
         type: "input",
         inputType: "number",
         component: "input",
-  
+        value: edit_content.Number_of_classes
 
       },
   
       {
         name: "Subject_teacher",
-        label: t("Class_Admin_dash.Subjects.3"),
+        label: t("Class_Admin_dash.Subject_marks.3"),
         img:"showpass ? <FaRegEye /> : <FaEyeSlash />" ,
         type: "input",
         inputType: "text" ,
         component: "input",
-    
+        value:  edit_content.Subject_teacher
 
       },
      
       // Add more fields as needed
     ],
-    initialValues : {
-      Subject_Name: edit_content.Name,
-      Number_of_classes: edit_content.Number_of_classes,
-      Subject_teacher:  edit_content.Subject_teacher,
-  
-    },
-  
 
         validationSchema: {
-          Subject_Name: Yup.string().min(3,t("Class_Admin_dash.Subjects.11") ).max(12,t("Class_Admin_dash.Subjects.12")).required(t("Class_Admin_dash.Subjects.8")),
+          Subject_Name: Yup.string().min(3,t("Class_Admin_dash.Subject_marks.11") ).max(12,t("Class_Admin_dash.Subject_marks.12")).required(t("Class_Admin_dash.Subject_marks.8")),
 
-      Number_of_classes: Yup.number().required(t("Class_Admin_dash.Subjects.10")).min(0, t("Class_Admin_dash.Subjects.13")),
-      Subject_teacher: Yup.string().min(3, (t("Class_Admin_dash.Subjects.14"))).required(t("Class_Admin_dash.Subjects.9")),
+      Number_of_classes: Yup.number().required(t("Class_Admin_dash.Subject_marks.10")).min(0, t("Class_Admin_dash.Subject_marks.13")),
+      Subject_teacher: Yup.string().min(3, (t("Class_Admin_dash.Subject_marks.14"))).required(t("Class_Admin_dash.Subject_marks.9")),
 
 
     }
@@ -244,20 +190,7 @@ const Subjects = () => {
 }
   return (
 <div className='relative'>
-{/* {add_Subjects ? (
-            <Add
-            formConfig={formConfig_Add}
-              ref={AddRef}  
-              add_active={add_Subjects}
-              set_add_active={setadd_Subjects}
-              rows={data}
-              set_data={setdata}
 
-
-            />
-          ) : (
-            ""
-          )} */}
 
           
 {Edit_active ? (
@@ -289,7 +222,7 @@ const Subjects = () => {
             </div>
   </div>
 
-       
+          
 </div>
        
 
@@ -311,4 +244,5 @@ const Subjects = () => {
   )
 }
 
-export default Subjects
+export default Subject_marks
+

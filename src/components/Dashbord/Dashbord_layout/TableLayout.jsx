@@ -10,6 +10,9 @@ import { Link, NavLink } from "react-router-dom";
 
 
 const Table = ({ RowlinK,columns, rows, points, handlepoint, point, className ,rowclassName,option,action,handleEdit,handleDelte}) => {
+const url=location.pathname
+console.log(url)
+
   
   return (
     <div
@@ -17,11 +20,11 @@ const Table = ({ RowlinK,columns, rows, points, handlepoint, point, className ,r
         className ? className : ""
       }   overflow-x-auto overflow-hidden `}
     >
-      <table className="table-auto w-full overflow-x-auto">
-        <thead className="bg-sky-900 ">
+      <table className="table-auto w-full overflow-x-auto rounded-md  ">
+        <thead className="bg-sky-900 rounded-lg w-full ">
           <tr>
             {columns.map((column, index) => (
-              <th key={index} className={` ${rowclassName ? rowclassName: "" }px-4 py-4   text-white text-sm`}>
+              <th key={index} className={` ${rowclassName ? rowclassName: "" }  py-4 px-6 text-white text-sm`}>
                 {column}
               </th>
             ))}
@@ -37,19 +40,22 @@ const Table = ({ RowlinK,columns, rows, points, handlepoint, point, className ,r
                           
                 {Object.entries(row).map(([key, value], cellIndex) => (
                     
-                     <td
-                                     key={cellIndex}
-                                     className={`text-center py-6 text-sm ${
-                                       key === "status"
-                                         ? value === "Active"
-                                           ? "text-success"
-                                           : value === "Not Active"
-                                           ? "text-error"
-                                           : "text-gray-500"
-                                         : "text-gray-500"
-                                     }`}
-                                   >
-                                    <Link to={`/Admin_dashboard/Class/${row.ID}`}>
+                    <td
+                    key={cellIndex}
+                    className={`text-center py-6 text-sm
+                 
+                    ${
+                      key === "Checking"
+                        ? value === "موجود"
+                          ? "text-success"
+                          : value === "غير موجود" || "موجود-متأخر"
+                          ? "text-error font-bold text-lg"
+                          : "text-gray-500"
+                        : "text-gray-500"
+                    }`}
+                  >
+
+                                    <Link to={`${url}/${row.ID}`}>
                                 {value}
                                      </Link>
                                    </td>
@@ -99,39 +105,25 @@ const Table = ({ RowlinK,columns, rows, points, handlepoint, point, className ,r
                 rowIndex % 2 === 0 ? "bg-myGray-200 border-b " : ""
               }`}
             >
-              {/* {columns[0]==="ID" ? (   <td className=" text-sm text-gray-500 flex justify-center  p-6 ">
-                {(rowIndex + 1).toString().padStart(2, "0")}
-              </td>) : "" } */}
+         
            
               {Object.entries(row).map(([key, value], cellIndex) => (
-                <td
+                  <td
                   key={cellIndex}
-                  className={`text-center py-6 text-sm  ${
-                    key === "status"
-                      ? value === "Active"
+                  className={`text-center py-6 text-sm
+               
+                  ${
+                    key === "Checking"
+                      ? value === "موجود"
                         ? "text-success"
-                        : value === "Not Active"
-                        ? "text-error"
+                        : value === "غير موجود" || "موجود-متأخر"
+                        ? "text-error font-bold text-lg"
                         : "text-gray-500"
                       : "text-gray-500"
                   }`}
                 >
-                  {key === "pdf" ? (
-                    <a
-                      href={value} // استخدام مسار الـ PDF من الباك إند
-                      target="_blank"
-                      className="text-error hover:underline"
-                    >
-                      <img
-                        src={pdf}
-                        alt="PDF Icon"
-                        className=" w-4 h-4 inline me-1"
-                      />
-                      PDF
-                    </a>
-                  ) : (
-                    value
-                  )}
+                  {value}
+       
                 </td>
               ))}
               {

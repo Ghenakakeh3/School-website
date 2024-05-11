@@ -80,14 +80,13 @@ const Registered_students = () => {
       ];
     const[data,setdata]=useState(Registered_students)
     const { t } = useTranslation("global");
-    const[valueRadio,setValueRadio]=useState(null)
     const[add_Registered_students,setadd_Registered_students]=useState(false)
     const AddRef=useRef(null)
     const[Edit_active,setEdit_active]=useState(false)
     const[edit_content,set_edit_content]=useState({})
     const [results, setResults] = useState([]);
     const [selected_result, setselected_result] = useState("");
-    console.log(selected_result)
+    
 
 
 
@@ -262,11 +261,11 @@ const Registered_students = () => {
 <div className='flex   items-center w-full justify-between'>
   <div className='flex gap-10'>
   <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {data.length} record
+              {data.length} {t("home_Admin_dash.record.0")}
             </span>
 
 
-            <div className="search-bar-container relative bg-slate-600">
+            <div className="search-bar-container relative ">
         <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Class_Admin_dash.Registered_students.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
       </div>

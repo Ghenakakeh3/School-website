@@ -10,10 +10,11 @@ export default function Dropdown({
   showSlected,
   ulClassname,
   classNameIcon,
-  label
+  label,
+  edit_option
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(options[0].name);
+  const [selectedItem, setSelectedItem] = useState(edit_option? edit_option : options[0].name);
   const dropdownRef = useRef(null);
 
   const handleSelect = (selected) => {
@@ -47,6 +48,7 @@ export default function Dropdown({
         className="  flex  items-center p-2   justify-between z-10 tracking-wide border-0 border-b-myGray-100 active:border-b-primary duration-150 ease-in-out"
       >
         {showSlected ? selectedItem : ""}
+
         <img
           className={` ${classNameIcon ? classNameIcon : ""} `}
           src={icon}

@@ -22,9 +22,6 @@ const Add= React.forwardRef(
       set_add_active,
       formConfig,
 
-      rows,
-      set_data
-
     },
     ref
   ) => {
@@ -38,24 +35,27 @@ const Add= React.forwardRef(
 
 
       
-  const initialValues = {
-    name: "",
-    user_name: "",
-    password: "",
+  // const initialValues = {
+  //   name: "",
+  //   user_name: "",
+  //   password: "",
 
 
-    // Initialize other fields
-  };
+  //   // Initialize other fields
+  // };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log("bb")
-    const newRow=[...rows, values]
-    set_data(newRow)
-    // set_data(rows)
+  // const handleSubmit = (values, { setSubmitting }) => {
+  //   console.log("bb")
+  //   const newRow=[...rows, values]
+  //   set_data(newRow)
+  //   // set_data(rows)
 
-    setSubmitting(false);
-    set_add_active(!add_active)
-  };
+  //   setSubmitting(false);
+  //   set_add_active(!add_active)
+  // };
+  const handleSubmit = ()=>{
+    console.log("vvvvvvv")
+  }
 
 
 
@@ -77,7 +77,7 @@ const Add= React.forwardRef(
 
               <DynamicForm 
                    formConfig={formConfig}
-                   initialValues={initialValues}
+                   initialValues={formConfig.initialValues}
                    onSubmit={handleSubmit}
               
               

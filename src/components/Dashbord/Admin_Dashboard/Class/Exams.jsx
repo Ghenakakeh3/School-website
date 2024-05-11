@@ -1,4 +1,7 @@
-import React, { useRef, useState } from 'react'
+
+
+
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
 import Table from '../../Dashbord_layout/TableLayout'
@@ -6,29 +9,25 @@ import NoData from '../../Dashbord_layout/NoData/NoData';
 import Radio from '../../../utilities/Radio';
 import Button from '../../../utilities/Button';
 import { IoIosAddCircle } from "react-icons/io";
-
-import { IoIosAddCircleOutline } from "react-icons/io";
-
-import Add_acount from '../../Dashbord_layout/Mangment/Acount_mangment/Add_acount';
 import Add from '../../Dashbord_layout/Mangment/Add';
 import * as Yup from "yup";
 import Edit from '../../Dashbord_layout/Mangment/Edit';
 
-const Subjects = () => {
-    const Subjects = [
+const Exams = () => {
+    const Exams = [
         {
           ID: "01",
           Name: "العربية لغتي _ الفصل الأول",
-          Number_of_classes: "6",
-          Subject_teacher: "هادي الهادي",
+          Timing: "مايو 11, 2024 8:00ص",
+          Test_type: "فحص",
     
     
         },
         {
             ID: "02",
             Name:"التربية الفنية",
-            Number_of_classes: "6",
-          Subject_teacher: " رامي حسون",
+            Timing: "20 /8 /2020 10:00pm",
+          Test_type: "مذاكرة",
 
       
       
@@ -36,45 +35,45 @@ const Subjects = () => {
           {
             ID: "03",
             Name:"التزبية الدينية الإسلامية",
-            Number_of_classes: "6",
-          Subject_teacher: "لانا العلي ",
+            Timing: "20 /8 /2020 10:00pm",
+          Test_type: "فحص",
 
       
       
           },   {
             ID: "04",
-            Name:"الرياضيات الفصل الأول",
-            Number_of_classes: "6",
-          Subject_teacher: "فراس الأحمر ",
+            Name:" 20 /8 /2020 10:00pm",
+            Timing: "20 /8 /2020 10:00pm",
+          Test_type: "فحص",
             
       
           },   {
             ID: "05",
-            Name:"التربية الموسيقية",
-            Number_of_classes: "6",
-          Subject_teacher: " سنا الرومي",
+            Name:" الموسيقية",
+            Timing: "20 /8 /2020 10:00pm",
+          Test_type: "مذاكرة",
             
       
           },   {
             ID: "06",
             Name:"العلوم _الفصل الأول",
-            Number_of_classes: "6",
-          Subject_teacher: " ماجدة الورد",
+            Timing: "20 /8 /2020 10:00pm",
+          Test_type: " مذاكرة",
             
       
           },   {
             ID: "07",
             Name:"الدراسات الاجتماعية",
-            Number_of_classes: "6",
-          Subject_teacher: "سهام ضبيط ",
+            Timing: "20 /8 /2020 10:00pm",
+          Test_type: "مذاكرة ",
                   
       
           },
           {
             ID: "08",
             Name:"اللغة والانكليزية  ",
-            Number_of_classes: "6",
-          Subject_teacher: "لانا العلي  ",
+            Timing: "20 /8 /2020 10:00pm",
+          Test_type: "مذاكرة",
 
       
       
@@ -84,25 +83,30 @@ const Subjects = () => {
           
           
       ];
-    const[data,setdata]=useState(Subjects)
+    const[data,setdata]=useState(Exams)
     const { t } = useTranslation("global");
     const[valueRadio,setValueRadio]=useState(null)
-    const[add_Subjects,setadd_Subjects]=useState(false)
+    const[add_Exams,setadd_Exams]=useState(false)
     const AddRef=useRef(null)
-    const[Edit_active,setEdit_active]=useState(false)
     const[edit_content,set_edit_content]=useState({})
-
-
+    const [EditDate, setEditDate] = useState(new Date());
+   
+    const[Edit_active,setEdit_active]=useState(false)
+  
 
 
   
-     
+     useEffect(()=>{
+
+      setEditDate(edit_content.Timing)
+      
+     },[Edit_active])
   const columns = [
-    t("Class_Admin_dash.Subjects.0") ,
-    t("Class_Admin_dash.Subjects.1") ,
-    t("Class_Admin_dash.Subjects.2") ,
-    t("Class_Admin_dash.Subjects.3") ,
-    t("Class_Admin_dash.Subjects.4") ,
+    t("Class_Admin_dash.Exams.0") ,
+    t("Class_Admin_dash.Exams.1") ,
+    t("Class_Admin_dash.Exams.2") ,
+    t("Class_Admin_dash.Exams.3") ,
+    t("Class_Admin_dash.Exams.4") ,
 
 
 
@@ -110,23 +114,24 @@ const Subjects = () => {
 
 
   ];
+
   const radioItems = [
-    { value: t("Class_Admin_dash.Subjects_filter.0"), label: t("Class_Admin_dash.Subjects_filter.0")},
-    { value: t("Class_Admin_dash.Subjects_filter.1"), label: t("Class_Admin_dash.Subjects_filter.1") },
+    { value: t("Class_Admin_dash.Exams_filter.0"), label: t("Class_Admin_dash.Exams_filter.0")},
+    { value: t("Class_Admin_dash.Exams_filter.1"), label: t("Class_Admin_dash.Exams_filter.1") },
   ];
 
   const formConfig_Add = {
     info :[
-     { title:  t("Class_Admin_dash.Subjects.5")},
-    {descrption: t("Class_Admin_dash.Subjects.6")},
-    { button_content:t("Class_Admin_dash.Subjects.7") }
+     { title:  t("Class_Admin_dash.Exams.5")},
+    {descrption: t("Class_Admin_dash.Exams.6")},
+    { button_content:t("Class_Admin_dash.Exams.5") }
     ],
            
     fields: [
 
       {
         name: "Subject_Name",
-        label: t("Class_Admin_dash.Subjects.1"),
+        label: t("Class_Admin_dash.Exams.1"),
         img: "<MdOutlineDriveFileRenameOutline />",
         type: "input",
         inputType: "text",
@@ -134,35 +139,47 @@ const Subjects = () => {
 
       },
       {
-        name: "Number_of_classes",
-        label: t("Class_Admin_dash.Subjects.2"),
+        name: "Timing",
+        label: t("Class_Admin_dash.Exams.2"),
         img: "<PiUser />",
-        type: "input",
-        inputType: "number",
+        type: "date",
+        inputType: "text",
         component: "input",
 
 
       },
   
       {
-        name: "Subject_teacher",
-        label: t("Class_Admin_dash.Subjects.3"),
-        img:"showpass ? <FaRegEye /> : <FaEyeSlash />" ,
-        type: "input",
+        name: "Test_type",
+        label: t("Class_Admin_dash.Exams.3"),
+        type: "radio",
         inputType: "text" ,
-        component: "input",
+        component: "radio",
+        options: [
+            {value : t("Class_Admin_dash.Exams.7"), name:"chapter one" ,label: t("Class_Admin_dash.Exams.7")},
+            {value : t("Class_Admin_dash.Exams.8"), name:"chapter Second" ,label: t("Class_Admin_dash.Exams.8")}
+
+        
+        ],
 
 
       },
      
       // Add more fields as needed
     ],
+    initialValues : {
+      Subject_Name: "",
+      Timing: "",
+      Test_type: "",
+  
+  
+      // Initialize other fields
+    },
 
         validationSchema: {
-          Subject_Name: Yup.string().min(3,t("Class_Admin_dash.Subjects.11") ).max(12,t("Class_Admin_dash.Subjects.12")).required(t("Class_Admin_dash.Subjects.8")),
-
-      Number_of_classes: Yup.number().required(t("Class_Admin_dash.Subjects.10")).min(0, t("Class_Admin_dash.Subjects.13")),
-      Subject_teacher: Yup.string().min(3, (t("Class_Admin_dash.Subjects.14"))).required(t("Class_Admin_dash.Subjects.9")),
+      Subject_Name: Yup.string().min(3,t("Class_Admin_dash.Exams.11") ).max(50,t("Class_Admin_dash.Exams.10")).required(t("Class_Admin_dash.Exams.9")),
+      Timing: Yup.date().required(t("Class_Admin_dash.Exams.13")),
+      Test_type: Yup.string().required(t("Class_Admin_dash.Exams.12")),
 
 
     }
@@ -170,59 +187,64 @@ const Subjects = () => {
   };
   const formConfig_Edit = {
     info :[
-     { title:  t("Class_Admin_dash.Subjects.15")},
-    {descrption: t("Class_Admin_dash.Subjects.16")},
-    { button_content:t("Class_Admin_dash.Subjects.15") }
+     { title:  t("Class_Admin_dash.Exams.14")},
+    {descrption: t("Class_Admin_dash.Exams.15")},
+    { button_content:t("Class_Admin_dash.Exams.14") }
     ],
            
     fields: [
 
       {
         name: "Subject_Name",
-        label: t("Class_Admin_dash.Subjects.1"),
+        label: t("Class_Admin_dash.Exams.1"),
         img: "<MdOutlineDriveFileRenameOutline />",
         type: "input",
         inputType: "text",
         component: "input",
-    
+        // value: edit_content.Name
       },
       {
-        name: "Number_of_classes",
-        label: t("Class_Admin_dash.Subjects.2"),
+        name: "Timing",
+        label: t("Class_Admin_dash.Exams.2"),
         img: "<PiUser />",
-        type: "input",
-        inputType: "number",
+        type: "date",
+        inputType: "date",
         component: "input",
-  
+        // value: edit_content.Timing
 
       },
   
       {
-        name: "Subject_teacher",
-        label: t("Class_Admin_dash.Subjects.3"),
+        name: "Test_type",
+        label: t("Class_Admin_dash.Exams.3"),
         img:"showpass ? <FaRegEye /> : <FaEyeSlash />" ,
-        type: "input",
+        type: "radio",
         inputType: "text" ,
-        component: "input",
-    
+        // value:  edit_content.Test_type,
+        component: "radio",
+        options: [
+            {value : "Exam" ,name: "Exam" ,label: t("Class_Admin_dash.Exams.7")},
+            {value : "Test", name: "testt" ,label: t("Class_Admin_dash.Exams.8")}
+
+        
+        ],
 
       },
      
-      // Add more fields as needed
     ],
     initialValues : {
       Subject_Name: edit_content.Name,
-      Number_of_classes: edit_content.Number_of_classes,
-      Subject_teacher:  edit_content.Subject_teacher,
+      Timing: edit_content.Timing,
+      Test_type:edit_content.Test_type==="فحص" ? "Exam": "Test",
   
+  
+      // Initialize other fields
     },
-  
 
         validationSchema: {
-          Subject_Name: Yup.string().min(3,t("Class_Admin_dash.Subjects.11") ).max(12,t("Class_Admin_dash.Subjects.12")).required(t("Class_Admin_dash.Subjects.8")),
-
-      Number_of_classes: Yup.number().required(t("Class_Admin_dash.Subjects.10")).min(0, t("Class_Admin_dash.Subjects.13")),
-      Subject_teacher: Yup.string().min(3, (t("Class_Admin_dash.Subjects.14"))).required(t("Class_Admin_dash.Subjects.9")),
+       Subject_Name: Yup.string().min(3,t("Class_Admin_dash.Exams.11") ).max(12,t("Class_Admin_dash.Exams.12")).required(t("Class_Admin_dash.Exams.9")),
+      Timing: Yup.date().required(t("Class_Admin_dash.Exams.13")),
+      Test_type: Yup.string().min(3, (t("Class_Admin_dash.Exams.14"))).required(t("Class_Admin_dash.Exams.9")),
 
 
     }
@@ -244,12 +266,12 @@ const Subjects = () => {
 }
   return (
 <div className='relative'>
-{/* {add_Subjects ? (
+{add_Exams ? (
             <Add
             formConfig={formConfig_Add}
               ref={AddRef}  
-              add_active={add_Subjects}
-              set_add_active={setadd_Subjects}
+              add_active={add_Exams}
+              set_add_active={setadd_Exams}
               rows={data}
               set_data={setdata}
 
@@ -257,7 +279,7 @@ const Subjects = () => {
             />
           ) : (
             ""
-          )} */}
+          )}
 
           
 {Edit_active ? (
@@ -289,7 +311,10 @@ const Subjects = () => {
             </div>
   </div>
 
-       
+            {/* <div className=''>
+     
+     <Button  className="flex bg-success items-center gap-2 " onClick={()=>{setadd_Exams(true)}}>{ t("Class_Admin_dash.Exams.5") } <IoIosAddCircle /> </Button>
+     </div> */}
 </div>
        
 
@@ -311,4 +336,4 @@ const Subjects = () => {
   )
 }
 
-export default Subjects
+export default Exams

@@ -129,13 +129,13 @@ const ClassDetales = () => {
      
         { name: t("Class_Admin_dash.ClassDetales.0"), to: `/Admin_dashboard/Class/${Id}/Subjects` },
         { name: t("Class_Admin_dash.ClassDetales.1"), to: `/Admin_dashboard/Class/${Id}/Registered_students`  },
-        { name: t("Class_Admin_dash.ClassDetales.2"), to: "/Admin_dashboard/Class/${Id}/Subjects" },
-        { name: t("Class_Admin_dash.ClassDetales.3"), to: "/Admin_Settings/Manage_user_accounts/Student_accounts" },
-        { name: t("Class_Admin_dash.ClassDetales.4"), to: "/Admin_Settings/Manage_user_accounts/Student_accounts" },
-        { name: t("Class_Admin_dash.ClassDetales.5"), to: "/Admin_Settings/Manage_user_accounts/Student_accounts" },
+        { name: t("Class_Admin_dash.ClassDetales.2"), to: `/Admin_dashboard/Class/${Id}/Weekly_program` },
+        { name: t("Class_Admin_dash.ClassDetales.3"), to: `/Admin_dashboard/Class/${Id}/Time_record` },
+        { name: t("Class_Admin_dash.ClassDetales.4"), to: `/Admin_dashboard/Class/${Id}/Exams` },
+        { name: t("Class_Admin_dash.ClassDetales.5"), to: `/Admin_dashboard/Class/${Id}/Subject_marks` },
       
 
-
+        
    
     
       ];

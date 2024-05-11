@@ -37,18 +37,11 @@ const Edit= React.forwardRef(
 
 
       
-  const initialValues = {
-    name: "",
-    user_name: "",
-    password: "",
 
-
-    // Initialize other fields
-  };
 
   const handleSubmit = (values, { setSubmitting }) => {
     const newRow=[...rows, values]
-    set_data(newRow)
+    // set_data(newRow)
     // set_data(rows)
 
     setSubmitting(false);
@@ -75,7 +68,7 @@ const Edit= React.forwardRef(
 
               <DynamicForm 
                    formConfig={formConfig}
-                   initialValues={initialValues}
+                   initialValues={formConfig.initialValues}
                    onSubmit={handleSubmit}
               
               

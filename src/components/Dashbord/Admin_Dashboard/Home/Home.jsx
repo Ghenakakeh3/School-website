@@ -17,6 +17,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import SimpleAreaChart from '../../Dashbord_layout/SimpleAreaChart/SimpleAreaChart';
 import Student_avrege from './Student_avrege';
+import SimpleBarChart from '../../../utilities/SimpleBarChart/SimpleBarChart';
 
 
 const Home_admin = () => {
@@ -462,9 +463,9 @@ const Home_admin = () => {
           
           </div>
           <div className='bg-white w-[26%] rounded-md shadow-md '>
-          
+          <SimpleBarChart />
 
-<SimpleAreaChart title={t("home_Admin_dash.Student _absence_chart.0")} />
+{/* <SimpleAreaChart title={t("home_Admin_dash.Student _absence_chart.0")} /> */}
              
              </div>
           <div className='bg-white w-[26%] h-[26rem] rounded-md shadow-md   '>

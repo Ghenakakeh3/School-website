@@ -66,11 +66,18 @@ export const SearchBar = ({ setResults,selected_result,placeholder }) => {
 
   const fetchData = (value) => {
     const results =Registered_students.filter((student)=>{
+      console.log(student)
+      console.log(value)
+
       return (
-        student.Full_Name.includes(value)
+        student.Full_Name.startsWith(value)
+       
+        // student.Full_Name.includes(value)
+       
       )
     })
     setResults(results);
+  
     // fetch("https://jsonplaceholder.typicode.com/users")
     //   .then((response) => response.json())
     //   .then((json) => {

@@ -21,7 +21,8 @@
    "Admin_Settings": ["Settings","General Settings","Manage user accounts","System settings","Return to the home page"],
    "Manage_user_accounts" : ["Admin accounts","Parents' accounts","Student accounts" ,"Add Account"],
    "Add_Account":["Add Account","You can  add new account from here.","Name","User Name","Password","Add New Admin Account"],
-   "Edit_Account":["Edit Account","You can Edit account from here.","Name","User Name","Password","Edit Admin Account"]
+   "Edit_Account":["Edit Account","You can Edit account from here.","Name","User Name","Password","Edit Admin Account"],
+   "record":["Record"]
   
 
 
@@ -33,15 +34,35 @@
 
   },
   "Class_Admin_dash": {
-    "Class":["Class","Division "],
-    "Class_Table":["ID","Class","Division name","Action"],
+    "Class":["Class","Division ","Add Division","Class","Division name","Number of students","You can add a new  Division from here.","Class is required","Division is required","Edit Division","You can edit Division from here."],
+    "Class_Table":["ID","Class","Division name","Number of students","Action"],
     "Class_filter":["All","First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade","First Division","Second Division"],
     "ClassDetales":["Subjects","Registered students","weekly program","Time record","exams","Subject marks"],
     "Subjects":["ID","Subject Name","Number of classes","Subject teacher","Action","Add subject","You can add a new Subject from here.","Add new subject","subject name is required","Subject teacher is required","Number of classes is required","Subject Name shoud be longest","Subject Name shoud be shortest","Number of classes must be a positive number","Subject teacher name shoud be longest","Edit Subject","You can edit Subject from here."],
     "Subjects_filter":["Chapter one","Chapter Second"],
-    "Registered_students":["ID","Full Name","Number of marks","date of registration","Number of days of attendance","Attendance rate"]
+    "Registered_students":["ID","Full Name","Number of marks","date of registration","Number of days of attendance","Attendance rate"],
+    "Weekly_program":["Day/time","8:00","8:45","9:30","10:15","11:00","11:45"],
+    "Time_record":["ID","student Name","Checking","the reason"],
+    "Exams":["ID","Subject Name","Timing","test type","Action","Add test","You can add a new test from here.","Exam","Test","subject name is required","Subject Name shoud be shortest","Subject Name shoud be longest","test type is required","Timing is required","Edit test","You can Edit  test from here."],
+
+    "Exams_filter":["Chapter one","Chapter Second"],
+    "Subject_marks":["student Name","Subject Name","Timing","mark","Action"],
+    "Subject_marks_filter":["Chapter one","Chapter Second"]
+   
 
   },
+  "Students_Admin_dash": {
+    "Students":["Students","Edit student Information","You can edit student Information from here."],
+    "Students_Table":["ID","student Name","Class","Division name","Action"]
+
+  },
+  "Teachers_Admin_dash": {
+"Teachers":["Teachers","Edit student Information","You can edit student Information from here."],
+"Teachers_Table":["ID","Teacher Name","Class","Division name", "Subject Name","Action"]
+
+
+  },
+
 
 
 
