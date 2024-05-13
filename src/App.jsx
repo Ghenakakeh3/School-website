@@ -22,6 +22,7 @@ import Exams from './components/Dashbord/Admin_Dashboard/Class/Exams'
 import Subject_marks from './components/Dashbord/Admin_Dashboard/Class/Subject_marks'
 import Students from './components/Dashbord/Admin_Dashboard/Students/Students'
 import Teachers from './components/Dashbord/Admin_Dashboard/Teachers/Teachers'
+import Students_details from './components/Dashbord/Admin_Dashboard/Students/Students_details'
 
 
 function App() {
@@ -108,6 +109,10 @@ function App() {
             
             {/* students */}
             <Route path="students" element={<Students />} /> 
+            <Route path="students/:id" element={<Students_details />} >
+
+            </Route>
+            
 
             {/* Teachers */}
          

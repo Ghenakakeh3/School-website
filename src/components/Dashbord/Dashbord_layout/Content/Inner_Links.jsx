@@ -5,7 +5,7 @@ const Inner_Links = ({links}) => {
   const [active, setactive] = useState(0);
 
   return (
-    <div className=' flex gap-3 border-b-2 px-5 border-myGray-200'>
+    <div className=' flex gap-3 border-b-2 px-5 rounded-md border-myGray-200  bg-white shadow-md '>
         {links.map((link,index) => (
  
 

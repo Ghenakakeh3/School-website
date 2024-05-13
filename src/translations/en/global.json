@@ -53,7 +53,9 @@
   },
   "Students_Admin_dash": {
     "Students":["Students","Edit student Information","You can edit student Information from here."],
-    "Students_Table":["ID","student Name","Class","Division name","Action"]
+    "Students_Table":["ID","student Name","Class","Division name","Action"],
+    "Students_Action":["Edit profile"]
+
 
   },
   "Teachers_Admin_dash": {

@@ -142,7 +142,7 @@ const ClassDetales = () => {
       const Class_selcted_=rows.filter((row)=>{
         return row.ID === Id
       })
-      console.log(Class_selcted_)
+    
 
       const[Class,setClass]=useState(Class_selcted_)
   return (
