@@ -37,7 +37,10 @@ export default function Login() {
       formik.handleReset();
       
       {values.email==="admin_email@gmail.com" && values.password==="12345678" ? navigate('/Admin_dashboard' ): ""}
-      console.log(values)
+      {values.email==="Supervisor_email@gmail.com" && values.password==="12345678" ? navigate('/Supervisor_dashboard' ): ""}
+
+     
+ 
     },
   });
   const { t } = useTranslation("global");

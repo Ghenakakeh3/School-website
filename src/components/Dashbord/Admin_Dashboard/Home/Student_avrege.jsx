@@ -126,7 +126,7 @@ const Student_avrege = () => {
     ]
 
   return (
-    <div className='overflow-y-scrol'>
+    <div className='overflow-y-scrol shadow-gray-400 shadow-lg rounded-md'>
     <Typography component="h3" className='text-center mt-3 '> {t("home_Admin_dash.stuents_by_average_mark.0")}</Typography>
     <div className='flex items-center justify-around  mt-4 mb-2'>
     

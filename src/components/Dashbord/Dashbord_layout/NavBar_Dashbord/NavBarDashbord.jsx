@@ -17,30 +17,68 @@ import { FaUsersLine } from "react-icons/fa6";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { GrNotes } from "react-icons/gr";
 import "./NavBarDashbord.css"
+import { BsPersonWorkspace } from "react-icons/bs";
+
 
 const NavBarDashbord = () => {
   const { t } = useTranslation("global");
   
   const [active, setactive] = useState(0);
-
-
-  const links = [
+  const Admin_links = [
     { name: t("navbar_Admin_dash.links.0"), to: "/Admin_dashboard" ,icon :<IoHome  />},
     { name: t("navbar_Admin_dash.links.1"), to: "/Admin_dashboard/Class",icon :<FaWindowRestore  /> },
     { name: t("navbar_Admin_dash.links.2"), to: "/Admin_dashboard/students" ,icon :<FaUsersLine  /> },
     { name: t("navbar_Admin_dash.links.3"), to: "/Admin_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
-    { name: t("navbar_Admin_dash.links.4"), to: "/Notes",icon :<GrNotes  /> },
+    { name: t("navbar_Admin_dash.links.4"), to: "/Admin_dashboard/Moderators",icon :<BsPersonWorkspace /> },
+    { name: t("navbar_Admin_dash.links.5"), to: "/Notes",icon :<GrNotes  /> },
 
   ];
+
+ 
+  const Supervisor_links = [
+    { name: t("navbar_Supervisor_dash.links.0"), to: "/Supervisor_dashboard" ,icon :<IoHome  />},
+    { name: t("navbar_Supervisor_dash.links.1"), to: "/Supervisor_dashboard/Division",icon :<FaWindowRestore  /> },
+    { name: t("navbar_Supervisor_dash.links.2"), to: "/Supervisor_dashboard/students" ,icon :<FaUsersLine  /> },
+    { name: t("navbar_Supervisor_dash.links.3"), to: "/Supervisor_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
+    { name: t("navbar_Supervisor_dash.links.4"), to: "/Notes",icon :<GrNotes  /> },
+
+  ];
+  const path=location.pathname.split("/")[1]
+ 
+
+
+
+  const  link_layout=(links)=>{
+    return(
+<div className={` ${  path === "Admin_dashboard" ? "mx-24":""} flex justify-center gap-10  items-center w-[50%] NavBarDashbord ltr:mx-10 `}>
+{links.map((link,index) => (
+ 
+
+  <NavLink  to={link.to} key={link.to}    className={({ isActive }) =>
+         isActive ? `${setactive(index)} ${index === active ? "bg-sky-900 text-white " : "" } active  flex items-center gap-2 py-5 px-5 rounded-lg   transition-all `  : "hover:text-orange  text-[18px] transition-all  flex items-center gap-2  " 
+  
+        } >
+        
+        <div className={`text-[25px] ${index === active ? "text-white" : "text-orange" }`}>
+    {link.icon}
+
+    </div>
+    {link.name}
+  </NavLink>
+
+
+))}
+</div>
+    )
+  }
+
+
 
   // 
   const [profile, setProfile] = useState(false);
   const [viewNot, setViewNot] = useState(false);
   const profileRef = useRef(null);
   const notifiRef = useRef(null);
-
-  const [point, setPoint] = useState(null);
-  const navigate = useNavigate();
 
   const adminInfo = [
     {
@@ -58,50 +96,16 @@ const NavBarDashbord = () => {
     setViewNot(!viewNot);
   };
 
-  const points = [
-    { name: "Go to Settings", type: "sittings" },
-    { name: "Contact us", type: "contact" },
-  ];
-  const handlepoint_table = (value) => {
-    console.log(value);
-    {
-      value.type === "sittings"
-        ? navigate("settings")
-        : value.type === "contact"
-        ? window.open(
-            "https://mail.google.com/mail/u/0/#inbox?compose=new",
-            "_blank"
-          )
-        : "";
-    }
-  };
-  const handlepoint = (selected) => {
-    setPoint(selected);
-  };
-  console.log(active)
+
+
+
+
 
   return (
-    <div className=" px-10 bg-white  flex  md:justify-between justify-end   w-full  ">
-{/*  */}
+    <div className={`  px-10  bg-white  flex  md:justify-between  w-full  sticky top-0 right-0 left-0 z-50  `}>
 
-<div className="flex justify-center gap-10  items-center w-[50%] NavBarDashbord ">
-{links.map((link,index) => (
- 
+{link_layout( path === "Admin_dashboard" ? Admin_links :  Supervisor_links)}
 
-  <NavLink  to={link.to} key={link.to}    className={({ isActive }) =>
-         isActive ? `${setactive(index)} ${index === active ? "bg-sky-900 text-white" : "" } active  flex items-center gap-2 py-5 px-5 rounded-lg    `  : "hover:text-orange transition text-[18px]  flex items-center gap-2  " 
-        } >
-        
-        <div className={`text-[25px] ${index === active ? "text-white" : "text-orange" }`}>
-    {link.icon}
-
-    </div>
-    {link.name}
-  </NavLink>
-
-
-))}
-</div>
       {/* icon +profile photo  */}
 
       <div className="flex justify-between items-center gap-4 ">

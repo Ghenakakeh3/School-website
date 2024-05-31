@@ -3,14 +3,12 @@ import Content from '../../Dashbord_layout/Content/Content'
 import Inner_Links from '../../Dashbord_layout/Content/Inner_Links';
 import { useTranslation } from "react-i18next";
 import { Outlet } from 'react-router-dom';
-import  { Card_student } from '../../Dashbord_layout/Card/Card';
-
-const Students_details = () => {
-
-    const Students = [
+import  { Card_Teacher } from '../../Dashbord_layout/Card/Card';
+const Teachers_details = () => {
+    const Teachers = [
         {
           ID: "01",
-          student_Name: "لارا ",
+          Teacher_Name: "لارا ",
           Class: "الصف الأول",
           Division_name: "الشعبة الأولى ",
           Genders: "أنثى",  
@@ -23,7 +21,7 @@ const Students_details = () => {
     
          {
           ID: "02",
-          student_Name: "لارا ",
+          Teacher_Name: "لارا ",
           Class: "الصف الأول",
           Division_name: "الشعبة الأولى ",
           Genders: "أنثى",
@@ -35,7 +33,7 @@ const Students_details = () => {
         },
           {
           ID: "03",
-          student_Name: "لارا ",
+          Teacher_Name: "لارا ",
           Class: "الصف الأول",
           Division_name: "الشعبة الأولى ",
           Genders: "أنثى",   
@@ -46,7 +44,7 @@ const Students_details = () => {
         },
           {
           ID: "04",
-          student_Name: "لارا ",
+          Teacher_Name: "لارا ",
           Class: "الصف الثا",
           Division_name: "الشعبة الأولى ",
           Genders: "أنثى",
@@ -58,7 +56,7 @@ const Students_details = () => {
         },
           {
           ID: "05",
-          student_Name: "أحمد ",
+          Teacher_Name: "أحمد ",
           Class: "الصف الأول",
           Division_name: "الشعبة الأولى ",
           Genders: "ذكر", 
@@ -73,36 +71,29 @@ const Students_details = () => {
 
     const { t } = useTranslation("global");
     const Id=location.pathname.split("/")[3]
-    const student_selcted_=Students.filter((row)=>{
+    const Teacher_selcted_=Teachers.filter((row)=>{
         return row.ID === Id
       })
     
 
-      const[student,setstudent]=useState(student_selcted_[0])
+      const[Teacher,setTeacher]=useState(Teacher_selcted_[0])
       
     
     const links = [
-     
-        { name: t("Students_Admin_dash.Students_links.0"), to: `/Admin_dashboard/students/${Id}/Division_materials` },
-        { name: t("Students_Admin_dash.Students_links.1"), to: `/Admin_dashboard/students/${Id}/exams`  },
-        { name: t("Students_Admin_dash.Students_links.2"), to: `/Admin_dashboard/students/${Id}/Time_record` },
-        { name: t("Students_Admin_dash.Students_links.3"), to: `/Admin_dashboard/students/${Id}/Weekly_program` },
-        
-        
-      
-
-        
+    
+        { name: t("Teachers_Admin_dash.Teachers_links.0"), to: `/Admin_dashboard/Teachers/${Id}/Time_record` },
+        { name: t("Teachers_Admin_dash.Teachers_links.1"), to: `/Admin_dashboard/Teachers/${Id}/Weekly_program` },        
    
     
       ];
   return (
     <Content
-    path={`${student.Class} / ${student.Division_name}/ ${student.Genders === "أنثى" ? "الطالبة" : "  الطالب"} ${student.student_Name}`}
+    path={`${Teacher.Class} / ${Teacher.Division_name}/ ${Teacher.Genders === "أنثى" ? "الطالبة" : "  الطالب"} ${Teacher.Teacher_Name}`}
     classNameChildern=""
 
   >
  <div className='flex  gap-6'>
- <Card_student student={student} />
+ <Card_Teacher Teacher={Teacher} />
 <div className='flex flex-col  bg-whit w-[95%] ' >
 <Inner_Links links={links}  />
  <Outlet/>
@@ -115,4 +106,4 @@ const Students_details = () => {
   )
 }
 
-export default Students_details
+export default Teachers_details

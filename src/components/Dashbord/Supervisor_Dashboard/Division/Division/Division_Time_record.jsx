@@ -1,15 +1,17 @@
 
+
+
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
-import TabsFillter from '../../Dashbord_layout/TabsFillter'
-import Table from '../../Dashbord_layout/TableLayout'
-import NoData from '../../Dashbord_layout/NoData/NoData';
-import { SearchBar } from '../../../utilities/SearchBar/SearchBar';
-import { SearchResultsList } from '../../../utilities/SearchBar/SearchResultsList';
+import TabsFillter from '../../../Dashbord_layout/TabsFillter'
+import Table from '../../../Dashbord_layout/TableLayout'
+import NoData from '../../../Dashbord_layout/NoData/NoData';
+import { SearchBar } from '../../../../utilities/SearchBar/SearchBar';
+import { SearchResultsList } from '../../../../utilities/SearchBar/SearchResultsList';
 
 
-const Time_record = () => {
-    const Time_record = [
+const Division_Time_record = () => {
+    const Division_Time_record = [
         {
             ID: "01",
             student_Name: "غنى  كعكة",
@@ -47,17 +49,19 @@ const Time_record = () => {
           
           
       ];
-    const[data,setdata]=useState(Time_record)
+    const[data,setdata]=useState(Division_Time_record)
     const { t } = useTranslation("global");
     const [results, setResults] = useState([]);
     const [selected_result, setselected_result] = useState("");
   
      
   const columns = [
-    t("Class_Admin_dash.Time_record.0") ,
-    t("Class_Admin_dash.Time_record.1") ,
-    t("Class_Admin_dash.Time_record.2") ,
-    t("Class_Admin_dash.Time_record.3") ,
+    t("Division_Supervisor_dash.Time_record.0") ,
+    t("Division_Supervisor_dash.Time_record.1") ,
+    t("Division_Supervisor_dash.Time_record.2") ,
+    t("Division_Supervisor_dash.Time_record.3") ,
+    t("Division_Supervisor_dash.Time_record.4") ,
+
 
 
 
@@ -79,7 +83,7 @@ const Time_record = () => {
             </span>
 
             <div className="search-bar-container relative bg-slate-600">
-        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Class_Admin_dash.Time_record.1") } />
+        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Division_Supervisor_dash.Time_record.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
       </div>
      
@@ -94,7 +98,7 @@ const Time_record = () => {
     <Table
       columns={columns}
       rows={data}
-      action={{delete: false,update: false }}
+      action={{delete: false,update: true }}
       className={"min-h-screen px-6 pt-2"}
       RowlinK={true}
     />
@@ -105,4 +109,4 @@ const Time_record = () => {
   )
 }
 
-export default Time_record
+export default Division_Time_record

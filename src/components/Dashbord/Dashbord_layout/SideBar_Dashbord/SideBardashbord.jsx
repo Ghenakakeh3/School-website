@@ -27,7 +27,7 @@ const SideBardashbord = () => {
 
   </NavLink>
 
-  <NavLink><BsGraphUp />  </NavLink>
+  <NavLink to="/Admin_dashboard/charts"><BsGraphUp />  </NavLink>
   
 <span className="w-6 h-2 border-b-2 border-b-myGray-400"></span>
 

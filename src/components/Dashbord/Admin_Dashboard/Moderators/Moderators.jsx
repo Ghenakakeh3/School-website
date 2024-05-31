@@ -2,6 +2,10 @@
 
 
 
+
+
+
+
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import Typography from '../../../utilities/Typography'
@@ -19,21 +23,14 @@ import { SearchBar } from '../../../utilities/SearchBar/SearchBar';
 import { SearchResultsList } from '../../../utilities/SearchBar/SearchResultsList';
 
 
-const Students = () => {
+const Moderators = () => {
   const rows = [
     {
       ID: "01",
       student_Name: "لارا ",
       Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
-
+    
     },
 
      {
@@ -41,12 +38,6 @@ const Students = () => {
       student_Name: "لارا ",
       Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
 
 
     },
@@ -55,41 +46,20 @@ const Students = () => {
       student_Name: "لارا ",
       Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
-
+      
     },
       {
       ID: "04",
       student_Name: "لارا ",
       Class: "الصف الثا",
       Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
-
+    
     },
       {
       ID: "05",
       student_Name: "لارا ",
       Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
 
     },
 
@@ -98,7 +68,7 @@ const Students = () => {
   const { t } = useTranslation("global");
   const [edit_active, set_edit_active] = useState(false);
   const [Edit_active, set_Edit_active] = useState(false); 
-  const [Students_Dropdown , set_Students_Dropdown] = useState("");
+  const [Moderators_Dropdown , set_Moderators_Dropdown] = useState("");
   const [data, set_data] = useState(rows);
   const[edit_content,set_edit_content]=useState({})
   const [results, setResults] = useState([]);
@@ -124,25 +94,25 @@ const Students = () => {
   }
   
   
-  const  handleChange_Students_Dropdown = (value) => {
-    set_Students_Dropdown(value.name)
-    const Students_filter= rows.filter((row)=>{
+  const  handleChange_Moderators_Dropdown = (value) => {
+    set_Moderators_Dropdown(value.name)
+    const Moderators_filter= rows.filter((row)=>{
        return row. Class===value.name
     })
-    if(Students_filter.length ===0){
+    if(Moderators_filter.length ===0){
       set_data(rows)
    
      
     }
     else{
-      set_data(Students_filter)
+      set_data(Moderators_filter)
 
 
     }
 
 
   };
-  const  handleChange_Students_edit_Dropdown = (value) => {
+  const  handleChange_Moderators_edit_Dropdown = (value) => {
   
  
 
@@ -152,11 +122,12 @@ const Students = () => {
 
 
   const columns = [
-    t("Students_Admin_dash.Students_Table.0") ,
-    t("Students_Admin_dash.Students_Table.1") ,
-    t("Students_Admin_dash.Students_Table.2") ,
-    t("Students_Admin_dash.Students_Table.3") ,
-    t("Students_Admin_dash.Students_Table.4") ,
+    t("Moderators_Admin_dash.Moderators_Table.0") ,
+    t("Moderators_Admin_dash.Moderators_Table.1") ,
+    t("Moderators_Admin_dash.Moderators_Table.2") ,
+    t("Moderators_Admin_dash.Moderators_Table.3") ,
+    t("Moderators_Admin_dash.Moderators_Table.4") ,
+
 
 
 
@@ -180,9 +151,9 @@ const options_Class =[
 
 const formConfig_Edit = {
   info :[
-   { title:  t("Students_Admin_dash.Students.1"),},
-  {descrption: t("Students_Admin_dash.Students.2"),},
-  { button_content:t("Students_Admin_dash.Students.1"), }
+   { title:  t("Moderators_Admin_dash.Moderators.1"),},
+  {descrption: t("Moderators_Admin_dash.Moderators.2"),},
+  { button_content:t("Moderators_Admin_dash.Moderators.1"), }
   ],
          
   fields: [
@@ -191,7 +162,7 @@ const formConfig_Edit = {
 
     {
       name: "student_Name",
-      label: t("Students_Admin_dash.Students_Table.1"),
+      label: t("Moderators_Admin_dash.Moderators_Table.1"),
       img: arrowIcon,
       type: "input",
       inputType: "text",
@@ -201,18 +172,18 @@ const formConfig_Edit = {
     },
     {
       name: "Class",
-      label: t("Students_Admin_dash.Students_Table.2"),
+      label: t("Moderators_Admin_dash.Moderators_Table.2"),
       img: arrowIcon,
       type: "Dropdown",
       inputType: "text",
       component: "Dropdown",
       options: options_Class,
-      onChange :handleChange_Students_edit_Dropdown
+      onChange :handleChange_Moderators_edit_Dropdown
 
     },
     {
       name: "Division_name",
-      label: t("Students_Admin_dash.Students_Table.3"),
+      label: t("Moderators_Admin_dash.Moderators_Table.3"),
       img: "<PiUser />",
       type: "input",
       inputType: "text",
@@ -254,7 +225,7 @@ const handleEdit=(ID)=>{
 
   return (
     <Content
-      path={t("Students_Admin_dash.Students.0")}
+      path={t("Moderators_Admin_dash.Moderators.0")}
       classNameChildern="bg-white"
     >
 
@@ -293,7 +264,7 @@ const handleEdit=(ID)=>{
         // value,
         label={t("Class_Admin_dash.Class.0")}
         options={options_Class}
-        onChange={handleChange_Students_Dropdown}
+        onChange={handleChange_Moderators_Dropdown}
         icon={arrowIcon}
         showSlected={true}
         ulClassname={"w-full "}
@@ -302,7 +273,7 @@ const handleEdit=(ID)=>{
       />
 
 <div className="search-bar-container relative ">
-        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Students_Admin_dash.Students_Table.1") } />
+        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Moderators_Admin_dash.Moderators_Table.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
       </div>
    
@@ -331,7 +302,6 @@ const handleEdit=(ID)=>{
             action={{delete: true,update: true }}
             className={"min-h-screen px-6 pt-2"}
             RowlinK={true}
-            RowlinK_TO="/Admin_dashboard/students"
           />
         ) : (
           <NoData ></NoData>
@@ -342,4 +312,4 @@ const handleEdit=(ID)=>{
   )
 }
 
-export default Students
+export default Moderators

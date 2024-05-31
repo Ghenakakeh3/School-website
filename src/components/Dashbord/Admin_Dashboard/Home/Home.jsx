@@ -18,6 +18,7 @@ import { Pagination } from 'swiper/modules';
 import SimpleAreaChart from '../../Dashbord_layout/SimpleAreaChart/SimpleAreaChart';
 import Student_avrege from './Student_avrege';
 import SimpleBarChart from '../../../utilities/SimpleBarChart/SimpleBarChart';
+import Inner_Links from '../../Dashbord_layout/Content/Inner_Links';
 
 
 const Home_admin = () => {
@@ -401,24 +402,18 @@ const Home_admin = () => {
         <div className=' flex gap-5 mt-6 '>
           <div className='bg-white xl:w-[80%] rounded-md px-5 pt- shadow-md'>
             {/* links */}
-            <div className='flex gap-6  pt-2  items-center border-b-2 border-b-myGray-300'>
+            <div className='flex gap-6   items-center border-b-2 border-b-myGray-300'>
               <span>
                 {arabicSplit.day}
               </span>
-
+            
               {links.map((link, index) => (
-                <span className='hover:text-orange transition text-[18px] cursor-pointer  py-3' onClick={() => { setclass_selectede(link.name)  }}>
+                <span className={`${link.name===class_selected ? "text-orange border-t-2 border-orange transition-all " : ""} hover:text-orange transition text-[18px] cursor-pointer  py-3 `} onClick={() => { setclass_selectede(link.name)  }}>
                   {link.name}
 
                 </span>
 
-                // <NavLink  to={link.to} key={link.to} className={({ isActive }) =>
-                //     isActive ? ` active   py-3 border-b-2 border-b-orange text-orange ` : "hover:text-orange transition text-[18px]  flex items-center gap-2  "
-                // } >
-
-
-                //     {link.name}
-                // </ NavLink>
+       
 
 
               ))}
@@ -426,15 +421,7 @@ const Home_admin = () => {
             {/* t */}
             <div className=''>
               {table(class_selected)}
-              {/* <Table         
-                              columns={columns}
-                            rows={rows}
-                           points={points}
-                          
-                           handlepoint={handlepoint_table}
-                          className="">
-
-                            </Table> */}
+          
             </div>
 
 
@@ -449,26 +436,58 @@ const Home_admin = () => {
           </div>
         </div>
 
-        <div className='flex  justify-between '>
+        <div className='flex  justify-between gap '>
     
-          <div className='bg-white w-[24%] shadow-md'>
+          <div className=' bg-white w-[36%] relative shadow-gray-400 shadow-lg rounded-md'>
+       
         
           <Swiper style={{ direction: "ltr" }}pagination={pagination} modules={[Pagination]} className="mySwiper"  
 >
-        <SwiperSlide>  <CircleChart title={t("home_Admin_dash.Time_record.0")} data={Supervisors_time_record}/></SwiperSlide>
-        <SwiperSlide><CircleChart title={t("home_Admin_dash.Time_record.1")} data={Teachers_time_record}/></SwiperSlide>
-        <SwiperSlide><CircleChart title={t("home_Admin_dash.Time_record.2")} data={Students_time_record}/></SwiperSlide>
+        <SwiperSlide> 
+        <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
+      <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
+      <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
+      <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
+
+
+      </div>
+       <CircleChart title={t("home_Admin_dash.Time_record.0")} data={Supervisors_time_record}/>
+       
+       
+       </SwiperSlide>
+        <SwiperSlide>
+        <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
+      <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
+      <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
+      <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
+
+
+      </div>
+      <CircleChart title={t("home_Admin_dash.Time_record.1")} data={Teachers_time_record}/>
+      </SwiperSlide>
+        <SwiperSlide>
+        <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
+      <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
+      <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
+      <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
+
+
+      </div>
+      <CircleChart title={t("home_Admin_dash.Time_record.2")} data={Students_time_record}/>
+      </SwiperSlide>
    
       </Swiper>
+  
+   
           
           </div>
-          <div className='bg-white w-[26%] rounded-md shadow-md '>
-          <SimpleBarChart />
+          {/* <div className='bg-white w-[26%] rounded-md shadow-md '> */}
+          {/* <SimpleBarChart /> */}
 
 {/* <SimpleAreaChart title={t("home_Admin_dash.Student _absence_chart.0")} /> */}
              
-             </div>
-          <div className='bg-white w-[26%] h-[26rem] rounded-md shadow-md   '>
+             {/* </div> */}
+          <div className='bg-white w-[36%] rounded-md  '>
           
      <Student_avrege />
           
@@ -478,7 +497,7 @@ const Home_admin = () => {
      
 
 
-          <div className='relative w-[21%] bg-white rounded-md  shadow-md bg-no-repeat bg-center ' >
+          <div className='relative w-[21%] bg-white rounded-md  shadow-md bg-no-repeat bg-center shadow-gray-400 shadow-lg rounded-md' >
           
      <img  className='h-full'src={back_to_school} alt="" />
      <Typography  component={"h3"} className="absolute top-20 left-4 text-orange font-bold !rtl:font-Aref_Ruqaa !text-[25px] ">{t("home_Admin_dash.back_to_school.0")}</Typography>

@@ -2,6 +2,8 @@
 
 
 
+
+
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import Typography from '../../../utilities/Typography'
@@ -19,7 +21,7 @@ import { SearchBar } from '../../../utilities/SearchBar/SearchBar';
 import { SearchResultsList } from '../../../utilities/SearchBar/SearchResultsList';
 
 
-const Students = () => {
+const Students_Division = () => {
   const rows = [
     {
       ID: "01",
@@ -145,7 +147,7 @@ const Students = () => {
   const  handleChange_Students_edit_Dropdown = (value) => {
   
  
-
+set_Edit_active(!Edit_active)
 
   };
 
@@ -301,6 +303,8 @@ const handleEdit=(ID)=>{
         className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
       />
 
+      
+
 <div className="search-bar-container relative ">
         <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Students_Admin_dash.Students_Table.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
@@ -342,4 +346,5 @@ const handleEdit=(ID)=>{
   )
 }
 
-export default Students
+export default Students_Division
+

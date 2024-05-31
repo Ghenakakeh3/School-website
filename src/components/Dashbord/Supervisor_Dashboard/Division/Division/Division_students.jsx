@@ -1,19 +1,23 @@
 
 
 
+
+
+
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
-import TabsFillter from '../../Dashbord_layout/TabsFillter'
-import Table from '../../Dashbord_layout/TableLayout'
-import NoData from '../../Dashbord_layout/NoData/NoData';
-import Add from '../../Dashbord_layout/Mangment/Add';
-import * as Yup from "yup";
-import Edit from '../../Dashbord_layout/Mangment/Edit';
-import { SearchBar } from '../../../utilities/SearchBar/SearchBar';
-import { SearchResultsList } from '../../../utilities/SearchBar/SearchResultsList';
+import TabsFillter from '../../../Dashbord_layout/TabsFillter'
+import Table from '../../../Dashbord_layout/TableLayout'
+import NoData from '../../../Dashbord_layout/NoData/NoData';
 
-const Registered_students = () => {
-    const Registered_students = [
+import Add from '../../../Dashbord_layout/Mangment/Add';
+import * as Yup from "yup";
+import Edit from '../../../Dashbord_layout/Mangment/Edit';
+import { SearchBar } from '../../../../utilities/SearchBar/SearchBar';
+import { SearchResultsList } from '../../../../utilities/SearchBar/SearchResultsList';
+
+const Division_students = () => {
+    const Division_students = [
         {
           ID: "01",
             Full_Name: "غنى ماهر كعكة",
@@ -71,9 +75,9 @@ const Registered_students = () => {
           
           
       ];
-    const[data,setdata]=useState(Registered_students)
+    const[data,setdata]=useState(Division_students)
     const { t } = useTranslation("global");
-    const[add_Registered_students,setadd_Registered_students]=useState(false)
+    const[add_Division_students,setadd_Division_students]=useState(false)
     const AddRef=useRef(null)
     const[Edit_active,setEdit_active]=useState(false)
     const[edit_content,set_edit_content]=useState({})
@@ -86,18 +90,12 @@ const Registered_students = () => {
   
      
   const columns = [
-    t("Class_Admin_dash.Registered_students.0") ,
-    t("Class_Admin_dash.Registered_students.1") ,
-    t("Class_Admin_dash.Registered_students.2") ,
-    t("Class_Admin_dash.Registered_students.3") ,
-    t("Class_Admin_dash.Registered_students.4") ,
-    t("Class_Admin_dash.Registered_students.5") ,
-
-
-
-
-
-
+    t("Division_Supervisor_dash.Division_students.0") ,
+    t("Division_Supervisor_dash.Division_students.1") ,
+    t("Division_Supervisor_dash.Division_students.2") ,
+    t("Division_Supervisor_dash.Division_students.3") ,
+    t("Division_Supervisor_dash.Division_students.4") ,
+    t("Division_Supervisor_dash.Division_students.5") ,
 
   ];
 
@@ -220,12 +218,12 @@ const Registered_students = () => {
 }
   return (
 <div className='relative'>
-{add_Registered_students ? (
+{add_Division_students ? (
             <Add
             formConfig={formConfig_Add}
               ref={AddRef}  
-              add_active={add_Registered_students}
-              set_add_active={setadd_Registered_students}
+              add_active={add_Division_students}
+              set_add_active={setadd_Division_students}
               rows={data}
               set_data={setdata}
 
@@ -259,7 +257,7 @@ const Registered_students = () => {
 
 
             <div className="search-bar-container relative ">
-        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Class_Admin_dash.Registered_students.1") } />
+        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Division_Supervisor_dash.Division_students.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
       </div>
    
@@ -288,5 +286,4 @@ const Registered_students = () => {
   )
 }
 
-export default Registered_students
-
+export default Division_students

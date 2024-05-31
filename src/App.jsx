@@ -23,6 +23,21 @@ import Subject_marks from './components/Dashbord/Admin_Dashboard/Class/Subject_m
 import Students from './components/Dashbord/Admin_Dashboard/Students/Students'
 import Teachers from './components/Dashbord/Admin_Dashboard/Teachers/Teachers'
 import Students_details from './components/Dashbord/Admin_Dashboard/Students/Students_details'
+import Moderators from './components/Dashbord/Admin_Dashboard/Moderators/Moderators'
+import Division_materials_student from './components/Dashbord/Admin_Dashboard/Students/Division_materials_student'
+import Exams_student from './components/Dashbord/Admin_Dashboard/Students/Exams_student '
+import Time_record_student from './components/Dashbord/Admin_Dashboard/Students/Time_record_student'
+import Weekly_program_student from './components/Dashbord/Admin_Dashboard/Students/Weekly_program_student'
+import Teachers_details from './components/Dashbord/Admin_Dashboard/Teachers/Teachers_details'
+import Time_record_Teacher from './components/Dashbord/Admin_Dashboard/Teachers/Time_record_Teacher'
+import Weekly_program_Teacher from './components/Dashbord/Admin_Dashboard/Teachers/Weekly_program_Teacher'
+import Charts from './components/Dashbord/Admin_Dashboard/Charts/Charts'
+import Division from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division'
+import DivisionDetales from './components/Dashbord/Supervisor_Dashboard/Division/Division/DivisionDetales'
+import Division_students from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_students'
+import Division_Weekly_program from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_Weekly_program'
+import Division_Time_record from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_Time_record'
+import Students_Division from './components/Dashbord/Supervisor_Dashboard/students/Students_Division'
 
 
 function App() {
@@ -38,19 +53,11 @@ function App() {
    
           <Route path="/" element={<UserLayout />}>
             <Route path="/" element={<Home />} />
-            {/* auth Routes */}
+         
           
-            {/* <Route path="services" element={<TitleAndSideServices />}>z
-              <Route index element={<Service />} />
-              <Route path="map" element={<ChoselocationMap />} />
-              <Route path="search" element={<Search />} />
-            </Route>
-            <Route path="/details/:id" element={<Details />} />
-
-            <Route path="about-us" element={<AboutUs />} />
-            <Route path="contact-us" element={<ContactUs />} /> */}
+      
           </Route>
-          {/*   */}
+          {/* auth Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/verification-code" element={<VerfictionCode />} />
@@ -69,7 +76,23 @@ function App() {
             <Route path="Class/:id" element={<ClassDetales />} >
             <Route index  path="Subjects" element={<Subjects />} />
             <Route path="Registered_students" element={<Registered_students />} />
-            <Route path="Registered_students/:id" element={<Weekly_program />} />
+           
+            <Route path="Registered_students/:id" element={<Students_details />} >
+              <Route  path='Division_materials' element={<Division_materials_student />}/>
+              <Route  path='exams' element={<Exams_student />}/>
+              <Route  path='Time_record' element={<Time_record_student />}/>
+              <Route  path='Weekly_program' element={<Weekly_program_student />}/>
+
+
+
+              
+
+
+           
+
+              
+
+            </Route>
 
             <Route path="Weekly_program" element={<Weekly_program  />} />
             <Route path="Time_record" element={<Time_record  />} />
@@ -86,23 +109,6 @@ function App() {
 
 
 
-
-
-         
-
-
-
-
-            
-
-            
-
-
-            
-
-            
-
-
             </Route>
 
 
@@ -110,6 +116,19 @@ function App() {
             {/* students */}
             <Route path="students" element={<Students />} /> 
             <Route path="students/:id" element={<Students_details />} >
+              <Route  path='Division_materials' element={<Division_materials_student />}/>
+              <Route  path='exams' element={<Exams_student />}/>
+              <Route  path='Time_record' element={<Time_record_student />}/>
+              <Route  path='Weekly_program' element={<Weekly_program_student />}/>
+
+
+
+              
+
+
+           
+
+              
 
             </Route>
             
@@ -117,47 +136,35 @@ function App() {
             {/* Teachers */}
          
             <Route path="Teachers" element={<Teachers />} /> 
+            <Route path="Teachers/:id" element={<Teachers_details />} >
+             
+            
+              <Route  path='Time_record' element={<Time_record_Teacher />}/>
+              <Route  path='Weekly_program' element={<Weekly_program_Teacher />}/>
+
+
+
+              
+
+
+           
+
+              
+
+            </Route>
+
+
+             {/* Teachers */}
+         
+             <Route path="Moderators" element={<Moderators />} /> 
+             {/* charts */}
+            <Route path='charts' element={<Charts />}/>
+
       
 
 
 
 
-            {/* <Route path="users" element={<Dashboard />} />
-            <Route
-              path="users/service_Providers"
-              element={<Service_Provider />}
-            />
-            <Route path="users/patient_Users" element={<Patient_Users />} />
-            <Route path="users/Admin_Users" element={<Admin_Users />} />
-
-            <Route path="services" element={<Dashboard />} />
-            <Route
-              path="services/Doctors_Services"
-              element={<DoctorServices />}
-            />
-            <Route
-              path="services/Hospital_Services"
-              element={<HospitalServices />}
-            />
-            <Route
-              path="services/Pharmacy_Services"
-              element={<PharmacyServices />}
-            />
-            <Route
-              path="services/Clinic_Services"
-              element={<ClinicServices />}
-            />
-            <Route path="services/Lab_Services" element={<LabServices />} />
-
-            <Route path="requests" element={<Requests />} />
-            <Route path="report" element={<Report />}>
-              <Route index element={<Allusers />} />
-              <Route path="all_services" element={<Allservices />} />
-              <Route path="all-product" element={<Allproducts />} />
-            </Route>
-            <Route path="products" element={<Products />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="signOut" element={<SignOut />} /> */}
           </Route>
 
 
@@ -177,6 +184,25 @@ function App() {
              </Route>
 
             </Route>
+
+
+
+            {/* Superviso_dashboard */}
+            <Route path='/Supervisor_dashboard'  element={<DashboardLayout/>}>
+            <Route path="Division" element={<Division />}  />
+            <Route path='Division/:id' element={<DivisionDetales /> }>
+            <Route path="Registered_students" element={<Division_students />} />
+            <Route  path='Weekly_program' element={<Division_Weekly_program/>}/>
+            <Route  path='Time_record' element={<Division_Time_record/>}/>
+
+            
+            
+
+            </Route>
+            <Route path='students' element={<Students_Division />} />
+
+            </Route>
+       
 
 
         </Routes>

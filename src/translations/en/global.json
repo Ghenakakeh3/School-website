@@ -7,16 +7,17 @@
     "slide_2" : ["Make a Birghter Feature For Your Child ","Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde delectus, doloremque repellendus labore quasi, nisi tempora asperiores necessitatibus dolorem aspernatur numquam eius quas","learn more","join us"]
     
   },
+  
   "navbar_Admin_dash": {
-    "links": ["Home", "Class", "students", "Teachers", "Notes"]
+    "links": ["Home", "Class", "students", "Teachers", "Moderators","Notes"]
   },
   "home_Admin_dash": {
     "main": ["Welcam to ", "System School", "", "Notes"],
     "school": [ "Marh"],
     "links": ["First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade"],
-    "back_to_school": ["Back To School"],
+    "back_to_school": ["Back To School",""],
     "Student _absence_chart": ["Student absence chart"],
-    "Time_record": ["Supervisors' time record","Teachers' time record","Students' time record","active","non active"],
+    "Time_record": ["Supervisors' time record","Teachers' time record","Students' time record","active","non active","the total number","Number of attendees","Number of absences"],
    "stuents_by_average_mark": ["stuents by average mark","progressive","Descending"],
    "Admin_Settings": ["Settings","General Settings","Manage user accounts","System settings","Return to the home page"],
    "Manage_user_accounts" : ["Admin accounts","Parents' accounts","Student accounts" ,"Add Account"],
@@ -54,18 +55,51 @@
   "Students_Admin_dash": {
     "Students":["Students","Edit student Information","You can edit student Information from here."],
     "Students_Table":["ID","student Name","Class","Division name","Action"],
-    "Students_Action":["Edit profile"]
+    "Students_Action":["Edit profile"],
+    "Students_links":["Division materials","exams","Attendance Record","Program of the week"],
+    "Students_Exams":["ID","Subject Name","Timing","test type","mark","The great mark"],
+    "Time_record":["ID","Timing","Checking","the reason"],
+    "Card_student":["Genders","father","mom","date of birth"]
 
 
   },
   "Teachers_Admin_dash": {
-"Teachers":["Teachers","Edit student Information","You can edit student Information from here."],
-"Teachers_Table":["ID","Teacher Name","Class","Division name", "Subject Name","Action"]
+"Teachers":["Teachers","Edit Teacher Information","You can edit Teacher Information from here."],
+"Teachers_Table":["ID","Teacher Name","Class","Division name", "Subject Name","Action"],
+"Teachers_links":["Time  Record","Program of the week"]
 
 
   },
+"Moderators_Admin_dash": {
+  "Moderators":["Teachers","Edit Moderator Information","You can edit Moderator Information from here."],
+  "Moderators_Table":["ID","Moderator Name","Class","Division name","Action"]
+  
+  
+    },
 
 
+
+    "navbar_Supervisor_dash": {
+      "links": ["Home", "Division", "students", "Teachers","Notes"]
+    },
+    "Division_Supervisor_dash": {
+      "Division":["Division"],
+      "Division_Table":["ID","Class","Division name","Number of students","Action"],
+       "Division_filter":["All","First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade","First Division","Second Division"],
+     
+       "DivisionDetales":["Registered students","weekly program","Time record","exams","Subject marks"],
+      "Division_students":["ID","Full Name","Number of marks","date of registration","Number of days of attendance","Attendance rate"],
+      
+      "Weekly_program":["Day/time","8:00","8:45","9:30","10:15","11:00","11:45"],
+      "Time_record":["ID","student Name","Checking","the reason","action"],
+      "Exams":["ID","Subject Name","Timing","test type","Action","Add test","You can add a new test from here.","Exam","Test","subject name is required","Subject Name shoud be shortest","Subject Name shoud be longest","test type is required","Timing is required","Edit test","You can Edit  test from here."],
+  
+      "Exams_filter":["Chapter one","Chapter Second"],
+      "Subject_marks":["student Name","Subject Name","Timing","mark","Action"],
+      "Subject_marks_filter":["Chapter one","Chapter Second"]
+     
+  
+    },
 
 
 

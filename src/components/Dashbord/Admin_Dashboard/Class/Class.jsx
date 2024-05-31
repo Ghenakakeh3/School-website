@@ -24,11 +24,6 @@ const Class = () => {
       Number_of_students: 30,
 
 
-
-
-
-
-
     },
     {
       ID: "02",
@@ -163,6 +158,7 @@ const Class = () => {
   const [data, set_data] = useState(rows);
   const[edit_content,set_edit_content]=useState({})
 
+console.log(Edit_active)
  
 
 
@@ -181,14 +177,13 @@ const Class = () => {
 
 
   }
-  
-  
   const  handleChange_Class_Dropdown = (value) => {
     set_Class_Dropdown(value.name)
     const Class_filter= rows.filter((row)=>{
-       return row.Name===value.name
+       return row.Class_Name===value.name
     })
-    if(Class_filter.length ===0){
+    
+    if(Class_filter.length === 0){
       set_data(rows)
    
      
@@ -475,6 +470,7 @@ const handleEdit=(ID)=>{
             action={{delete: true,update: true }}
             className={"min-h-screen px-6 pt-2"}
             RowlinK={true}
+            RowlinK_TO="/Admin_dashboard/Class"
           />
         ) : (
           <NoData ></NoData>

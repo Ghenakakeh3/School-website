@@ -1,14 +1,12 @@
 
 
-
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
 import Table from '../../Dashbord_layout/TableLayout'
 import NoData from '../../Dashbord_layout/NoData/NoData';
 
-
-const Weekly_program = () => {
+const Weekly_program_Teacher = () => {
     const Weekly_program = [
         {
             Day: "الأحد",
@@ -78,12 +76,18 @@ const Weekly_program = () => {
      
   const columns = [
     t("Class_Admin_dash.Weekly_program.0") ,
-    t("Class_Admin_dash.Weekly_program.1") ,
-    t("Class_Admin_dash.Weekly_program.2") ,
-    t("Class_Admin_dash.Weekly_program.3") ,
-    t("Class_Admin_dash.Weekly_program.4") ,
-    t("Class_Admin_dash.Weekly_program.5") ,
     t("Class_Admin_dash.Weekly_program.6") ,
+    t("Class_Admin_dash.Weekly_program.5") ,
+    t("Class_Admin_dash.Weekly_program.4") ,
+    t("Class_Admin_dash.Weekly_program.3") ,
+    t("Class_Admin_dash.Weekly_program.2") ,
+    t("Class_Admin_dash.Weekly_program.1") ,
+   
+ 
+    
+ 
+  
+
 
 
 
@@ -100,7 +104,7 @@ const Weekly_program = () => {
 
 
   return (
-<div className='relative'>
+<div className='relative bg-white  mt-3 shadow-slate-300 shadow-verfictionShadow rounded-md'>
 
 <TabsFillter>
 <div className='flex   items-center w-full justify-between'>
@@ -133,4 +137,5 @@ const Weekly_program = () => {
   )
 }
 
-export default Weekly_program
+export default Weekly_program_Teacher
+

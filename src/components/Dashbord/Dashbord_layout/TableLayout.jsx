@@ -9,7 +9,7 @@ import { Link, NavLink } from "react-router-dom";
 
 
 
-const Table = ({ RowlinK,columns, rows, points, handlepoint, point, className ,rowclassName,option,action,handleEdit,handleDelte}) => {
+const Table = ({ RowlinK_TO, RowlinK,columns, rows, points, handlepoint, point, className ,rowclassName,row_className,option,action,handleEdit,handleDelte}) => {
 const url=location.pathname
 console.log(url)
 
@@ -18,13 +18,13 @@ console.log(url)
     <div
       className={` ${
         className ? className : ""
-      }   overflow-x-auto overflow-hidden `}
+      }   overflow-x-auto overflow-hidden  rounded-md `}
     >
       <table className="table-auto w-full overflow-x-auto rounded-md  ">
         <thead className="bg-sky-900 rounded-lg w-full ">
           <tr>
             {columns.map((column, index) => (
-              <th key={index} className={` ${rowclassName ? rowclassName: "" }  py-4 px-6 text-white text-sm`}>
+              <th key={index} className={` ${rowclassName ? rowclassName: "" }  py-4 px-6 text-white text-base `}>
                 {column}
               </th>
             ))}
@@ -55,7 +55,9 @@ console.log(url)
                     }`}
                   >
 
-                                    <Link to={`${url}/${row.ID}`}>
+                                    {/* <Link to={`${url}/${row.ID}`}> */}
+                                    <Link to={`${RowlinK_TO}/${row.ID}`}>
+
                                 {value}
                                      </Link>
                                    </td>
@@ -101,8 +103,8 @@ console.log(url)
          :  rows.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={`relative ${
-                rowIndex % 2 === 0 ? "bg-myGray-200 border-b " : ""
+              className={`relative    ${
+                rowIndex % 2 === 0 ? "bg-myGray-200 border-b  " : "bg-white"
               }`}
             >
          
@@ -110,7 +112,7 @@ console.log(url)
               {Object.entries(row).map(([key, value], cellIndex) => (
                   <td
                   key={cellIndex}
-                  className={`text-center py-6 text-sm
+                  className={`text-center py-5  text-sm
                
                   ${
                     key === "Checking"

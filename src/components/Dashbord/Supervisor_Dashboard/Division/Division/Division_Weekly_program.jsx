@@ -1,15 +1,18 @@
 
 
 
+
+
+
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
-import TabsFillter from '../../Dashbord_layout/TabsFillter'
-import Table from '../../Dashbord_layout/TableLayout'
-import NoData from '../../Dashbord_layout/NoData/NoData';
+import TabsFillter from '../../../Dashbord_layout/TabsFillter'
+import Table from '../../../Dashbord_layout/TableLayout'
+import NoData from '../../../Dashbord_layout/NoData/NoData';
 
 
-const Weekly_program = () => {
-    const Weekly_program = [
+const Division_Weekly_program = () => {
+    const Division_Weekly_program = [
         {
             Day: "الأحد",
           one: "العربية لغتي",
@@ -70,7 +73,7 @@ const Weekly_program = () => {
           
           
       ];
-    const[data,setdata]=useState(Weekly_program)
+    const[data,setdata]=useState(Division_Weekly_program)
     const { t } = useTranslation("global");
     
 
@@ -133,4 +136,4 @@ const Weekly_program = () => {
   )
 }
 
-export default Weekly_program
+export default Division_Weekly_program

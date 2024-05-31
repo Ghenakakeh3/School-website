@@ -4,15 +4,13 @@ import { useTranslation } from "react-i18next";
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
 import Table from '../../Dashbord_layout/TableLayout'
 import NoData from '../../Dashbord_layout/NoData/NoData';
-import { SearchBar } from '../../../utilities/SearchBar/SearchBar';
-import { SearchResultsList } from '../../../utilities/SearchBar/SearchResultsList';
 
 
-const Time_record = () => {
+const Time_record_student = () => {
     const Time_record = [
         {
             ID: "01",
-            student_Name: "غنى  كعكة",
+            Timing: "3/7/2001",
             Checking: "موجود-متأخر",
             reason: "  بسبب المواصلات",
    
@@ -20,7 +18,7 @@ const Time_record = () => {
         },
         {
             ID: "02",
-            student_Name: "زين مكي",
+            Timing: "4/7/2001",
             Checking: "موجود",
             reason: "  ",
    
@@ -28,7 +26,7 @@ const Time_record = () => {
         },
         {
             ID: "03",
-            student_Name: "لارا إدلبي حجي",
+            Timing: "5/7/2001",
             Checking: "موجود",
             reason: "  ",
    
@@ -36,7 +34,7 @@ const Time_record = () => {
         },
         {
             ID: "04",
-            student_Name: "مريم عبد الباري",
+            Timing: "6/7/2001",
             Checking: "غير موجود",
             reason: "  ",
    
@@ -49,15 +47,14 @@ const Time_record = () => {
       ];
     const[data,setdata]=useState(Time_record)
     const { t } = useTranslation("global");
-    const [results, setResults] = useState([]);
-    const [selected_result, setselected_result] = useState("");
+
   
      
   const columns = [
-    t("Class_Admin_dash.Time_record.0") ,
-    t("Class_Admin_dash.Time_record.1") ,
-    t("Class_Admin_dash.Time_record.2") ,
-    t("Class_Admin_dash.Time_record.3") ,
+    t("Students_Admin_dash.Time_record.0") ,
+    t("Students_Admin_dash.Time_record.1") ,
+    t("Students_Admin_dash.Time_record.2") ,
+    t("Students_Admin_dash.Time_record.3") ,
 
 
 
@@ -69,7 +66,7 @@ const Time_record = () => {
   ];
 
   return (
-<div className='relative'>
+<div className='relative bg-white  mt-3 shadow-slate-300 shadow-verfictionShadow rounded-md'>
 
 <TabsFillter>
 <div className='flex   items-center w-full justify-between'>
@@ -78,10 +75,7 @@ const Time_record = () => {
               {data.length} {t("home_Admin_dash.record.0")}
             </span>
 
-            <div className="search-bar-container relative bg-slate-600">
-        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Class_Admin_dash.Time_record.1") } />
-        {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-      </div>
+
      
   </div>
 
@@ -96,7 +90,7 @@ const Time_record = () => {
       rows={data}
       action={{delete: false,update: false }}
       className={"min-h-screen px-6 pt-2"}
-      RowlinK={true}
+      RowlinK={false}
     />
   ) : (
     <NoData ></NoData>
@@ -105,4 +99,4 @@ const Time_record = () => {
   )
 }
 
-export default Time_record
+export default Time_record_student
