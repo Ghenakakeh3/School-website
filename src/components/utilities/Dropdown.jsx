@@ -11,7 +11,8 @@ export default function Dropdown({
   ulClassname,
   classNameIcon,
   label,
-  edit_option
+  edit_option,
+
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(edit_option? edit_option : options[0].name);
@@ -38,14 +39,21 @@ export default function Dropdown({
     <div
       className={` ${
         className ? className : "text-myGray-500"
-      } relative  flex flex-col z-10  `}
+      } relative  flex flex-col z-10 `}
       ref={dropdownRef}
     >
       <button
         onClick={() => {
+      
           setIsOpen(!isOpen);
+    
+
+
+
+
         }}
-        className="  flex  items-center p-2   justify-between z-10 tracking-wide border-0 border-b-myGray-100 active:border-b-primary duration-150 ease-in-out"
+        type="button"
+        className="  flex  items-center p-2   justify-between  tracking-wide border-0 border-b-myGray-100 active:border-b-primary duration-150 ease-in-out"
       >
         {showSlected ? selectedItem : ""}
 
@@ -64,12 +72,12 @@ export default function Dropdown({
         <ul
           className={`${
             ulClassname ? ulClassname : ""
-          } absolute shadow-md top-[100%]  z-20  mt-[4px]`}
+          } absolute shadow-md top-[100%]  z-50  mt-[4px] `}
         >
       
           {options.map((option, index) => (
             <li
-              className={`block cursor-pointer w-full whitespace-nowrap bg-myGray-200 px-4 py-2 text-sm font-normal  hover:bg-myGray-100 active:bg-myGray-100 hover:text-secondary active:text-secondary ${
+              className={`block cursor-pointer w-full whitespace-nowrap bg-myGray-200 px-4 py-2 text-sm font-normal hover:bg-myGray-100 active:bg-myGray-100 hover:text-secondary active:text-secondary ${
                 option.type == "delete" ? " text-error hover:text-error " : ""
               }  `}
               key={index}

@@ -133,8 +133,10 @@ const DivisionDetales = () => {
         { name: t("Division_Supervisor_dash.DivisionDetales.0"), to: `/Supervisor_dashboard/Division/${Id}/Registered_students` },
         { name: t("Division_Supervisor_dash.DivisionDetales.1"), to: `/Supervisor_dashboard/Division/${Id}/Weekly_program` },
         { name: t("Division_Supervisor_dash.DivisionDetales.2"), to: `/Supervisor_dashboard/Division/${Id}/Time_record` },
+        {name:  t("Division_Supervisor_dash.DivisionDetales.5")  , to:`/Supervisor_dashboard/Division/${Id}/Daily_inspection`},
         { name: t("Division_Supervisor_dash.DivisionDetales.3"), to: `/Supervisor_dashboard/Division/${Id}/Exams` },
         { name: t("Division_Supervisor_dash.DivisionDetales.4"), to: `/Supervisor_dashboard/Division/${Id}/Subject_marks` },
+
       
 
         

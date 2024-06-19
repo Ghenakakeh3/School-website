@@ -5,10 +5,8 @@ import global_en from "./translations/en/global.json";
 import global_ar from "./translations/ar/global.json";
 import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
-import { UseServicesProvider } from "./context/Context.jsx";
 import "./index.css";
-
-
+import { UseServicesProvider } from "./context/Context.jsx";
 i18next.init({
   resources: {
     en: {
@@ -18,14 +16,15 @@ i18next.init({
       global: global_ar,
     },
   },
-  lng: "en", // Default Language
-  fallbackLng: "en", // Standby Language
+  lng: "ar", // Default Language
+  fallbackLng: "ar", // Standby Language
   interpolation: {
     escapeValue: false,
   },
   // keySeparator: false,
   // nsSeparator: false,
 });
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

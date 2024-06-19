@@ -60,6 +60,7 @@ const Edit= React.forwardRef(
         <ClickOutside onClick={toggle_Edit}>
           {Edit_active && (
             <div
+            ref={ref}
          
               className=" rounded px-5 pt-5 pb-16 min-h-screen md:px-8 flex flex-col gap-3    bg-white   "
             >
@@ -87,9 +88,9 @@ const Edit= React.forwardRef(
 
 
 Edit.propTypes = {
-    Edit_content: PropTypes.object.isRequired,
-  validation_schema: PropTypes.any,
-  Edit_user: PropTypes.bool,
-  set_Edit_user: PropTypes.fun,
+  Edit_active: PropTypes.bool.isRequired,
+  formConfig: PropTypes.any,
+  rows: PropTypes.array,
+  set_Edit_active: PropTypes.fun,
 };
 export default Edit;

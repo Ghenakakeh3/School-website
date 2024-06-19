@@ -18,6 +18,10 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { GrNotes } from "react-icons/gr";
 import "./NavBarDashbord.css"
 import { BsPersonWorkspace } from "react-icons/bs";
+import { AiOutlineNotification } from "react-icons/ai";
+
+
+
 
 
 const NavBarDashbord = () => {
@@ -31,6 +35,7 @@ const NavBarDashbord = () => {
     { name: t("navbar_Admin_dash.links.3"), to: "/Admin_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
     { name: t("navbar_Admin_dash.links.4"), to: "/Admin_dashboard/Moderators",icon :<BsPersonWorkspace /> },
     { name: t("navbar_Admin_dash.links.5"), to: "/Notes",icon :<GrNotes  /> },
+
 
   ];
 

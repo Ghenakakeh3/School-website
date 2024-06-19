@@ -77,7 +77,7 @@ const DatePicker_input = ({name,label,initialValues}) => {
     <div>
        
         <Field name={name} component={CustomDatePicker}/>
-        <ErrorMessage name={name} component='p' className='text-error mt-2 text-sm font-normal' />
+        {/* <ErrorMessage name={name} component='p' className='text-error mt-2 text-sm font-normal' /> */}
 
       
     </div>

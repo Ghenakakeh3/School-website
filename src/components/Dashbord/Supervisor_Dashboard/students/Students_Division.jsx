@@ -335,7 +335,7 @@ const handleEdit=(ID)=>{
             action={{delete: true,update: true }}
             className={"min-h-screen px-6 pt-2"}
             RowlinK={true}
-            RowlinK_TO="/Admin_dashboard/students"
+            RowlinK_TO="/Supervisor_dashboard/students"
           />
         ) : (
           <NoData ></NoData>

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Outlet } from 'react-router-dom';
 import  { Card_student } from '../../Dashbord_layout/Card/Card';
 
-const Students_details = () => {
+const Students_details = ({Admin,Supervisor}) => {
 
     const Students = [
         {
@@ -81,20 +81,40 @@ const Students_details = () => {
       const[student,setstudent]=useState(student_selcted_[0])
       
     
-    const links = [
+    const Admin_links = [
      
         { name: t("Students_Admin_dash.Students_links.0"), to: `/Admin_dashboard/students/${Id}/Division_materials` },
         { name: t("Students_Admin_dash.Students_links.1"), to: `/Admin_dashboard/students/${Id}/exams`  },
         { name: t("Students_Admin_dash.Students_links.2"), to: `/Admin_dashboard/students/${Id}/Time_record` },
         { name: t("Students_Admin_dash.Students_links.3"), to: `/Admin_dashboard/students/${Id}/Weekly_program` },
+        { name: t("Students_Admin_dash.Students_links.4"), to: `/Admin_dashboard/students/${Id}/Behvier_notification` },
+
         
-        
+       
       
 
         
    
     
       ];
+      const Supervisor_links = [
+     
+        { name: t("Students_Admin_dash.Students_links.0"), to: `/Supervisor_dashboard/students/${Id}/Division_materials` },
+        { name: t("Students_Admin_dash.Students_links.1"), to: `/Supervisor_dashboard/students/${Id}/exams`  },
+        { name: t("Students_Admin_dash.Students_links.2"), to: `/Supervisor_dashboard/students/${Id}/Time_record` },
+        { name: t("Students_Admin_dash.Students_links.3"), to: `/Supervisor_dashboard/students/${Id}/Weekly_program` },
+        { name: t("Students_Admin_dash.Students_links.4"), to: `/Supervisor_dashboard/students/${Id}/Behvier_notification` },
+
+        
+       
+      
+
+        
+   
+    
+      ];
+
+
   return (
     <Content
     path={`${student.Class} / ${student.Division_name}/ ${student.Genders === "أنثى" ? "الطالبة" : "  الطالب"} ${student.student_Name}`}
@@ -104,7 +124,7 @@ const Students_details = () => {
  <div className='flex  gap-6'>
  <Card_student student={student} />
 <div className='flex flex-col  bg-whit w-[95%] ' >
-<Inner_Links links={links}  />
+<Inner_Links links={Admin ? Admin_links :Supervisor_links }  />
  <Outlet/>
 </div>
      

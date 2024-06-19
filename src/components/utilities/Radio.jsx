@@ -33,9 +33,21 @@ export default function Radio({  value, onChange,name,items, })
 
 }
 import PropTypes from "prop-types";
+// Radio.propTypes = {
+//     name: PropTypes.string,
+//     items:PropTypes.string,
+//     value: PropTypes.string,
+//     onChange: PropTypes.func,
+// };
+
 Radio.propTypes = {
-    name: PropTypes.string,
-    items:PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func,
-};
+    onChange: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired
+      })
+    ).isRequired
+  };

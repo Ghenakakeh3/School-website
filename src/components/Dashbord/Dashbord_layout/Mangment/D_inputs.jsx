@@ -116,8 +116,7 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
 
                                         
                                     </div>
-                                    <ErrorMessage name={field.name} component='p' className='text-error mt-2 text-sm font-normal ' />
-
+                                
 
                                  
                                     </div>
@@ -135,7 +134,9 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                                 :field.type === "Dropdown" ? (
                                     <Dropdown
         // value,
-       edit_option={initialValues.Class}
+
+   
+       edit_option={initialValues[field.name]}
         options={field.options}
         onChange={field.onChange}
         icon={field.img}

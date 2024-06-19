@@ -119,6 +119,7 @@ Textarea.propTypes = {
 };
 import { easeInOut, motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
+import { forwardRef, useState } from "react";
 
 export function InputDatePicker({
   label,
@@ -196,6 +197,27 @@ export function InputDatePicker({
         Today
       </div>
     </DatePicker>
+  );
+}
+export function InputDate({
+  handleDateChange
+
+})
+{
+  const [startDate, setStartDate] = useState(new Date());
+  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button className="example-custom-input bg-sky-900 text-white  px-3 py-1 rounded-md shadow-verfictionShadow " onClick={onClick} ref={ref}>
+      {value}
+    </button>
+  ));
+  return (
+    <DatePicker
+      selected={startDate}
+      maxDate={new Date()}
+      onChange={(date) => {setStartDate(date);  }}
+      onSelect={(date)=>{handleDateChange(date)}}
+      customInput={<ExampleCustomInput />}
+    />
   );
 }
 

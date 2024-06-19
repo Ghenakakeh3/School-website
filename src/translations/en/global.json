@@ -1,109 +1,465 @@
 {
   "navbar": {
-    "links": ["Home", "Services", "About us", "Contact us", "Get Started"]
+    "links": [
+      "Home",
+      "Services",
+      "About us",
+      "Contact us",
+      "Get Started"
+    ]
   },
   "Hero": {
-    "slide_1" : ["The Best School For Your child","Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde delectus, doloremque repellendus labore quasi, nisi tempora asperiores necessitatibus dolorem aspernatur numquam eius quas","learn more","join us"],
-    "slide_2" : ["Make a Birghter Feature For Your Child ","Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde delectus, doloremque repellendus labore quasi, nisi tempora asperiores necessitatibus dolorem aspernatur numquam eius quas","learn more","join us"]
-    
+    "slide_1": [
+      "The Best School For Your child",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde delectus, doloremque repellendus labore quasi, nisi tempora asperiores necessitatibus dolorem aspernatur numquam eius quas",
+      "learn more",
+      "join us"
+    ],
+    "slide_2": [
+      "Make a Birghter Feature For Your Child ",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde delectus, doloremque repellendus labore quasi, nisi tempora asperiores necessitatibus dolorem aspernatur numquam eius quas",
+      "learn more",
+      "join us"
+    ]
   },
-  
   "navbar_Admin_dash": {
-    "links": ["Home", "Class", "students", "Teachers", "Moderators","Notes"]
+    "links": [
+      "Home",
+      "Class",
+      "students",
+      "Teachers",
+      "Moderators",
+      "Notes",
+      "Adverts"
+    ]
   },
   "home_Admin_dash": {
-    "main": ["Welcam to ", "System School", "", "Notes"],
-    "school": [ "Marh"],
-    "links": ["First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade"],
-    "back_to_school": ["Back To School",""],
-    "Student _absence_chart": ["Student absence chart"],
-    "Time_record": ["Supervisors' time record","Teachers' time record","Students' time record","active","non active","the total number","Number of attendees","Number of absences"],
-   "stuents_by_average_mark": ["stuents by average mark","progressive","Descending"],
-   "Admin_Settings": ["Settings","General Settings","Manage user accounts","System settings","Return to the home page"],
-   "Manage_user_accounts" : ["Admin accounts","Parents' accounts","Student accounts" ,"Add Account"],
-   "Add_Account":["Add Account","You can  add new account from here.","Name","User Name","Password","Add New Admin Account"],
-   "Edit_Account":["Edit Account","You can Edit account from here.","Name","User Name","Password","Edit Admin Account"],
-   "record":["Record"]
-  
-
-
-
-
-
-
-
-
+    "main": [
+      "Welcam to ",
+      "System School",
+      "",
+      "Notes"
+    ],
+    "school": [
+      "Marh"
+    ],
+    "links": [
+      "First grade",
+      "Second grade",
+      "Third grade",
+      "fourth grade",
+      "fifth grade",
+      "Sixth grade"
+    ],
+    "back_to_school": [
+      "Back To School",
+      ""
+    ],
+    "Student _absence_chart": [
+      "Student absence chart"
+    ],
+    "Time_record": [
+      "Supervisors' time record",
+      "Teachers' time record",
+      "Students' time record",
+      "active",
+      "non active",
+      "the total number",
+      "Number of attendees",
+      "Number of absences"
+    ],
+    "stuents_by_average_mark": [
+      "stuents by average mark",
+      "progressive",
+      "Descending"
+    ],
+    "Admin_Settings": [
+      "Settings",
+      "General Settings",
+      "Manage user accounts",
+      "System settings",
+      "Return to the home page"
+    ],
+    "Manage_user_accounts": [
+      "Admin accounts",
+      "Parents' accounts",
+      "Student accounts",
+      "Add Account"
+    ],
+    "Add_Account": [
+      "Add Account",
+      "You can  add new account from here.",
+      "Name",
+      "User Name",
+      "Password",
+      "Add New Admin Account"
+    ],
+    "Edit_Account": [
+      "Edit Account",
+      "You can Edit account from here.",
+      "Name",
+      "User Name",
+      "Password",
+      "Edit Admin Account"
+    ],
+    "record": [
+      "Record"
+    ]
   },
   "Class_Admin_dash": {
-    "Class":["Class","Division ","Add Division","Class","Division name","Number of students","You can add a new  Division from here.","Class is required","Division is required","Edit Division","You can edit Division from here."],
-    "Class_Table":["ID","Class","Division name","Number of students","Action"],
-    "Class_filter":["All","First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade","First Division","Second Division"],
-    "ClassDetales":["Subjects","Registered students","weekly program","Time record","exams","Subject marks"],
-    "Subjects":["ID","Subject Name","Number of classes","Subject teacher","Action","Add subject","You can add a new Subject from here.","Add new subject","subject name is required","Subject teacher is required","Number of classes is required","Subject Name shoud be longest","Subject Name shoud be shortest","Number of classes must be a positive number","Subject teacher name shoud be longest","Edit Subject","You can edit Subject from here."],
-    "Subjects_filter":["Chapter one","Chapter Second"],
-    "Registered_students":["ID","Full Name","Number of marks","date of registration","Number of days of attendance","Attendance rate"],
-    "Weekly_program":["Day/time","8:00","8:45","9:30","10:15","11:00","11:45"],
-    "Time_record":["ID","student Name","Checking","the reason"],
-    "Exams":["ID","Subject Name","Timing","test type","Action","Add test","You can add a new test from here.","Exam","Test","subject name is required","Subject Name shoud be shortest","Subject Name shoud be longest","test type is required","Timing is required","Edit test","You can Edit  test from here."],
-
-    "Exams_filter":["Chapter one","Chapter Second"],
-    "Subject_marks":["student Name","Subject Name","Timing","mark","Action"],
-    "Subject_marks_filter":["Chapter one","Chapter Second"]
-   
-
+    "Class": [
+      "Class",
+      "Division ",
+      "Add Division",
+      "Class",
+      "Division name",
+      "Number of students",
+      "You can add a new  Division from here.",
+      "Class is required",
+      "Division is required",
+      "Edit Division",
+      "You can edit Division from here.",
+      "Moderator Name"
+    ],
+    "Class_Table": [
+      "ID",
+      "Class",
+      "Division name",
+      "Number of students",
+      "Action",
+      "Moderator name"
+    ],
+    "Class_filter": [
+      "All",
+      "First grade",
+      "Second grade",
+      "Third grade",
+      "fourth grade",
+      "fifth grade",
+      "Sixth grade",
+      "First Division",
+      "Second Division"
+    ],
+    "ClassDetales": [
+      "Subjects",
+      "Registered students",
+      "weekly program",
+      "Time record",
+      "exams",
+      "Subject marks"
+    ],
+    "Subjects": [
+      "ID",
+      "Subject Name",
+      "Number of classes",
+      "Subject teacher",
+      "Action",
+      "Add subject",
+      "You can add a new Subject from here.",
+      "Add new subject",
+      "subject name is required",
+      "Subject teacher is required",
+      "Number of classes is required",
+      "Subject Name shoud be longest",
+      "Subject Name shoud be shortest",
+      "Number of classes must be a positive number",
+      "Subject teacher name shoud be longest",
+      "Edit Subject",
+      "You can edit Subject from here."
+    ],
+    "Subjects_filter": [
+      "Chapter one",
+      "Chapter Second"
+    ],
+    "Registered_students": [
+      "ID",
+      "Full Name",
+      "Number of marks",
+      "date of registration",
+      "Number of days of attendance",
+      "Attendance rate"
+    ],
+    "Weekly_program": [
+      "Day/time",
+      "8:00",
+      "8:45",
+      "9:30",
+      "10:15",
+      "11:00",
+      "11:45"
+    ],
+    "Time_record": [
+      "ID",
+      "student Name",
+      "Checking",
+      "the reason"
+    ],
+    "Exams": [
+      "ID",
+      "Subject Name",
+      "Timing",
+      "test type",
+      "Action",
+      "Add test",
+      "You can add a new test from here.",
+      "Exam",
+      "Test",
+      "subject name is required",
+      "Subject Name shoud be shortest",
+      "Subject Name shoud be longest",
+      "test type is required",
+      "Timing is required",
+      "Edit test",
+      "You can Edit  test from here."
+    ],
+    "Exams_filter": [
+      "Chapter one",
+      "Chapter Second"
+    ],
+    "Subject_marks": [
+      "student Name",
+      "Subject Name",
+      "Timing",
+      "mark",
+      "Action"
+    ],
+    "Subject_marks_filter": [
+      "Chapter one",
+      "Chapter Second"
+    ]
   },
   "Students_Admin_dash": {
-    "Students":["Students","Edit student Information","You can edit student Information from here."],
-    "Students_Table":["ID","student Name","Class","Division name","Action"],
-    "Students_Action":["Edit profile"],
-    "Students_links":["Division materials","exams","Attendance Record","Program of the week"],
-    "Students_Exams":["ID","Subject Name","Timing","test type","mark","The great mark"],
-    "Time_record":["ID","Timing","Checking","the reason"],
-    "Card_student":["Genders","father","mom","date of birth"]
-
-
+    "Students": [
+      "Students",
+      "Edit student Information",
+      "You can edit student Information from here."
+    ],
+    "Students_Table": [
+      "ID",
+      "student Name",
+      "Class",
+      "Division name",
+      "Action"
+    ],
+    "Students_Action": [
+      "Edit profile"
+    ],
+    "Students_links": [
+      "Division materials",
+      "exams",
+      "Attendance Record",
+      "Program of the week",
+      ",Behvier_notification"
+    ],
+    "Students_Exams": [
+      "ID",
+      "Subject Name",
+      "Timing",
+      "test type",
+      "mark",
+      "The great mark"
+    ],
+    "Time_record": [
+      "ID",
+      "Timing",
+      "Checking",
+      "the reason"
+    ],
+    "Behvier_notification": [
+      "ID",
+      "timming",
+      "notification",
+      "action"
+    ],
+    "Card_student": [
+      "Genders",
+      "father",
+      "mom",
+      "date of birth"
+    ]
   },
   "Teachers_Admin_dash": {
-"Teachers":["Teachers","Edit Teacher Information","You can edit Teacher Information from here."],
-"Teachers_Table":["ID","Teacher Name","Class","Division name", "Subject Name","Action"],
-"Teachers_links":["Time  Record","Program of the week"]
-
-
+    "Teachers": [
+      "Teachers",
+      "Edit Teacher Information",
+      "You can edit Teacher Information from here."
+    ],
+    "Teachers_Table": [
+      "ID",
+      "Teacher Name",
+      "Class",
+      "Division name",
+      "Subject Name",
+      "Action"
+    ],
+    "Teachers_links": [
+      "Time  Record",
+      "Program of the week"
+    ]
   },
-"Moderators_Admin_dash": {
-  "Moderators":["Teachers","Edit Moderator Information","You can edit Moderator Information from here."],
-  "Moderators_Table":["ID","Moderator Name","Class","Division name","Action"]
-  
-  
-    },
-
-
-
-    "navbar_Supervisor_dash": {
-      "links": ["Home", "Division", "students", "Teachers","Notes"]
-    },
-    "Division_Supervisor_dash": {
-      "Division":["Division"],
-      "Division_Table":["ID","Class","Division name","Number of students","Action"],
-       "Division_filter":["All","First grade","Second grade", "Third grade", "fourth grade", "fifth grade", "Sixth grade","First Division","Second Division"],
-     
-       "DivisionDetales":["Registered students","weekly program","Time record","exams","Subject marks"],
-      "Division_students":["ID","Full Name","Number of marks","date of registration","Number of days of attendance","Attendance rate"],
-      
-      "Weekly_program":["Day/time","8:00","8:45","9:30","10:15","11:00","11:45"],
-      "Time_record":["ID","student Name","Checking","the reason","action"],
-      "Exams":["ID","Subject Name","Timing","test type","Action","Add test","You can add a new test from here.","Exam","Test","subject name is required","Subject Name shoud be shortest","Subject Name shoud be longest","test type is required","Timing is required","Edit test","You can Edit  test from here."],
-  
-      "Exams_filter":["Chapter one","Chapter Second"],
-      "Subject_marks":["student Name","Subject Name","Timing","mark","Action"],
-      "Subject_marks_filter":["Chapter one","Chapter Second"]
-     
-  
-    },
-
-
-
-  
+  "Moderators_Admin_dash": {
+    "Moderators": [
+      "Teachers",
+      "Edit Moderator Information",
+      "You can edit Moderator Information from here."
+    ],
+    "Moderators_Table": [
+      "ID",
+      "Moderator Name",
+      "Class",
+      "Division name",
+      "Action"
+    ]
+  },
+  "Adverts":[
+    "Adverts","You Can Send Adverts For All Students From Hire","Send"
+  ],
+  "navbar_Supervisor_dash": {
+    "links": [
+      "Home",
+      "Division",
+      "students",
+      "Teachers",
+      "Notes"
+    ]
+  },
+  "Division_Supervisor_dash": {
+    "Division": [
+      "Division"
+    ],
+    "Division_Table": [
+      "ID",
+      "Class",
+      "Division name",
+      "Number of students",
+      "Action"
+    ],
+    "Division_filter": [
+      "All",
+      "First grade",
+      "Second grade",
+      "Third grade",
+      "fourth grade",
+      "fifth grade",
+      "Sixth grade",
+      "First Division",
+      "Second Division"
+    ],
+    "DivisionDetales": [
+      "Registered students",
+      "weekly program",
+      "Time record",
+      "exams",
+      "Subject marks",
+      "Daily inspection"
+    ],
+    "Division_students": [
+      "ID",
+      "Full Name",
+      "Number of marks",
+      "date of registration",
+      "Number of days of attendance",
+      "Attendance rate"
+    ],
+    "Division_test": [
+      "ID",
+      "Subject Name",
+      "Timing",
+      "test type",
+      "Action",
+      "Add test",
+      "You can add a new test from here.",
+      "Exam",
+      "Test",
+      "subject name is required",
+      "Subject Name shoud be shortest",
+      "Subject Name shoud be longest",
+      "test type is required",
+      "Timing is required",
+      "Edit test",
+      "You can Edit  test from here."
+    ],
+    "Division_test_filter": [
+      "Chapter one",
+      "Chapter Second"
+    ],
+    "Weekly_program": [
+      "Day/time",
+      "8:00",
+      "8:45",
+      "9:30",
+      "10:15",
+      "11:00",
+      "11:45"
+    ],
+    "Time_record": [
+      "ID",
+      "student Name",
+      "Checking",
+      "the reason",
+      "action"
+    ],
+    "Division_Subject_marks": [
+      "ID",
+      "student Name",
+      "Subject Name",
+      "Timing",
+      "mark",
+      "Action"
+    ],
+    "Division_Subject_marks_filter": [
+      "Chapter one",
+      "Chapter Second"
+    ],
+    "Division_add_Subject_marks": [
+      "student Name",
+      "Subject Name",
+      "Timing",
+      "mark",
+      "Add Subject Mark",
+      "You can add Subject Mark from here",
+      "Student Name shoud be shortest",
+      "Student Name shoud be longest",
+      "Student name is required",
+      "Timing is required",
+      "mark is required",
+      "mark should be between 0 and 100"
+    ],
+    "Division_edit_Subject_marks": [
+      "Student Name",
+      "Subject Name",
+      "Timing",
+      "mark",
+      "Action",
+      "Edit Subject Mark",
+      "You can Edit Subject Mark from here",
+      "Student Name shoud be shortest",
+      "Student Name shoud be longest",
+      "Student name is required",
+      "Timing is required",
+      "mark is required",
+      "mark should be between 0 and 100"
+    ],
+    "Behvier_notification": [
+      "Add Behvier notification",
+      "You canAdd Behvier notification from here",
+      "timming",
+      "notification",
+      "notification is required"
+    ],
+    "Daily_inspection": [
+      "Id",
+      "Student Name",
+      "Date",
+      "State",
+      "Action",
+      "present",
+      "absent",
+      "Add Daily inspection",
+      "Edit Daily inspection",
+      "You Can Edit Daily inspectionFrom Hire"
+    ]
+  },
   "login": {
     "title": "Login in Marh School",
     "p": "Don’t have an account with us? ",
@@ -222,7 +578,11 @@
   "Services": {
     "main-title": "Our Services",
     "discrption": "We seek the best ways for your comfort, so we tried to put in your hands our best services in a smooth and comfortable manner",
-    "services": ["Dental", "Neurology", "See more services"]
+    "services": [
+      "Dental",
+      "Neurology",
+      "See more services"
+    ]
   },
   "testimonals": {
     "main_title": "What Our Clients Say",
@@ -233,8 +593,6 @@
     "descrption": "This is achieved through access to your treatment and service faster and smoother than before.",
     "button": "So, Let’s Started"
   },
-
-
   "services": [
     "Categories",
     "Location",
@@ -257,10 +615,17 @@
   "NavBar_Dashbord": {
     "search": "search"
   },
-  "DashPath": ["Dashbord"],
+  "DashPath": [
+    "Dashbord"
+  ],
   "sideBar_Dashbord": {
-    "main_title": ["dashboard"],
-    "dashboard_menu": ["About Users", "About dashboard"],
+    "main_title": [
+      "dashboard"
+    ],
+    "dashboard_menu": [
+      "About Users",
+      "About dashboard"
+    ],
     "AdminDashboard_about_users_menu": [
       "All Users",
       "Services",
@@ -274,8 +639,7 @@
       "Products",
       "Report"
     ],
-    "serviceProvider_Appointment" : [
-
+    "serviceProvider_Appointment": [
       "Request Appointment",
       " Table Appointment"
     ],
@@ -284,7 +648,10 @@
       " Patient Users",
       " Admin Users"
     ],
-    "about_dashboard_menu": ["Settings", "Sign Out"],
+    "about_dashboard_menu": [
+      "Settings",
+      "Sign Out"
+    ],
     "Admin_dashboard_Services": [
       "Doctors Services",
       "Hospital Services",
@@ -292,18 +659,22 @@
       "Clinic Services",
       "Lab Services"
     ],
-
-    "serviceProvider_dashboard_products": ["Request Product", "Table Product"],
+    "serviceProvider_dashboard_products": [
+      "Request Product",
+      "Table Product"
+    ],
     "Contact_us_discrption": "We hope that our website will be useful to you and we are happy for you to ",
     "contact_us": " contact us"
   },
-  "serviceProvider_dashboard_Services": ["Request Services", " Table Services"],
+  "serviceProvider_dashboard_Services": [
+    "Request Services",
+    " Table Services"
+  ],
   "Med_sal_dashbord": {
     "main_title": "med - Sal for  Admin - Dashboard ",
     "descrption": "The control panel for the med-sal website, its users, and its services"
   },
   "profile": "Edit Profile",
-
   "sitting": [
     "Personal Information",
     "Update your photo and personal information here",
@@ -313,9 +684,13 @@
     "Edit My Profile",
     "Done"
   ],
-
-  "noNotification": ["Notification", "Not Found Notification"],
-  "notification": ["Notification"],
+  "noNotification": [
+    "Notification",
+    "Not Found Notification"
+  ],
+  "notification": [
+    "Notification"
+  ],
   "request_edit": [
     "Request For Edit My Profile",
     "Saturday,  September 2023 ",
@@ -349,7 +724,6 @@
       "All Product - 250.000"
     ]
   },
-
   "services_map": [
     "Please choose the appropriate location for you so that we can determine the appropriate products and services for you according to the location you have chosen."
   ],
@@ -374,7 +748,11 @@
     "Fri",
     "Sat"
   ],
-  "search": ["Search About Services OR ", "Product Here !", "Search..."],
+  "search": [
+    "Search About Services OR ",
+    "Product Here !",
+    "Search..."
+  ],
   "footer": [
     "We are a platform that seeks to connect clinical patients with  doctors in various medical specialties and pharmacies all over the Emirates.",
     "Subscribe to our Quarterly newsletter ....",
@@ -402,13 +780,11 @@
     " for this product",
     "Close View Product"
   ],
-  
   "addProuct": [
     "Add Product",
     " You can add your product from here. ",
     "If you would like to add discounts please click  ",
     " Here"
-
   ],
   "editServices": [
     "Edit Services",
@@ -436,7 +812,6 @@
     "click Here",
     "Add New Services"
   ],
-  
   "Appointment": [
     "Welcome, Rawan, to Med-sal",
     "  The service provider at Med - sal in the doctors department can provide his services through these pages. We hope that they will be useful to you.",

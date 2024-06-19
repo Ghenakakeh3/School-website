@@ -38,6 +38,11 @@ import Division_students from './components/Dashbord/Supervisor_Dashboard/Divisi
 import Division_Weekly_program from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_Weekly_program'
 import Division_Time_record from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_Time_record'
 import Students_Division from './components/Dashbord/Supervisor_Dashboard/students/Students_Division'
+import Daily_inspection from './components/Dashbord/Supervisor_Dashboard/Division/Division/Daily inspection/Daily_inspection'
+import Division_test from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_test'
+import Division_Subject_marks from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_Subject_marks'
+import Behvier_notification from './components/Dashbord/Admin_Dashboard/Students/Behvier_notification'
+import Adverts from './components/Dashbord/Admin_Dashboard/Adverts/Adverts'
 
 
 function App() {
@@ -49,7 +54,7 @@ function App() {
 
 
 
-
+      
    
           <Route path="/" element={<UserLayout />}>
             <Route path="/" element={<Home />} />
@@ -82,6 +87,7 @@ function App() {
               <Route  path='exams' element={<Exams_student />}/>
               <Route  path='Time_record' element={<Time_record_student />}/>
               <Route  path='Weekly_program' element={<Weekly_program_student />}/>
+              
 
 
 
@@ -100,6 +106,7 @@ function App() {
             <Route path="Subject_marks" element={<Subject_marks  />} /> 
             <Route path="Subject_marks/:id" element={<ClassDetales />} >
 
+
             
             
             </Route>
@@ -115,11 +122,13 @@ function App() {
             
             {/* students */}
             <Route path="students" element={<Students />} /> 
-            <Route path="students/:id" element={<Students_details />} >
+            <Route path="students/:id" element={<Students_details Admin={true}/>} >
               <Route  path='Division_materials' element={<Division_materials_student />}/>
               <Route  path='exams' element={<Exams_student />}/>
               <Route  path='Time_record' element={<Time_record_student />}/>
               <Route  path='Weekly_program' element={<Weekly_program_student />}/>
+              <Route  path='Behvier_notification' element={<Behvier_notification actions={{}} />}/>
+
 
 
 
@@ -154,9 +163,11 @@ function App() {
             </Route>
 
 
-             {/* Teachers */}
+             {/* Moderators */}
          
              <Route path="Moderators" element={<Moderators />} /> 
+      
+
              {/* charts */}
             <Route path='charts' element={<Charts />}/>
 
@@ -166,6 +177,9 @@ function App() {
 
 
           </Route>
+{/* Admin_Adverts */}
+<Route path='/Admin_Adverts'element={<Adverts/>} />
+
 
 
           {/* Admin_Settings */}
@@ -186,7 +200,7 @@ function App() {
             </Route>
 
 
-
+{/* *********************************************************************************************************** */}
             {/* Superviso_dashboard */}
             <Route path='/Supervisor_dashboard'  element={<DashboardLayout/>}>
             <Route path="Division" element={<Division />}  />
@@ -194,14 +208,46 @@ function App() {
             <Route path="Registered_students" element={<Division_students />} />
             <Route  path='Weekly_program' element={<Division_Weekly_program/>}/>
             <Route  path='Time_record' element={<Division_Time_record/>}/>
+            <Route  path='Daily_inspection' element={<Daily_inspection/>}/>
+            <Route  path='Exams' element={<  Division_test/>}/>
+            <Route  path='Subject_marks' element={<  Division_Subject_marks/>}/>
+
+            
+          
+
+            
 
             
             
 
             </Route>
             <Route path='students' element={<Students_Division />} />
+            <Route path="students/:id" element={<Students_details />} >
+              <Route  path='Division_materials' element={<Division_materials_student />}/>
+              <Route  path='exams' element={<Exams_student />}/>
+              <Route  path='Time_record' element={<Time_record_student />}/>
+              <Route  path='Weekly_program' element={<Weekly_program_student />}/>
+              <Route  path='Behvier_notification' element={<Behvier_notification  actions={{add:true,update:true,delete:true}}/>}/>
+
+
+
+
+              
+
+
+           
+
+              
 
             </Route>
+
+
+            </Route>
+            {/* Supervisor Adverts */}
+            <Route path='Supervisor_Adverts' element={<Adverts/>}/>
+            {/* New_Post */}
+            {/* <Route path='New_Post' element={<New_Post/>}/> */}
+            
        
 
 

@@ -42,6 +42,7 @@ export default function TabsFillter({ children,sortlist }) {
 }
 import PropTypes from "prop-types";
 
+
 TabsFillter.propTypes = {
-  children: PropTypes.string,
-};
+  children: PropTypes.node.isRequired,
+};;

@@ -22,156 +22,52 @@ const Class = () => {
       Class_Name: "الصف الأول",
       Division_name: "الشعبة الأولى ",
       Number_of_students: 30,
+      modrator_name:"هناء نحاس"
 
 
     },
     {
       ID: "02",
 
-      Class_Name: "الصف الأول",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-
-    {
-      ID: "03",
-      Class_Name: "الصف الثاني",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-    {
-      ID: "04",
       Class_Name: "الصف الثاني",
 
       Division_name: "الشعبة الثانية",
       Number_of_students: 30,
+      modrator_name:"غنى كعكة"
 
-
-
-
-    },
-    {
-      ID: "05",
-      Class_Name: "الصف الثالث",
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-     {
-      ID: "06",
-      Class_Name: "الصف الثالث",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-     {
-      ID: "07",
-      Class_Name: "الصف الرابع",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-     {
-      ID: "08",
-      Class_Name: "الصف الرابع",
-
-      Division_name: "الشعبة  الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-    {
-      ID: "09",
-      Class_Name: " الصف الخامس",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-    , {
-      ID: "10",
-      Class_Name: "الصف الخامس",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
 
 
 
 
     },
 
-    {
-      ID: "11",
-      Class_Name: "الصف السادس",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
 
 
 
-
-    },
-     {
-      ID: "12",
-      Class_Name: "الصف السادس",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
   ];
   const { t } = useTranslation("global");
   const AddRef = useRef(null)
   const [add_active, set_add_active] = useState(false);
-  const [edit_active, set_edit_active] = useState(false);
+  // const [edit_active, set_edit_active] = useState(false);
   const [Edit_active, set_Edit_active] = useState(false); 
   const [Class_Dropdown , set_Class_Dropdown ] = useState("");
   const [data, set_data] = useState(rows);
   const[edit_content,set_edit_content]=useState({})
 
-console.log(Edit_active)
+
  
 
 
   const handleDelte = (ID) => {
 
     const f = data.find((ob, id) => {
-      set_edit_active(!edit_active);
+      set_Edit_active(!Edit_active);
       return ob.ID === ID
     })
     const newRow= rows.filter((row)=>{
        return row.ID !=ID
     })
-    console.log(newRow)
+  
 
     set_data(newRow)
 
@@ -202,6 +98,10 @@ console.log(Edit_active)
 
 
   };
+  const handleChange_options_modrator=(value) => {
+    
+  }
+  
 
 
   const columns = [
@@ -209,8 +109,9 @@ console.log(Edit_active)
     t("Class_Admin_dash.Class_Table.1") ,
     t("Class_Admin_dash.Class_Table.2") ,
     t("Class_Admin_dash.Class_Table.3") ,
+    t("Class_Admin_dash.Class_Table.5") ,
     t("Class_Admin_dash.Class_Table.4") ,
-
+    
 
 
 
@@ -227,6 +128,13 @@ const options_Class =[
   {name:t("Class_Admin_dash.Class_filter.5") },
   {name:t("Class_Admin_dash.Class_filter.6") }
 
+
+]
+const options_modrator=[
+  {name:"غنى كعكة"},
+  {name:"غنى كعكة"},
+  {name:"غنى كعكة"},
+  {name:"غنى كعكة"},
 
 ]
 
@@ -280,12 +188,26 @@ const formConfig_Add = {
 
 
     },
+    
+    {
+      name: "modrator_name",
+      label: t("Class_Admin_dash.Class.11"),
+      img: arrowIcon,
+      type: "Dropdown",
+      inputType: "text",
+      component: "input",
+      options: options_modrator,
+      onChange :handleChange_options_modrator
+
+
+    },
 
   ],
   initialValues : {
     Class: "",
     Division: "",
     Number_of_students: 20,
+    modrator_name:""
   },
 
       validationSchema: {
@@ -338,12 +260,26 @@ const formConfig_Edit = {
 
 
     },
+        
+    {
+      name: "modrator_name",
+      label: t("Class_Admin_dash.Class.11"),
+      img: arrowIcon,
+      type: "Dropdown",
+      inputType: "text",
+      component: "input",
+      options: options_modrator,
+      onChange :handleChange_options_modrator
+
+
+    },
    
   ],
   initialValues : {
     Class: edit_content.Class_Name,
     Division: edit_content.Division_name,
     Number_of_students:edit_content.Number_of_students,
+    modrator_name:edit_content.modrator_name
 
 
 

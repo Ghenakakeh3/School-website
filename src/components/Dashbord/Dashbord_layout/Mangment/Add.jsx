@@ -21,6 +21,8 @@ const Add= React.forwardRef(
       add_active,
       set_add_active,
       formConfig,
+      handleSubmit
+
 
     },
     ref
@@ -53,9 +55,7 @@ const Add= React.forwardRef(
   //   setSubmitting(false);
   //   set_add_active(!add_active)
   // };
-  const handleSubmit = ()=>{
-    console.log("vvvvvvv")
-  }
+
 
 
 

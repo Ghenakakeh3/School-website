@@ -1,13 +1,14 @@
 
 
 
-import React, { useRef, useState } from 'react'
+import React, {  useState } from 'react'
 import { useTranslation } from "react-i18next";
 import TabsFillter from '../../../Dashbord_layout/TabsFillter'
 import Table from '../../../Dashbord_layout/TableLayout'
 import NoData from '../../../Dashbord_layout/NoData/NoData';
 import { SearchBar } from '../../../../utilities/SearchBar/SearchBar';
 import { SearchResultsList } from '../../../../utilities/SearchBar/SearchResultsList';
+import { InputDate } from '../../../../utilities/Inputs';
 
 
 const Division_Time_record = () => {
@@ -60,7 +61,7 @@ const Division_Time_record = () => {
     t("Division_Supervisor_dash.Time_record.1") ,
     t("Division_Supervisor_dash.Time_record.2") ,
     t("Division_Supervisor_dash.Time_record.3") ,
-    t("Division_Supervisor_dash.Time_record.4") ,
+  
 
 
 
@@ -86,6 +87,10 @@ const Division_Time_record = () => {
         <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Division_Supervisor_dash.Time_record.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
       </div>
+
+    <div>
+    <InputDate />
+    </div>
      
   </div>
 
@@ -98,7 +103,7 @@ const Division_Time_record = () => {
     <Table
       columns={columns}
       rows={data}
-      action={{delete: false,update: true }}
+      action={{delete: false,update: false }}
       className={"min-h-screen px-6 pt-2"}
       RowlinK={true}
     />

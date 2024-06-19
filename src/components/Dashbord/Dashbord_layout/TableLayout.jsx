@@ -10,8 +10,8 @@ import { Link, NavLink } from "react-router-dom";
 
 
 const Table = ({ RowlinK_TO, RowlinK,columns, rows, points, handlepoint, point, className ,rowclassName,row_className,option,action,handleEdit,handleDelte}) => {
-const url=location.pathname
-console.log(url)
+// const url=location.pathname
+
 
   
   return (
