@@ -301,13 +301,18 @@
     "Moderators": [
       "Teachers",
       "Edit Moderator Information",
-      "You can edit Moderator Information from here."
+      "You can edit Moderator Information from here.",
+      "Add New Moderator",
+      "You Can Add New Moderator From Hire",
+      "Moderator Name Is Required",
+      "Phone Number Is Required"
     ],
     "Moderators_Table": [
       "ID",
       "Moderator Name",
       "Class",
       "Division name",
+      "Phone Number",
       "Action"
     ]
   },
@@ -323,6 +328,9 @@
       "Notes"
     ]
   },
+  "Supervisor_Home":[
+    "Welcom To The Marah School Moderator Dashboard"
+  ],
   "Division_Supervisor_dash": {
     "Division": [
       "Division"

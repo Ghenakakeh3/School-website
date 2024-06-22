@@ -1,15 +1,20 @@
 // DynamicForm.js
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useField } from "formik";
 import * as Yup from "yup";
-import { DashInput } from "../../../utilities/Inputs";
+import { DashInput, InputFile } from "../../../utilities/Inputs";
 import Button from "../../../utilities/Button";
 import Typography from "../../../utilities/Typography";
 import DatePicker from "../../../utilities/DatePicker";
 import DatePicker_input from "../../../utilities/DatePicker";
 import Dropdown from "../../../utilities/Dropdown";
+import { useDropzone } from "react-dropzone";
 
 const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
+
+
+    // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
     const[isSubmitting,set_Submitting]=useState(false)
     const CustomInputComponent = ({
         field, // { name, value, onChange, onBlur }
@@ -64,6 +69,32 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
 
         );
     }
+    
+    const DropzoneField = ({ field, form }) => {
+        const onDrop = useCallback((acceptedFiles) => {
+            form.setFieldValue(field.name, acceptedFiles[0]);
+        }, [form, field.name]);
+
+        const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+        return (
+            <div {...getRootProps()} className="border-dashed border-2 border-gray-300 p-4 text-center cursor-pointer">
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                    <p>Drop the files here...</p>
+                ) : (
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                )}
+                {form.values[field.name] && (
+                    <div>
+                        <p>Selected file: {form.values[field.name].name}</p>
+                    </div>
+                )}
+            </div>
+        );
+    }
+ 
+    
     
 
 
@@ -131,6 +162,10 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                                 />
                                     
                                 )
+                                : field.type === "file" ? (
+                                    <Field name={field.name} component={DropzoneField} />
+                                )
+                      
                                 :field.type === "Dropdown" ? (
                                     <Dropdown
         // value,
@@ -156,7 +191,7 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                                         name={field.name}
                                         type={field.inputType}
                                         // value={field.value}
-                                        className=""
+                                        className={field.className  ? field.className :""}
                                         component={CustomInputComponent}
                                     />
 

@@ -21,47 +21,49 @@ import * as Yup from "yup";
 import Edit from '../../Dashbord_layout/Mangment/Edit';
 import { SearchBar } from '../../../utilities/SearchBar/SearchBar';
 import { SearchResultsList } from '../../../utilities/SearchBar/SearchResultsList';
+import { IoIosAddCircle } from 'react-icons/io';
+import Add from '../../Dashbord_layout/Mangment/Add';
 
 
 const Moderators = () => {
   const rows = [
     {
       ID: "01",
-      student_Name: "لارا ",
+      Modrator_name: "لارا ",
       Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
+      phone_number:'092642821',
+   
     
     },
-
-     {
-      ID: "02",
-      student_Name: "لارا ",
+    {
+      ID: "01",
+      Modrator_name: "لارا ",
       Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
-
-
-    },
-      {
-      ID: "03",
-      student_Name: "لارا ",
+      phone_number:'092642821',
+   
+    
+    },    {
+      ID: "01",
+      Modrator_name: "لارا ",
       Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
-      
-    },
-      {
-      ID: "04",
-      student_Name: "لارا ",
-      Class: "الصف الثا",
+      phone_number:'092642821',
+   
+    
+    },    {
+      ID: "01",
+      Modrator_name: "لارا ",
+      Class: "الصف الأول",
       Division_name: "الشعبة الأولى ",
+      phone_number:'092642821',
+   
     
     },
-      {
-      ID: "05",
-      student_Name: "لارا ",
-      Class: "الصف الأول",
-      Division_name: "الشعبة الأولى ",
+    
 
-    },
+   
 
 
   ];
@@ -73,6 +75,9 @@ const Moderators = () => {
   const[edit_content,set_edit_content]=useState({})
   const [results, setResults] = useState([]);
   const [selected_result, setselected_result] = useState("");
+  const [add_active, set_add_active] = useState(false);
+  const AddRef = useRef(null)
+
 
 
 
@@ -127,6 +132,7 @@ const Moderators = () => {
     t("Moderators_Admin_dash.Moderators_Table.2") ,
     t("Moderators_Admin_dash.Moderators_Table.3") ,
     t("Moderators_Admin_dash.Moderators_Table.4") ,
+    t("Moderators_Admin_dash.Moderators_Table.5") ,
 
 
 
@@ -161,7 +167,7 @@ const formConfig_Edit = {
     
 
     {
-      name: "student_Name",
+      name: "Modrator_name",
       label: t("Moderators_Admin_dash.Moderators_Table.1"),
       img: arrowIcon,
       type: "input",
@@ -191,12 +197,23 @@ const formConfig_Edit = {
 
 
     },
+    {
+      name: "Phone_Number",
+      label: t("Moderators_Admin_dash.Moderators_Table.4"),
+      img: arrowIcon,
+      type: "input",
+      inputType: "text",
+      component: "input",
+
+
+    },
    
   ],
   initialValues : {
-    student_Name:edit_content.student_Name,
+    Modrator_name:edit_content.Modrator_name,
     Class: edit_content.Class,
     Division_name:edit_content.Division_name,
+    Phone_Number:edit_content.phone_number
  
 
 
@@ -204,7 +221,7 @@ const formConfig_Edit = {
   },
 
       validationSchema: {
-        student_Name: Yup.string(),
+        Modrator_name: Yup.string(),
         Division_name: Yup.string(),
         
 
@@ -212,6 +229,61 @@ const formConfig_Edit = {
   }
   
 };
+const formConfig_Add = {
+  info :[
+   { title:  t("Moderators_Admin_dash.Moderators.3"),},
+  {descrption: t("Moderators_Admin_dash.Moderators.4"),},
+  { button_content:t("Moderators_Admin_dash.Moderators.3"), }
+  ],
+         
+  fields: [
+
+    
+
+    {
+      name: "Modrator_name",
+      label: t("Moderators_Admin_dash.Moderators_Table.1"),
+      img: arrowIcon,
+      type: "input",
+      inputType: "text",
+      component: "input",
+
+
+    },
+    
+    {
+      name: "Phone_Number",
+      label: t("Moderators_Admin_dash.Moderators_Table.4"),
+      img: arrowIcon,
+      type: "input",
+      inputType: "text",
+      component: "input",
+
+
+    },
+
+   
+  ],
+  initialValues : {
+    Modrator_name:"",
+    Phone_Number:""
+  
+ 
+
+
+
+  },
+
+      validationSchema: {
+        Modrator_name: Yup.string().required(t("Moderators_Admin_dash.Moderators.5")),
+        Phone_Number: Yup.string().required(t("Moderators_Admin_dash.Moderators.6")),
+        
+
+
+  }
+  
+};
+
 const handleEdit=(ID)=>{
 
   const Edit_clicKed=data.find((ob,id)=>{
@@ -231,6 +303,20 @@ const handleEdit=(ID)=>{
 
 
       <div className='relative '>
+      {add_active ? (
+            <Add
+            formConfig={formConfig_Add}
+              // ref={AddRef}  
+              add_active={add_active}
+              set_add_active={set_add_active}
+         
+
+
+            />
+           
+          ) : (
+            ""
+          )}
 
           {Edit_active ? (
             <Edit
@@ -276,10 +362,15 @@ const handleEdit=(ID)=>{
         <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Moderators_Admin_dash.Moderators_Table.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
       </div>
+ 
    
    
   
          </div>
+         <div className=''>
+     
+     <Button  className="flex bg-success items-center gap-2 " onClick={()=>{set_add_active(true)}}>{t("Moderators_Admin_dash.Moderators.3")} <IoIosAddCircle /> </Button>
+     </div>
 
 
 

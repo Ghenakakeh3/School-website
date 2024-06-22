@@ -43,6 +43,8 @@ import Division_test from './components/Dashbord/Supervisor_Dashboard/Division/D
 import Division_Subject_marks from './components/Dashbord/Supervisor_Dashboard/Division/Division/Division_Subject_marks'
 import Behvier_notification from './components/Dashbord/Admin_Dashboard/Students/Behvier_notification'
 import Adverts from './components/Dashbord/Admin_Dashboard/Adverts/Adverts'
+import Supervisor_Home from './components/Dashbord/Supervisor_Dashboard/Home/Supervisor_Home'
+import Posts from './components/Dashbord/Supervisor_Dashboard/Posts/Posts'
 
 
 function App() {
@@ -203,6 +205,7 @@ function App() {
 {/* *********************************************************************************************************** */}
             {/* Superviso_dashboard */}
             <Route path='/Supervisor_dashboard'  element={<DashboardLayout/>}>
+            <Route path='/Supervisor_dashboard'  element={<Supervisor_Home/>}/>
             <Route path="Division" element={<Division />}  />
             <Route path='Division/:id' element={<DivisionDetales /> }>
             <Route path="Registered_students" element={<Division_students />} />
@@ -246,7 +249,7 @@ function App() {
             {/* Supervisor Adverts */}
             <Route path='Supervisor_Adverts' element={<Adverts/>}/>
             {/* New_Post */}
-            {/* <Route path='New_Post' element={<New_Post/>}/> */}
+            <Route path='Posts' element={<Posts/>}/>
             
        
 

@@ -31,8 +31,7 @@ const SideBardashbord = () => {
   ]
   const Supervisor_links=[
     {icon: <AiOutlineNotification />, to:"/Supervisor_Adverts"},
-    {icon:<MdPostAdd /> ,to:"/New_Post"},
-   
+    {icon:<MdPostAdd /> ,to:"/Posts"},  
     {icon:<BsGraphUp />  ,to:""},
     {icon: <TbLock /> ,to:""},
     {icon: <CiLogout /> ,to:""},
