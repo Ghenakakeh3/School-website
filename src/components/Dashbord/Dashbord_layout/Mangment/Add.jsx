@@ -22,6 +22,7 @@ const Add= React.forwardRef(
       set_add_active,
       formConfig,
       handleSubmit
+    
 
 
     },
@@ -29,7 +30,7 @@ const Add= React.forwardRef(
   ) => {
     const { t } = useTranslation("global");
     const [showpass, setshowpass] = useState(false);
-    //show password
+
     function ShowPassword() {
         setshowpass(!showpass);
       }
@@ -37,17 +38,10 @@ const Add= React.forwardRef(
 
 
       
-  // const initialValues = {
-  //   name: "",
-  //   user_name: "",
-  //   password: "",
 
-
-  //   // Initialize other fields
-  // };
 
   // const handleSubmit = (values, { setSubmitting }) => {
-  //   console.log("bb")
+  //   console.log(values)
   //   const newRow=[...rows, values]
   //   set_data(newRow)
   //   // set_data(rows)

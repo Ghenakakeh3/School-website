@@ -12,6 +12,7 @@ export default function Dropdown({
   classNameIcon,
   label,
   edit_option,
+  name
 
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function Dropdown({
         className ? className : "text-myGray-500"
       } relative  flex flex-col z-10 `}
       ref={dropdownRef}
+      name={name}
     >
       <button
         onClick={() => {
@@ -53,6 +55,7 @@ export default function Dropdown({
 
         }}
         type="button"
+        name={name}
         className="  flex  items-center p-2   justify-between  tracking-wide border-0 border-b-myGray-100 active:border-b-primary duration-150 ease-in-out"
       >
         {showSlected ? selectedItem : ""}

@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import { useTranslation } from "react-i18next";
 import Typography from '../../../utilities/Typography'
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
 import { InputSearch } from '../../../utilities/Inputs'
 import Button from '../../../utilities/Button'
-import Table from '../../Dashbord_layout/TableLayout'
+// import Table from '../../Dashbord_layout/TableLayout'
 import NoData from '../../Dashbord_layout/NoData/NoData'
 import Content from '../../Dashbord_layout/Content/Content';
 import Dropdown from '../../../utilities/Dropdown';
@@ -13,9 +13,18 @@ import { IoIosAddCircle } from 'react-icons/io';
 import * as Yup from "yup";
 import Add from '../../Dashbord_layout/Mangment/Add';
 import Edit from '../../Dashbord_layout/Mangment/Edit';
+import axios from 'axios';
+import { TableCell, TableHeader, TableRow,Table } from '../../Dashbord_layout/Table';
+import Loading from '../../../utilities/Loading/Loading';
+import {useQuery} from 'react-query'
+import { SectionQuery } from '../../../../API/Sections/SectionsQueries';
+import useData from '../../../../context/useData ';
+import { ClassQuery } from '../../../../API/Class/ClassQueries';
+import { SupervisersQuery } from '../../../../API/Supervisers/SupervisersQueries';
+import { AddSection } from '../../../../API/Sections/SectionsApi';
 
 
-const Class = () => {
+const Class = ({permition}) => {
   const rows = [
     {
       ID: "01",
@@ -48,15 +57,53 @@ const Class = () => {
   const { t } = useTranslation("global");
   const AddRef = useRef(null)
   const [add_active, set_add_active] = useState(false);
-  // const [edit_active, set_edit_active] = useState(false);
   const [Edit_active, set_Edit_active] = useState(false);
   const [Class_Dropdown, set_Class_Dropdown] = useState("");
-  const [data, set_data] = useState(rows);
+  // const [data, set_data] = useState([]);
   const [edit_content, set_edit_content] = useState({})
+  // const [isLoading,setisLoading]=useState(true)
+  // const { Sections,Supervisers, loading, error } = useData();
+  const [modraterSelected,setmodratorSelected]=useState()
+  const [ClassSelected,setClassSelectedSelected]=useState()
+
+
+  const fetchData=() => {
+    return  axios.get('http://www.marahschool.somee.com/api/Sections/GetAll')
+  }
+  
+  const {isLoading, data:Sections,isError,error}=SectionQuery.GetAllSectionQuery()
+  const { data:Class}=ClassQuery.GetAllClassQuery()
+  const {data:Supervisers}=SupervisersQuery.GetAllSupervisersQuery()
+  const {mutate}=SectionQuery.AddSection()
+
+  
+  
 
 
 
-
+  // useEffect(()=>{
+  //   axios.get('http://www.marahschool.somee.com/api/Sections/GetAll')
+   
+  //   // axios.post(' http://www.marahschool.somee.com/api/Sections/Add', {
+  //   //   "name": "test",
+  //   //   "size": 10,
+  //   //   "classId": 1,
+  //   //   "supervisorId": 1
+  //   // })
+  // .then(function (response) {
+  //   // handle success
+  
+  //   setisLoading(false)
+  //   set_data(response.data)
+  // })
+  // .catch(function (error) {
+  //   // handle error
+  //   console.log(error);
+  // })
+  // .finally(function () {
+  //   // always executed
+  // });
+  // } ,[])
 
   const handleDelte = (ID) => {
 
@@ -92,20 +139,21 @@ const Class = () => {
 
 
   };
+
   const handleChange_Class_Add_Dropdown = (value) => {
 
-
+    setClassSelectedSelected(value)
+  
 
 
   };
   const handleChange_options_modrator = (value) => {
+    setmodratorSelected(value)
 
   }
-
-
-
-  const columns = [
-    t("Class_Admin_dash.Class_Table.0"),
+ 
+  const TableHeaderArray=[
+  
     t("Class_Admin_dash.Class_Table.1"),
     t("Class_Admin_dash.Class_Table.2"),
     t("Class_Admin_dash.Class_Table.3"),
@@ -164,7 +212,7 @@ const Class = () => {
         type: "Dropdown",
         inputType: "text",
         component: "Dropdown",
-        options: options_Add_Class,
+        options: Class?.data,
         onChange: handleChange_Class_Add_Dropdown
 
       },
@@ -196,7 +244,7 @@ const Class = () => {
         type: "Dropdown",
         inputType: "text",
         component: "input",
-        options: options_modrator,
+        options: Supervisers?.data,
         onChange: handleChange_options_modrator
 
 
@@ -304,6 +352,15 @@ const Class = () => {
 
 
   }
+    const handleAddSubmit = (values, { setSubmitting }) => {
+      const section={name:values.Division,size :values.Number_of_students ,classId :ClassSelected.id ,supervisorId:1 }
+     
+
+      mutate(section)
+
+ 
+  
+  };
 
   return (
     <Content
@@ -315,12 +372,13 @@ const Class = () => {
 
 
       <div className='relative '>
-        {add_active ? (
+        {add_active ?  (
           <Add
             formConfig={formConfig_Add}
             ref={AddRef}
             add_active={add_active}
             set_add_active={set_add_active}
+            handleSubmit ={handleAddSubmit}
 
 
 
@@ -355,7 +413,7 @@ const Class = () => {
           <div className='flex  gap-10 items-center justify-between  w-full'>
             <div className='flex gap-10'>
               <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-                {data.length} {t("home_Admin_dash.record.0")}
+                {Sections?.data.length} {t("home_Admin_dash.record.0")}
               </span>
               <Dropdown
                 // value,
@@ -397,7 +455,7 @@ const Class = () => {
 
 
         </TabsFillter>
-        {data.length >= 1 ? (
+        {/* {data.length >= 1 ? (
           <Table
             columns={columns}
             rows={data}
@@ -410,7 +468,66 @@ const Class = () => {
           />
         ) : (
           <NoData ></NoData>
-        )}
+        )} */}
+      <div className='px-10'>
+      <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
+          <TableHeader className="">
+            <TableRow className="">
+              {TableHeaderArray.map((header, index) => (
+                <TableCell className="py-2" key={index}>{header}</TableCell>
+              ))}
+            </TableRow>
+          </TableHeader>
+          {/* {(per?.includes("ViewUser") ||
+            per?.includes("UpdateUser") ||
+            per?.includes("DeleteUser") ||
+            per?.includes("ChangeUserStatus")) && ( */}
+      
+           {/* )} */}
+
+           <tbody>
+{isLoading ? (
+<td colSpan={12}>
+<Loading size={60} />
+</td>
+) : 
+
+( Sections.data?.length === 0 ? (
+  <td colSpan={12}>
+    <NoData />
+  </td>
+) : (
+  Sections.data.map((section,index) => (
+    <TableRow
+      key={section.id}
+      className={
+     ""
+      }
+         rowIndex={index}
+    >
+    
+      <TableCell>{section.class.name}</TableCell>
+      <TableCell>{section.name}</TableCell>
+      <TableCell>{section.size}</TableCell>
+      <TableCell>{section.supervisor.firstName} {section.supervisor.lastName}</TableCell>
+
+  
+   
+     {/* <TableCell className="flex gap-4 text-xl justify-center mt-2">
+
+
+      </TableCell> */}
+    </TableRow>
+ ))
+)
+
+)
+}    
+
+
+</tbody>
+        </Table>
+      </div>
 
       </div>
     </Content>
@@ -418,3 +535,4 @@ const Class = () => {
 }
 
 export default Class
+

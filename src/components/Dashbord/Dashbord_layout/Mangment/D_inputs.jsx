@@ -93,7 +93,96 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
             </div>
         );
     }
- 
+ const DropDowanFiled=({
+    field, // { name, value, onChange, onBlur }
+    form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+    ...props
+
+
+
+})=>
+    
+    {
+        const [isOpen, setIsOpen] = useState(false);
+        const [selectedItem, setSelectedItem] = useState(edit_option? edit_option : options[0].name);
+        const dropdownRef = useRef(null);
+      
+        const handleSelect = (selected) => {
+          onChange(selected);
+          setSelectedItem(selected.name);
+          setIsOpen(false);
+        };
+        const handleOutsideClick = (e) => {
+          if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+            setIsOpen(false);
+          }
+        };
+        useEffect(() => {
+          document.addEventListener("mousedown", handleOutsideClick);
+          return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+          };
+        }, []);
+    return(
+        <div
+        className={` ${
+          className ? className : "text-myGray-500"
+        } relative  flex flex-col z-10 `}
+        ref={dropdownRef}
+        name={name}
+      >
+        <button
+          onClick={() => {
+        
+            setIsOpen(!isOpen);
+      
+  
+  
+  
+  
+          }}
+          type="button"
+          name={name}
+          className="  flex  items-center p-2   justify-between  tracking-wide border-0 border-b-myGray-100 active:border-b-primary duration-150 ease-in-out"
+        >
+          {showSlected ? selectedItem : ""}
+  
+          <img
+            className={` ${classNameIcon ? classNameIcon : ""} `}
+            src={icon}
+            alt=""
+          />  
+          <div className="absolute top-[-15px]">
+  {label}
+  
+  
+          </div>
+        </button>
+        {isOpen && (
+          <ul
+            className={`${
+              ulClassname ? ulClassname : ""
+            } absolute shadow-md top-[100%]  z-50  mt-[4px] `}
+          >
+        
+            {options.map((option, index) => (
+              <li
+                className={`block cursor-pointer w-full whitespace-nowrap bg-myGray-200 px-4 py-2 text-sm font-normal hover:bg-myGray-100 active:bg-myGray-100 hover:text-secondary active:text-secondary ${
+                  option.type == "delete" ? " text-error hover:text-error " : ""
+                }  `}
+                key={index}
+                onClick={() => {
+                  handleSelect(option);
+                }}
+              >
+                {option.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    )
+}
     
     
 
@@ -167,19 +256,33 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                                 )
                       
                                 :field.type === "Dropdown" ? (
-                                    <Dropdown
-        // value,
+                                //    <Field name={field.name} component={ <Dropdown
+                                //     // value,
+                            
+                                //   name={field.name}
+                                //    edit_option={initialValues[field.name]}
+                                //     options={field.options}
+                                //     onChange={field.onChange}
+                                //     icon={field.img}
+                                //     showSlected={true}
+                                //     ulClassname={"w-full "}
+                                //     classNameIcon=""
+                                //     className={`sm:w-[28rem] w-[16rem]  ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150 `}
+                                //   />}/>
 
-   
-       edit_option={initialValues[field.name]}
-        options={field.options}
-        onChange={field.onChange}
-        icon={field.img}
-        showSlected={true}
-        ulClassname={"w-full "}
-        classNameIcon=""
-        className={`sm:w-[28rem] w-[16rem]  ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150 `}
-      />
+                                <Dropdown
+                                    // value,
+                            
+                                  name={field.name}
+                                   edit_option={initialValues[field.name]}
+                                    options={field.options}
+                                    onChange={field.onChange}
+                                    icon={field.img}
+                                    showSlected={true}
+                                    ulClassname={"w-full "}
+                                    classNameIcon=""
+                                    className={`sm:w-[28rem] w-[16rem]  ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150 `}
+                                  />
                                         
                                     )
                                 

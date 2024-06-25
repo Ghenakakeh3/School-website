@@ -7,6 +7,8 @@ import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
 import "./index.css";
 import { UseServicesProvider } from "./context/Context.jsx";
+import { DataProvider } from "./context/Provider.jsx";
+import { QueryClient, QueryClientProvider } from "react-query";
 i18next.init({
   resources: {
     en: {
@@ -25,12 +27,19 @@ i18next.init({
   // nsSeparator: false,
 });
 
-
+const queryClient=new QueryClient()
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <I18nextProvider i18n={i18next}>
       <UseServicesProvider>
+        <DataProvider>
+        <QueryClientProvider client={queryClient}>
         <App />
+
+
+        </QueryClientProvider>
+        </DataProvider>
+       
       </UseServicesProvider>
     </I18nextProvider>
   </React.StrictMode>
