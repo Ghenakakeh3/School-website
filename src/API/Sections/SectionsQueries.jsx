@@ -1,13 +1,16 @@
 
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import {  SectionsApi } from "./SectionsApi";
 import axios from "axios";
 
 
- const AddSectionapi= (section) => {
 
-  return  axios.post( `http://www.marahschool.somee.com/api/Sections/Add`,section)
+const EditSectionApi=(section)=> {
+
+  return  axios.put( `http://www.marahschool.somee.com/api/Sections/Update`,section)
 };
+
+
 
 const GetAllSectionQuery = () => {
 
@@ -16,13 +19,27 @@ return useQuery('get-all-section',SectionsApi.GetAllSections)
 
 }
 
+
+//  const GetSectionByClass = (ClassId) => {
+
+//   return useQuery(['get-section-by-class',ClassId],SectionsApi.Get_Sections_By_class)
+  
+  
+//   }
+
 const AddSection=() => {
 // return useMutation(SectionsApi.AddSection())
-return useMutation(AddSectionapi)
+return useMutation(SectionsApi.AddSection)
 
   
 }
 
+const EditSection =() => {
+  // return useMutation(SectionsApi.AddSection())
+  return useMutation(EditSectionApi)
+  
+    
+  }
 
 // const GetBYIdUserQury = (id) => {
 //   const queryResult = useQuery({
@@ -62,7 +79,8 @@ return useMutation(AddSectionapi)
 
 export const SectionQuery = {
   GetAllSectionQuery,
-  AddSection
+  AddSection,
+  EditSection
 
 
 };

@@ -21,8 +21,8 @@ const Edit= React.forwardRef(
       Edit_active,
       set_Edit_active,
       formConfig,
-      rows,
-      set_data
+      handleSubmit
+      
 
     },
     ref
@@ -39,14 +39,15 @@ const Edit= React.forwardRef(
       
 
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    const newRow=[...rows, values]
-    // set_data(newRow)
-    // set_data(rows)
+  // const handleSubmit = (values, { setSubmitting }) => {
+  //   console.log(values)
+  //   // const newRow=[...rows, values]
+  //   // // set_data(newRow)
+  //   // // set_data(rows)
 
-    setSubmitting(false);
-    set_Edit_active(!Edit_active)
-  };
+  //   // setSubmitting(false);
+  //   // set_Edit_active(!Edit_active)
+  // };
 
 
 

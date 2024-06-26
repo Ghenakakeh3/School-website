@@ -9,7 +9,7 @@ import { Outlet } from 'react-router-dom';
 
 const DivisionDetales = () => {
     const { t } = useTranslation("global");
-    const Id=location.pathname.split("/")[3]
+    const Id=location.pathname.split("/")[4]
 
     const rows = [
         {
@@ -130,12 +130,12 @@ const DivisionDetales = () => {
       ];
       const links = [
 
-        { name: t("Division_Supervisor_dash.DivisionDetales.0"), to: `/Supervisor_dashboard/Division/${Id}/Registered_students` },
-        { name: t("Division_Supervisor_dash.DivisionDetales.1"), to: `/Supervisor_dashboard/Division/${Id}/Weekly_program` },
-        { name: t("Division_Supervisor_dash.DivisionDetales.2"), to: `/Supervisor_dashboard/Division/${Id}/Time_record` },
-        {name:  t("Division_Supervisor_dash.DivisionDetales.5")  , to:`/Supervisor_dashboard/Division/${Id}/Daily_inspection`},
-        { name: t("Division_Supervisor_dash.DivisionDetales.3"), to: `/Supervisor_dashboard/Division/${Id}/Exams` },
-        { name: t("Division_Supervisor_dash.DivisionDetales.4"), to: `/Supervisor_dashboard/Division/${Id}/Subject_marks` },
+        { name: t("Division_Supervisor_dash.DivisionDetales.0"), to: `/School-website/Supervisor_dashboard/Division/${Id}/Registered_students` },
+        { name: t("Division_Supervisor_dash.DivisionDetales.1"), to: `/School-website/Supervisor_dashboard/Division/${Id}/Weekly_program` },
+        { name: t("Division_Supervisor_dash.DivisionDetales.2"), to: `/School-website/Supervisor_dashboard/Division/${Id}/Time_record` },
+        {name:  t("Division_Supervisor_dash.DivisionDetales.5")  ,to:`/School-website/Supervisor_dashboard/Division/${Id}/Daily_inspection`},
+        { name: t("Division_Supervisor_dash.DivisionDetales.3"), to: `/School-website/Supervisor_dashboard/Division/${Id}/Exams` },
+        { name: t("Division_Supervisor_dash.DivisionDetales.4"), to: `/School-website/Supervisor_dashboard/Division/${Id}/Subject_marks` },
 
       
 

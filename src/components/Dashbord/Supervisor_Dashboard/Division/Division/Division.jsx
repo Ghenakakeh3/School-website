@@ -432,7 +432,7 @@ const handleEdit=(ID)=>{
             action={{delete: false,update: false }}
             className={"min-h-screen px-6 pt-2"}
             RowlinK={true}
-            RowlinK_TO="/Supervisor_dashboard/Division"
+            RowlinK_TO="/School-website/Supervisor_dashboard/Division"
           />
         ) : (
           <NoData ></NoData>

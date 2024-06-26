@@ -58,21 +58,21 @@ function App() {
 
       
    
-          <Route path="/" element={<UserLayout />}>
-            <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<UserLayout />}> */}
+            {/* <Route path="/" element={<Home />} /> */}
          
           
       
-          </Route>
+          {/* </Route> */}
           {/* auth Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/forget-password" element={<ForgetPassword />} />
-          <Route path="/verification-code" element={<VerfictionCode />} />
+          <Route path="/School-website/" element={<Login />} />
+          <Route path="/School-website/forget-password" element={<ForgetPassword />} />
+          <Route path="/School-website/verification-code" element={<VerfictionCode />} />
 
 
           {/* Admin_dashboard */}
-          <Route path="/Admin_dashboard" element={<DashboardLayout />}>
-            <Route path="/Admin_dashboard" element={<Home_admin />} > 
+          <Route path="/School-website/Admin_dashboard" element={<DashboardLayout />}>
+            <Route path="/School-website/Admin_dashboard" element={<Home_admin />} > 
             
             
             </Route>
@@ -180,7 +180,7 @@ function App() {
 
           </Route>
 {/* Admin_Adverts */}
-<Route path='/Admin_Adverts'element={<Adverts/>} />
+<Route path='/School-website/Admin_Adverts'element={<Adverts/>} />
 
 
 
@@ -204,8 +204,8 @@ function App() {
 
 {/* *********************************************************************************************************** */}
             {/* Superviso_dashboard */}
-            <Route path='/Supervisor_dashboard'  element={<DashboardLayout/>}>
-            <Route path='/Supervisor_dashboard'  element={<Supervisor_Home/>}/>
+            <Route path='/School-website/Supervisor_dashboard'  element={<DashboardLayout/>}>
+            <Route path='/School-website/Supervisor_dashboard'  element={<Supervisor_Home/>}/>
             <Route path="Division" element={<Division />}  />
             <Route path='Division/:id' element={<DivisionDetales /> }>
             <Route path="Registered_students" element={<Division_students />} />

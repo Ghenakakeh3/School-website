@@ -72,7 +72,7 @@ const Students_details = ({Admin,Supervisor}) => {
       ];
 
     const { t } = useTranslation("global");
-    const Id=location.pathname.split("/")[3]
+    const Id=location.pathname.split("/")[4]
     const student_selcted_=Students.filter((row)=>{
         return row.ID === Id
       })
@@ -83,11 +83,11 @@ const Students_details = ({Admin,Supervisor}) => {
     
     const Admin_links = [
      
-        { name: t("Students_Admin_dash.Students_links.0"), to: `/Admin_dashboard/students/${Id}/Division_materials` },
-        { name: t("Students_Admin_dash.Students_links.1"), to: `/Admin_dashboard/students/${Id}/exams`  },
-        { name: t("Students_Admin_dash.Students_links.2"), to: `/Admin_dashboard/students/${Id}/Time_record` },
-        { name: t("Students_Admin_dash.Students_links.3"), to: `/Admin_dashboard/students/${Id}/Weekly_program` },
-        { name: t("Students_Admin_dash.Students_links.4"), to: `/Admin_dashboard/students/${Id}/Behvier_notification` },
+        { name: t("Students_Admin_dash.Students_links.0"), to: `/School-website/Admin_dashboard/students/${Id}/Division_materials` },
+        { name: t("Students_Admin_dash.Students_links.1"), to: `/School-website/Admin_dashboard/students/${Id}/exams`  },
+        { name: t("Students_Admin_dash.Students_links.2"), to: `/School-website/Admin_dashboard/students/${Id}/Time_record` },
+        { name: t("Students_Admin_dash.Students_links.3"), to: `/School-website/Admin_dashboard/students/${Id}/Weekly_program` },
+        { name: t("Students_Admin_dash.Students_links.4"), to: `/School-website/Admin_dashboard/students/${Id}/Behvier_notification` },
 
         
        
@@ -99,11 +99,11 @@ const Students_details = ({Admin,Supervisor}) => {
       ];
       const Supervisor_links = [
      
-        { name: t("Students_Admin_dash.Students_links.0"), to: `/Supervisor_dashboard/students/${Id}/Division_materials` },
-        { name: t("Students_Admin_dash.Students_links.1"), to: `/Supervisor_dashboard/students/${Id}/exams`  },
-        { name: t("Students_Admin_dash.Students_links.2"), to: `/Supervisor_dashboard/students/${Id}/Time_record` },
-        { name: t("Students_Admin_dash.Students_links.3"), to: `/Supervisor_dashboard/students/${Id}/Weekly_program` },
-        { name: t("Students_Admin_dash.Students_links.4"), to: `/Supervisor_dashboard/students/${Id}/Behvier_notification` },
+        { name: t("Students_Admin_dash.Students_links.0"), to: `/School-website/Supervisor_dashboard/students/${Id}/Division_materials` },
+        { name: t("Students_Admin_dash.Students_links.1"), to: `/School-website/Supervisor_dashboard/students/${Id}/exams`  },
+        { name: t("Students_Admin_dash.Students_links.2"), to: `/School-website/Supervisor_dashboard/students/${Id}/Time_record` },
+        { name: t("Students_Admin_dash.Students_links.3"), to: `/School-website/Supervisor_dashboard/students/${Id}/Weekly_program` },
+        { name: t("Students_Admin_dash.Students_links.4"), to: `/School-website/Supervisor_dashboard/students/${Id}/Behvier_notification` },
 
         
        
@@ -117,6 +117,7 @@ const Students_details = ({Admin,Supervisor}) => {
 
   return (
     <Content
+  
     path={`${student.Class} / ${student.Division_name}/ ${student.Genders === "أنثى" ? "الطالبة" : "  الطالب"} ${student.student_Name}`}
     classNameChildern=""
 

@@ -272,7 +272,7 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
 
                                 <Dropdown
                                     // value,
-                            
+                                    isFetched={field.isFetched}
                                   name={field.name}
                                    edit_option={initialValues[field.name]}
                                     options={field.options}

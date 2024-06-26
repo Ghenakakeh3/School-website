@@ -12,11 +12,16 @@ export default function Dropdown({
   classNameIcon,
   label,
   edit_option,
-  name
+  name,
+  isFetched
 
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(edit_option? edit_option : options[0].name);
+ 
+  const [selectedItem, setSelectedItem] = useState();
+  // const [selectedItem, setSelectedItem] = useState( isFetched ? options[0].name : undefined);
+
+
   const dropdownRef = useRef(null);
 
   const handleSelect = (selected) => {
@@ -30,11 +35,16 @@ export default function Dropdown({
     }
   };
   useEffect(() => {
+    setTimeout(() => {
+      isFetched && setSelectedItem(options[0].name)
+  }, 200);
+   
     document.addEventListener("mousedown", handleOutsideClick);
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, []);
+  
+  }, [isFetched]);
 
   return (
     <div
@@ -105,7 +115,7 @@ Dropdown.propTypes = {
   className: PropTypes.string,
   ulClassname: PropTypes.string,
   value: PropTypes.string,
-  options: PropTypes.string,
+  options: PropTypes.array,
   onChange: PropTypes.func,
 };
 // ***************************************************************

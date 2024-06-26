@@ -13,10 +13,10 @@ import { MdPostAdd } from "react-icons/md";
 
 const SideBardashbord = () => {
   const { t } = useTranslation("global");
-  const path=location.pathname.split("/")[1]
+  const path=location.pathname.split("/")[2]
 
   const Admin_Links=[
-    {icon: <AiOutlineNotification />, to:"/Admin_Adverts"},
+    {icon: <AiOutlineNotification />, to:"/School-website/Admin_Adverts"},
     {icon:  <SlCalender />, to:""},
     {icon:<BsGraphUp />  ,to:""},
     {icon: <TbLock /> ,to:""},

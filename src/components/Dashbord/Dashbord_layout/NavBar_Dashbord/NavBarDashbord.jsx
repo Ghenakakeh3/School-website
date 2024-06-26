@@ -29,27 +29,27 @@ const NavBarDashbord = () => {
   
   const [active, setactive] = useState(0);
   const Admin_links = [
-    { name: t("navbar_Admin_dash.links.0"), to: "/Admin_dashboard" ,icon :<IoHome  />},
-    { name: t("navbar_Admin_dash.links.1"), to: "/Admin_dashboard/Class",icon :<FaWindowRestore  /> },
-    { name: t("navbar_Admin_dash.links.2"), to: "/Admin_dashboard/students" ,icon :<FaUsersLine  /> },
-    { name: t("navbar_Admin_dash.links.3"), to: "/Admin_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
-    { name: t("navbar_Admin_dash.links.4"), to: "/Admin_dashboard/Moderators",icon :<BsPersonWorkspace /> },
-    { name: t("navbar_Admin_dash.links.5"), to: "/Notes",icon :<GrNotes  /> },
+    { name: t("navbar_Admin_dash.links.0"), to: "/School-website/Admin_dashboard" ,icon :<IoHome  />},
+    { name: t("navbar_Admin_dash.links.1"), to: "/School-website/Admin_dashboard/Class",icon :<FaWindowRestore  /> },
+    { name: t("navbar_Admin_dash.links.2"), to: "/School-website/Admin_dashboard/students" ,icon :<FaUsersLine  /> },
+    { name: t("navbar_Admin_dash.links.3"), to: "/School-website/Admin_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
+    { name: t("navbar_Admin_dash.links.4"), to: "/School-website/Admin_dashboard/Moderators",icon :<BsPersonWorkspace /> },
+    { name: t("navbar_Admin_dash.links.5"), to: "/School-website/Notes",icon :<GrNotes  /> },
 
 
   ];
 
  
   const Supervisor_links = [
-    { name: t("navbar_Supervisor_dash.links.0"), to: "/Supervisor_dashboard" ,icon :<IoHome  />},
-    { name: t("navbar_Supervisor_dash.links.1"), to: "/Supervisor_dashboard/Division",icon :<FaWindowRestore  /> },
-    { name: t("navbar_Supervisor_dash.links.2"), to: "/Supervisor_dashboard/students" ,icon :<FaUsersLine  /> },
-    { name: t("navbar_Supervisor_dash.links.3"), to: "/Supervisor_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
-    { name: t("navbar_Supervisor_dash.links.4"), to: "/Notes",icon :<GrNotes  /> },
+    { name: t("navbar_Supervisor_dash.links.0"), to: "/School-website/Supervisor_dashboard" ,icon :<IoHome  />},
+    { name: t("navbar_Supervisor_dash.links.1"), to: "/School-website/Supervisor_dashboard/Division",icon :<FaWindowRestore  /> },
+    { name: t("navbar_Supervisor_dash.links.2"), to: "/School-website/Supervisor_dashboard/students" ,icon :<FaUsersLine  /> },
+    { name: t("navbar_Supervisor_dash.links.3"), to: "/School-website/Supervisor_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
+    { name: t("navbar_Supervisor_dash.links.4"), to: "/School-website/Notes",icon :<GrNotes  /> },
 
   ];
-  const path=location.pathname.split("/")[1]
- 
+  const path=location.pathname.split("/")[2]
+
 
 
 

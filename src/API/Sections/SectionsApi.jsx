@@ -9,6 +9,10 @@ const GetAllSections = async () => {
 
   return  axios.get( `${baiseUrl}${ API_Routes.Section.GetAll}`)
 };
+// const Get_Sections_By_class = async ({queryKey}) => {
+//   const classId=queryKey[1]
+//   return  axios.get(`${baiseUrl}${ API_Routes.Section.ByClass}?classId=${classId}`)
+// };
 
 export const AddSection=async (section) => {
 
@@ -27,6 +31,9 @@ export const AddSection=async (section) => {
 
 
 
+
 export const SectionsApi = {
-    GetAllSections
+    GetAllSections,
+    AddSection,
+  
 };

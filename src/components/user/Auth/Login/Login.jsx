@@ -36,8 +36,8 @@ export default function Login() {
     onSubmit: (values) => {
       formik.handleReset();
       
-      {values.email==="admin_email@gmail.com" && values.password==="12345678" ? navigate('/Admin_dashboard' ): ""}
-      {values.email==="Supervisor_email@gmail.com" && values.password==="12345678" ? navigate('/Supervisor_dashboard' ): ""}
+      {values.email==="admin_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Admin_dashboard' ): ""}
+      {values.email==="Supervisor_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Supervisor_dashboard' ): ""}
 
      
  
