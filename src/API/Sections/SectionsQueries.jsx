@@ -1,14 +1,12 @@
 
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "react-query";
 import {  SectionsApi } from "./SectionsApi";
 import axios from "axios";
 
 
 
-const EditSectionApi=(section)=> {
 
-  return  axios.put( `http://www.marahschool.somee.com/api/Sections/Update`,section)
-};
+
 
 
 
@@ -27,16 +25,33 @@ return useQuery('get-all-section',SectionsApi.GetAllSections)
   
 //   }
 
-const AddSection=() => {
+const AddSection=(SuccessAdd) => {
+  const queryClient = useQueryClient();
+
 // return useMutation(SectionsApi.AddSection())
-return useMutation(SectionsApi.AddSection)
+return useMutation(SectionsApi.AddSection,
+  {
+  onSuccess:(data)=>{
+ queryClient.setQueryData('get-all-section',(oldQuryData)=>{
+  const ob={...oldQuryData,data:data.data}
+  return 
+  ob
+   
+  
+
+ })
+  }
+
+})
 
   
 }
 
-const EditSection =() => {
+const EditSection =(SuccessEdit) => {
   // return useMutation(SectionsApi.AddSection())
-  return useMutation(EditSectionApi)
+  return useMutation(SectionsApi.EditSection,{
+    onSuccess:SuccessEdit
+  })
   
     
   }

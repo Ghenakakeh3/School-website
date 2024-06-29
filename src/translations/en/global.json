@@ -239,6 +239,12 @@
       "student Name",
       "Class",
       "Division name",
+      "phone Number",
+      "birthday",
+      "email",
+      "Father name",
+      "Mother Name",
+      "parent phone number",
       "Action"
     ],
     "Students_Action": [
@@ -287,14 +293,18 @@
     "Teachers_Table": [
       "ID",
       "Teacher Name",
-      "Class",
-      "Division name",
       "Subject Name",
-      "Action"
+      "email",
+      "Phone Number",
+      "Divisions",
+      "Action",
+      "Diviosion",
+      "class"
     ],
     "Teachers_links": [
       "Time  Record",
-      "Program of the week"
+      "Program of the week",
+      "Divisions"
     ]
   },
   "Moderators_Admin_dash": {
@@ -310,10 +320,17 @@
     "Moderators_Table": [
       "ID",
       "Moderator Name",
-      "Class",
-      "Division name",
       "Phone Number",
-      "Action"
+      "Email",
+      "Action",
+      "first name",
+      "last name",
+      "password"
+
+
+
+
+    
     ]
   },
   "Adverts":[

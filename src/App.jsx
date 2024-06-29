@@ -45,6 +45,7 @@ import Behvier_notification from './components/Dashbord/Admin_Dashboard/Students
 import Adverts from './components/Dashbord/Admin_Dashboard/Adverts/Adverts'
 import Supervisor_Home from './components/Dashbord/Supervisor_Dashboard/Home/Supervisor_Home'
 import Posts from './components/Dashbord/Supervisor_Dashboard/Posts/Posts'
+import DivisionsTecher from './components/Dashbord/Admin_Dashboard/Teachers/DivisionsTecher'
 
 
 function App() {
@@ -72,10 +73,10 @@ function App() {
 
           {/* Admin_dashboard */}
           <Route path="/School-website/Admin_dashboard" element={<DashboardLayout />}>
-            <Route path="/School-website/Admin_dashboard" element={<Home_admin />} > 
+            <Route path="/School-website/Admin_dashboard" element={<Home_admin />} /> 
             
             
-            </Route>
+           
             <Route path="Class" element={<Class />}  > 
          
             </Route>
@@ -152,6 +153,9 @@ function App() {
             
               <Route  path='Time_record' element={<Time_record_Teacher />}/>
               <Route  path='Weekly_program' element={<Weekly_program_Teacher />}/>
+              <Route  path='Divsions' element={<DivisionsTecher />}/>
+
+              
 
 
 

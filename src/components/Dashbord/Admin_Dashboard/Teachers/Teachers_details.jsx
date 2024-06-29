@@ -32,7 +32,7 @@ const Teachers_details = () => {
     
         },
           {
-          ID: "03",
+          ID: "3",
           Teacher_Name: "لارا ",
           Class: "الصف الأول",
           Division_name: "الشعبة الأولى ",
@@ -70,7 +70,7 @@ const Teachers_details = () => {
       ];
 
     const { t } = useTranslation("global");
-    const Id=location.pathname.split("/")[3]
+    const Id=location.pathname.split("/")[4]
     const Teacher_selcted_=Teachers.filter((row)=>{
         return row.ID === Id
       })
@@ -81,8 +81,10 @@ const Teachers_details = () => {
     
     const links = [
     
-        { name: t("Teachers_Admin_dash.Teachers_links.0"), to: `/Admin_dashboard/Teachers/${Id}/Time_record` },
-        { name: t("Teachers_Admin_dash.Teachers_links.1"), to: `/Admin_dashboard/Teachers/${Id}/Weekly_program` },        
+        { name: t("Teachers_Admin_dash.Teachers_links.0"), to: `/School-website/Admin_dashboard/Teachers/${Id}/Time_record` },
+        { name: t("Teachers_Admin_dash.Teachers_links.1"), to: `/School-website/Admin_dashboard/Teachers/${Id}/Weekly_program` },  
+        { name: t("Teachers_Admin_dash.Teachers_links.2"), to: `/School-website/Admin_dashboard/Teachers/${Id}/Divsions` },        
+
    
     
       ];

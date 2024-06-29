@@ -8,16 +8,13 @@ const baiseUrl ="http://www.marahschool.somee.com/api/"
 const GetAllSupervisers = async () => {
 
   // return  axios.get( `${baiseUrl}${API_Routes.Supervisers.GetAll}`)
-  return  axios.get( `http://www.marahschool.somee.com/api/Supervisers/GetAllSupervisors`)
+  return  axios.get( `${baiseUrl}${API_Routes.Superviser.GetAll}`)
 
 };
+const AddSuperviser=async (Superviser) => {
 
-
-
-
-
-
-
+  return  axios.post( `${baiseUrl}${API_Routes.Superviser.AddSupervisor}`,Superviser)
+};
 
 
 
@@ -28,5 +25,6 @@ const GetAllSupervisers = async () => {
 
 export const SupervisersApi = {
     GetAllSupervisers,
+    AddSuperviser
  
 };

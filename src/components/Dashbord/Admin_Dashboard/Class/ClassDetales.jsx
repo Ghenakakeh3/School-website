@@ -6,11 +6,11 @@ import { Outlet } from 'react-router-dom';
 
 const ClassDetales = () => {
     const { t } = useTranslation("global");
-    const Id=location.pathname.split("/")[3]
+    const Id=location.pathname.split("/")[4]
 
     const rows = [
         {
-          ID: "01",
+          ID: "1",
           Name: "الصف الأول",
     
           Division_name: "الشعبة الأولى ",
@@ -127,12 +127,12 @@ const ClassDetales = () => {
       ];
       const links = [
      
-        { name: t("Class_Admin_dash.ClassDetales.0"), to: `/Admin_dashboard/Class/${Id}/Subjects` },
-        { name: t("Class_Admin_dash.ClassDetales.1"), to: `/Admin_dashboard/Class/${Id}/Registered_students`  },
-        { name: t("Class_Admin_dash.ClassDetales.2"), to: `/Admin_dashboard/Class/${Id}/Weekly_program` },
-        { name: t("Class_Admin_dash.ClassDetales.3"), to: `/Admin_dashboard/Class/${Id}/Time_record` },
-        { name: t("Class_Admin_dash.ClassDetales.4"), to: `/Admin_dashboard/Class/${Id}/Exams` },
-        { name: t("Class_Admin_dash.ClassDetales.5"), to: `/Admin_dashboard/Class/${Id}/Subject_marks` },
+        { name: t("Class_Admin_dash.ClassDetales.0"), to: `/School-website/Admin_dashboard/Class/${Id}/Subjects` },
+        { name: t("Class_Admin_dash.ClassDetales.1"), to: `/School-website/Admin_dashboard/Class/${Id}/Registered_students`  },
+        { name: t("Class_Admin_dash.ClassDetales.2"), to: `/School-website/Admin_dashboard/Class/${Id}/Weekly_program` },
+        { name: t("Class_Admin_dash.ClassDetales.3"), to: `/School-website/Admin_dashboard/Class/${Id}/Time_record` },
+        { name: t("Class_Admin_dash.ClassDetales.4"), to: `/School-website/Admin_dashboard/Class/${Id}/Exams` },
+        { name: t("Class_Admin_dash.ClassDetales.5"), to: `/School-website/Admin_dashboard/Class/${Id}/Subject_marks` },
       
 
         

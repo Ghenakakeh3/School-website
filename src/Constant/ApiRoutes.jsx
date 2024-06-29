@@ -1,33 +1,48 @@
 const controller = {
   Section:"Sections",
 Class: "Classes",
+Student:"Students",
+Teatcher:"Teatchers",
+Superviser :"Supervisers"
 
-  Admin:"Admin",
-  Auth: "Auth",
-  User: "User",
-  Driver: "Driver",
-  Store: "Store",
-  Category: "Category",
-  Flavor: "Flavor",
-  Brand: "Brand",
-  Product: "Product",
-  Banner: "Banner",
-  ControllData: "ControllData",
-  Notification: "Notification",
-  Coupon: "Coupon",
-  Group: "Group",
-  Order: "Order",
-  Role: "Role",
+
+
   
 };
 const Section={
   GetAll:`${controller.Section}/GetAll`,
   ByClass:`${controller.Section}/GetAllSectionsWithClass`,
-  AddSection:`${controller.Section}/Add`
+  AddSection:`${controller.Section}/Add`,
+  EditSection:`${controller.Section}/Update`
 }
 const Class={
   GetAll:`${controller.Class}/GetAll`
 }
+const Student={
+  GetAll:`${controller.Student}/GetAllStudents`,
+  AddStudent:`${controller.Student}/AddStudent`,
+  // EditStudent:`${controller.Student}/GetAllStudents`,
+
+
+
+}
+const Teatcher={
+  GetAll:`${controller.Teatcher}/GetTeachers`,
+  AddTeatcher:`${controller.Student}/AddTecher`,
+  GetTecherById:`${controller.Teatcher}/GetTeacherById`
+  // EditTeatcher:`${controller.Student}/GetAllStudents`,
+
+
+}
+
+const Superviser={
+  GetAll:`${controller.Superviser}/GetAllSupervisors`,
+  AddSupervisor:`${controller.Superviser}/AddSuperviserer`,
+
+
+
+}
+
 
 
 
@@ -40,5 +55,8 @@ const Class={
 export const API_Routes = {
   Section,
   Class,
+  Student,
+  Teatcher,
+  Superviser
 
 };

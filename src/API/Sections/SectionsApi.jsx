@@ -20,7 +20,12 @@ export const AddSection=async (section) => {
 };
 
 
+ const EditSection= (section) => {
 
+  return  axios.put( `${baiseUrl}${API_Routes.Section.EditSection}`,section)
+
+
+};
 
 
 
@@ -35,5 +40,6 @@ export const AddSection=async (section) => {
 export const SectionsApi = {
     GetAllSections,
     AddSection,
+    EditSection
   
 };

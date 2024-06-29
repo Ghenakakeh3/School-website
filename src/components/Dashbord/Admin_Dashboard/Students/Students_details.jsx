@@ -9,7 +9,7 @@ const Students_details = ({Admin,Supervisor}) => {
 
     const Students = [
         {
-          ID: "01",
+          ID: "18",
           student_Name: "لارا ",
           Class: "الصف الأول",
           Division_name: "الشعبة الأولى ",
@@ -76,7 +76,7 @@ const Students_details = ({Admin,Supervisor}) => {
     const student_selcted_=Students.filter((row)=>{
         return row.ID === Id
       })
-    
+    console.log(Id)
 
       const[student,setstudent]=useState(student_selcted_[0])
       

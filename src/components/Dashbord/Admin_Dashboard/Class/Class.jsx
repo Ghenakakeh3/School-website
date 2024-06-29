@@ -1,4 +1,4 @@
-import React, { useRef, useState,useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useTranslation } from "react-i18next";
 import Typography from '../../../utilities/Typography'
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
@@ -14,9 +14,9 @@ import * as Yup from "yup";
 import Add from '../../Dashbord_layout/Mangment/Add';
 import Edit from '../../Dashbord_layout/Mangment/Edit';
 import axios from 'axios';
-import { TableCell, TableHeader, TableRow,Table } from '../../Dashbord_layout/Table';
+import { TableCell, TableHeader, TableRow, Table } from '../../Dashbord_layout/Table';
 import Loading from '../../../utilities/Loading/Loading';
-import {useQuery} from 'react-query'
+import { useQuery,useQueryClient } from 'react-query'
 import { SectionQuery } from '../../../../API/Sections/SectionsQueries';
 import useData from '../../../../context/useData ';
 import { ClassQuery } from '../../../../API/Class/ClassQueries';
@@ -27,54 +27,66 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 
 
-const Class = ({permition}) => {
-  
+
+const Class = ({ permition }) => {
+
 
 
 
 
   const { t } = useTranslation("global");
   const AddRef = useRef(null)
-  const EditRef=useRef(null)
-  const [Section_fetched,set_section_fetched]=useState([])
+  const EditRef = useRef(null)
+  const [Section_fetched, set_section_fetched] = useState([])
   const [add_active, set_add_active] = useState(false);
   const [Edit_active, set_Edit_active] = useState(false);
   const [edit_content, set_edit_content] = useState({})
+  const queryClient = useQueryClient();
 
-  const [modraterSelected,setmodratorSelected]=useState()
-  const [modraterSelected_edit,setmodratorSelected_edit]=useState()
-  const [ClassFiltterSelected,setClassFiltterSelected]=useState()
-  const [ClassSelected,setClassSelectedSelected]=useState()
-  const [ClassSelected_Edit,setClassSelected_Edit]=useState()
+  const [modraterSelected, setmodratorSelected] = useState()
+  const [modraterSelected_edit, setmodratorSelected_edit] = useState(edit_content.supervisor)
+  const [ClassFiltterSelected, setClassFiltterSelected] = useState()
+  const [ClassSelected, setClassSelectedSelected] = useState()
+  const [ClassSelected_Edit, setClassSelected_Edit] = useState(edit_content.class)
 
-
-  const {isLoading, data:Sections,isFetched :FetchedSection ,isError,error}=SectionQuery.GetAllSectionQuery()
-  const {isLoading:isLoadingClass, data:Class ,isFetched:isFetchedClass}=ClassQuery.GetAllClassQuery()
-  const {data:Supervisers, isFetched :isFetchedModrator}=SupervisersQuery.GetAllSupervisersQuery()
-  const {mutate:Add_Section}=SectionQuery.AddSection()
-  const {mutate:EditSection} =SectionQuery.EditSection()
-
-console.log(edit_content)
+  const SuccessAdd = () => {
+    queryClient.invalidateQueries();
+    set_add_active(!add_active)
 
 
-  
-
-
-  // } ,[])
-useEffect(()=>{
-  if(FetchedSection){
-    set_section_fetched(Sections.data)
+  }
+  const SuccessEdit = () => {
+        set_Edit_active(!Edit_active)
   }
 
-},[FetchedSection])
+
+  const { isLoading, data: Sections, isFetched: FetchedSection, isError, error } = SectionQuery.GetAllSectionQuery()
+  const { isLoading: isLoadingClass, data: Class, isFetched: isFetchedClass } = ClassQuery.GetAllClassQuery()
+  const { data: Supervisers, isFetched: isFetchedModrator } = SupervisersQuery.GetAllSupervisersQuery_with_name()
+  const { mutate: Add_Section ,isSuccess } = SectionQuery.AddSection(SuccessAdd)
+  const { mutate: EditSection } = SectionQuery.EditSection(SuccessEdit)
+
+
+
+
+ 
+  useEffect(() => {
+    if (FetchedSection) {
+      set_section_fetched(Sections.data)
+    }
+    if(isSuccess){
+      set_section_fetched(Sections.data)
+    }
+
+  }, [FetchedSection])
 
   // filtter class
   const handle_change_filtter_class = (value) => {
     setClassFiltterSelected(value)
     // console.log(value)
-    
+
     const Class_filter = Sections?.data.filter((section) => {
-     
+
       return section.class.id === value.id
     })
     console.log(Class_filter)
@@ -97,14 +109,14 @@ useEffect(()=>{
   const handleChange_Class_Add_Dropdown = (value) => {
 
     setClassSelectedSelected(value)
-  
+
 
 
   };
   const handleChange_Class_Edit_Dropdown = (value) => {
 
     setClassSelected_Edit(value)
-  
+
 
 
   };
@@ -112,13 +124,15 @@ useEffect(()=>{
     setmodratorSelected(value)
 
   }
-  const handleChange_modrator_Edit=(value) => {
+  const handleChange_modrator_Edit = (value) => {
     setmodratorSelected_edit(value)
   }
-  
- 
-  const TableHeaderArray=[
-  
+
+
+
+
+  const TableHeaderArray = [
+
     t("Class_Admin_dash.Class_Table.1"),
     t("Class_Admin_dash.Class_Table.2"),
     t("Class_Admin_dash.Class_Table.3"),
@@ -154,7 +168,7 @@ useEffect(()=>{
         component: "Dropdown",
         options: Class?.data,
         onChange: handleChange_Class_Add_Dropdown,
-        isFetched:isFetchedClass
+        isFetched: isFetchedClass
 
       },
       {
@@ -187,7 +201,7 @@ useEffect(()=>{
         component: "input",
         options: Supervisers,
         onChange: handleChange_options_modrator,
-        isFetched:isFetchedModrator
+        isFetched: isFetchedModrator
 
 
       },
@@ -228,7 +242,7 @@ useEffect(()=>{
         component: "Dropdown",
         options: Class?.data,
         onChange: handleChange_Class_Edit_Dropdown,
-        isFetched:isFetchedClass
+        isFetched: isFetchedClass
 
       },
       {
@@ -259,9 +273,9 @@ useEffect(()=>{
         type: "Dropdown",
         inputType: "text",
         component: "input",
-        options:  Supervisers,
+        options: Supervisers,
         onChange: handleChange_modrator_Edit,
-        isFetched:isFetchedModrator
+        isFetched: isFetchedModrator
 
 
       },
@@ -278,7 +292,7 @@ useEffect(()=>{
     },
 
     validationSchema: {
-     
+
 
 
     }
@@ -290,44 +304,48 @@ useEffect(()=>{
       return section.id === ID
     })
 
-   
+
     set_edit_content(Edit_clicKed)
     setClassSelected_Edit(edit_content.class)
+  
 
 
 
   }
-    const handleAddSubmit = (values, { setSubmitting }) => {
-      const section={name:values.Division,size :values.Number_of_students ,classId :ClassSelected.id ,supervisorId:modraterSelected.id }
-     
+  const handleAddSubmit = (values, { setSubmitting }) => {
+    const section = { name: values.Division, size: values.Number_of_students, classId: ClassSelected.id, supervisorId: modraterSelected.id }
 
-      Add_Section(section)
 
- 
-  
+    Add_Section(section)
+
+
+
+
+
   };
-  
-  const handle_Edit_submit= (values, { setSubmitting } ) => {
-    const test ={id: 1,
-  name: "editedttttttt",
-  size: 25,
-  classId: 1,
-  supervisorId: 1,
-  teatcherId: [
-    2
-  ]}
-  
-    // const section={id:edit_content.id,name:values.Division,size :values.Number_of_students, classId:ClassSelected_Edit?.id,supervisorId:modraterSelected_edit?.id,teatcherId:edit_content.teatchers }
-    const section={id:edit_content.id,name:values.Division,size :values.Number_of_students, classId:edit_content.class.id,supervisorId:edit_content.supervisor.id,teatcherId:edit_content.teatchers }
 
-   console.log(section)
+  const handle_Edit_submit = (values, { setSubmitting }) => {
+ 
+
+    const section = {
+      id: edit_content.id,
+      name: values.Division,
+      size: values.Number_of_students,
+      classId: ClassSelected_Edit === undefined ?  edit_content.class.id:  ClassSelected_Edit.id,
+      supervisorId: modraterSelected_edit === undefined ? edit_content.supervisor.id : modraterSelected_edit.id,
+      teatcherId: edit_content.teatchers
+    }
+    // const section={id:edit_content.id,name:values.Division,size :values.Number_of_students, classId:edit_content.class.id,supervisorId:edit_content.supervisor.id,teatcherId:edit_content.teatchers }
+
+    
     EditSection(section)
+
 
     // mutate(section)
 
 
 
-};
+  };
   return (
     <Content
       path={t("Class_Admin_dash.Class.0")}
@@ -338,13 +356,13 @@ useEffect(()=>{
 
 
       <div className='relative '>
-        {add_active ?  (
+        {add_active ? (
           <Add
             formConfig={formConfig_Add}
             ref={AddRef}
             add_active={add_active}
             set_add_active={set_add_active}
-            handleSubmit ={handleAddSubmit}
+            handleSubmit={handleAddSubmit}
 
 
 
@@ -383,11 +401,11 @@ useEffect(()=>{
                 {Sections?.data.length} {t("home_Admin_dash.record.0")}
               </span>
               <Dropdown
-              isFetched={isFetchedClass}
+                isFetched={isFetchedClass}
                 // value,
                 // edit_option={Class?.data[0].name}
                 label={t("Class_Admin_dash.Class.0")}
-                options={ Class?.data}
+                options={Class?.data}
                 onChange={handle_change_filtter_class}
                 icon={arrowIcon}
                 showSlected={true}
@@ -427,71 +445,71 @@ useEffect(()=>{
         ) : (
           <NoData ></NoData>
         )} */}
-      <div className='px-10'>
-      <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
-          <TableHeader className="">
-            <TableRow className="">
-              {TableHeaderArray.map((header, index) => (
-                <TableCell className="py-2" key={index}>{header}</TableCell>
-              ))}
-            </TableRow>
-          </TableHeader>
-          {/* {(per?.includes("ViewUser") ||
+        <div className='px-10'>
+          <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
+            <TableHeader className="">
+              <TableRow className="">
+                {TableHeaderArray.map((header, index) => (
+                  <TableCell className="py-2" key={index}>{header}</TableCell>
+                ))}
+              </TableRow>
+            </TableHeader>
+            {/* {(per?.includes("ViewUser") ||
             per?.includes("UpdateUser") ||
             per?.includes("DeleteUser") ||
             per?.includes("ChangeUserStatus")) && ( */}
-      
-           {/* )} */}
 
-           <tbody>
-{isLoading ? (
-<td colSpan={12}>
-<Loading size={60} />
-</td>
-) : 
+            {/* )} */}
 
-( Section_fetched.length === 0 ? (
-  <td colSpan={12}>
-    <NoData />
-  </td>
-) : (
-  Section_fetched.map((section,index) => (
-    <TableRow
-      key={section.id}
-      className={
-     ""
-      }
-         rowIndex={index}
-    >
-     
-      <TableCell><Link to={`/Admin_dashboard/Class/${section.id}`}> {section.class.name}</Link></TableCell>
-      <TableCell><Link to={`/Admin_dashboard/Class/${section.id}`}>{section.name}</Link></TableCell>
-      <TableCell><Link to={`/Admin_dashboard/Class/${section.id}`}>{section.size}</Link></TableCell>
-      <TableCell><Link to={`/Admin_dashboard/Class/${section.id}`}>{section.supervisor.firstName} {section.supervisor.lastName}</Link></TableCell>
+            <tbody>
+              {isLoading ? (
+                <td colSpan={12}>
+                  <Loading size={60} />
+                </td>
+              ) :
 
-  
-   
-     <TableCell className="flex gap-4 text-xl justify-center mt-2">
-     <div className="cursor-pointer text-[18px] hover:text-success " onClick={()=>{ handleEdit_Clicked(section.id)} }>
-                   <AiOutlineEdit />
-                 
-                   </div> 
-                   <div className="cursor-pointer text-[18px] hover:text-error " onClick={()=>{ }}>
-                  <RiDeleteBin5Line />
-                    </div>
+                (Section_fetched.length === 0 ? (
+                  <td colSpan={12}>
+                    <NoData />
+                  </td>
+                ) : (
+                  Section_fetched.map((section, index) => (
+                    <TableRow
+                      key={section.id}
+                      className={
+                        ""
+                      }
+                      rowIndex={index}
+                    >
 
-      </TableCell>
-    </TableRow>
- ))
-)
-
-)
-}    
+                      <TableCell><Link to={`/School-website/Admin_dashboard/Class/${section.id}`}> {section.class.name}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Admin_dashboard/Class/${section.id}`}>{section.name}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Admin_dashboard/Class/${section.id}`}>{section.size}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Admin_dashboard/Class/${section.id}`}>{section.supervisor.firstName} {section.supervisor.lastName}</Link></TableCell>
 
 
-</tbody>
-        </Table>
-      </div>
+
+                      <TableCell className="flex gap-4 text-xl justify-center mt-2">
+                        <div className="cursor-pointer text-[18px] hover:text-success " onClick={() => { handleEdit_Clicked(section.id) }}>
+                          <AiOutlineEdit />
+
+                        </div>
+                        <div className="cursor-pointer text-[18px] hover:text-error " onClick={() => { }}>
+                          <RiDeleteBin5Line />
+                        </div>
+
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )
+
+                )
+              }
+
+
+            </tbody>
+          </Table>
+        </div>
 
       </div>
     </Content>
