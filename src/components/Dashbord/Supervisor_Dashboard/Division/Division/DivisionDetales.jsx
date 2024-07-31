@@ -6,6 +6,7 @@ import Content from '../../../Dashbord_layout/Content/Content'
 import Inner_Links from '../../../Dashbord_layout/Content/Inner_Links';
 import { useTranslation } from "react-i18next";
 import { Outlet } from 'react-router-dom';
+import { SectionQuery } from '../../../../../API/Sections/SectionsQueries';
 
 const DivisionDetales = () => {
     const { t } = useTranslation("global");
@@ -143,15 +144,17 @@ const DivisionDetales = () => {
    
     
       ];
-      const Class_selcted_=rows.filter((row)=>{
+      const {data:sections} =SectionQuery.GetAllSectionQuery()
+      const Class_selcted_=sections?.data.filter((row)=>{
         return row.ID === Id
       })
+      
     
 
       const[Class,setClass]=useState(Class_selcted_)
   return (
     <Content
-    path={`${Class[0].Name} / ${Class[0].Division_name}`}
+    // path={`${Class[0].Name} / ${Class[0].Division_name}`}
     classNameChildern="bg-white"
 
   >

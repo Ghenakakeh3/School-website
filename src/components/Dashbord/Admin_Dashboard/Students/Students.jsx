@@ -32,12 +32,14 @@ const Students = () => {
   const[edit_content,set_edit_content]=useState({})
   const [results, setResults] = useState([]);
   const [selected_result, setselected_result] = useState("");
+  const [Search, setSearch] = useState("");
+
   const [Student_fetched, set_student_fetched] = useState([])
   const [StudentsFiltterSelected, setStudentFiltterSelected] = useState()
 
-  const { isLoading, data:Students, isFetched: FetchedStudent, isError, error } = StudentQuery.GetAllStudentQuery()
+  const { isLoading, data:Students, isFetched: FetchedStudent, isError, error } = StudentQuery.GetAllStudentQuery(Search)
   const { isLoading: isLoadingClass, data: Class, isFetched: isFetchedClass } = ClassQuery.GetAllClassQuery()
-
+console.log(Students)
 
 
 
@@ -46,7 +48,7 @@ const Students = () => {
       set_student_fetched(Students.data)
     }
 
-  }, [FetchedStudent])
+  }, [FetchedStudent,Search])
 
 
   const handle_change_filtter_class = (value) => {
@@ -204,7 +206,10 @@ const handleEdit=(ID)=>{
 
 
 }
-
+const handleChange_Search=(value)=>{
+  console.log(value)
+  setSearch(value)
+}
   return (
     <Content
       path={t("Students_Admin_dash.Students.0")}
@@ -240,7 +245,7 @@ const handleEdit=(ID)=>{
           <div className='flex  gap-10 items-center justify-between  w-full'>
          <div className='flex gap-10'>
          <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {Students?.data.length} {t("home_Admin_dash.record.0")}
+              {Student_fetched?.length} {t("home_Admin_dash.record.0")}
             </span>
             <Dropdown
             isFetched={isFetchedClass}
@@ -255,10 +260,24 @@ const handleEdit=(ID)=>{
         className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
       />
 
-<div className="search-bar-container relative ">
+{/* <div className="search-bar-container relative ">
         <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Students_Admin_dash.Students_Table.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-      </div>
+      </div> */}
+         <InputSearch
+        name="Search"
+        // value={selected_result != "" ?  selected_result : input  }
+        value={ Search }
+
+        
+        onChange={handleChange_Search}
+        errorMsg=""
+        type="text"
+        handleOnclick=""
+        placeholder={t("Students_Admin_dash.Students_Table.1")}
+      
+      
+       />
    
    
   

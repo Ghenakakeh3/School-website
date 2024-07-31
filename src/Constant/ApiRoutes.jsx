@@ -3,7 +3,12 @@ const controller = {
 Class: "Classes",
 Student:"Students",
 Teatcher:"Teatchers",
-Superviser :"Supervisers"
+Superviser :"Supervisers",
+Exam:"Exam",
+Weekly_program :"WeeklyProggram",
+Marks  :"Marks",
+Time_record   : "WeeklyProggram",
+SignIn:"Students"
 
 
 
@@ -21,6 +26,8 @@ const Class={
 const Student={
   GetAll:`${controller.Student}/GetAllStudents`,
   AddStudent:`${controller.Student}/AddStudent`,
+  GetBySection:`${controller.Student}/GetAllStudentBySectionId`,
+  GetById:`${controller.Student}/GetAllStudentById`,
   // EditStudent:`${controller.Student}/GetAllStudents`,
 
 
@@ -38,15 +45,33 @@ const Teatcher={
 const Superviser={
   GetAll:`${controller.Superviser}/GetAllSupervisors`,
   AddSupervisor:`${controller.Superviser}/AddSuperviserer`,
+  EditSuperviser:`${controller.Superviser}/EditSupervisor`,
 
 
 
 }
+const Exam={
+  GetAllBySection:`${controller.Exam}/GetAllBySection`,
+  GetAllByStudent:`${controller.Exam}/GetAllByStudent`,
+  AddExam:`${controller.Exam}/Add`
+}
+const Weekly_program={
+  GetBySection:`${controller.Weekly_program}/GetBySection`,
+}
 
 
+const Marks={
+  GetAllBySection:`${controller.Marks}/GetAllMarksBySection?`,
+}
+const Time_record ={
+  GetAllBySection:`${controller.Time_record}/GetDawamBySection`,
+  GetAllByStudent:`${controller.Time_record}/GetStudentDawam`,
+  GetTeacherTimeRecorde:`${controller.Time_record}/GetTeatcherDawam`,
+}
 
-
-
+const SignIn={
+  superviser:`${controller.SignIn}/SignIn`
+}
 
 
 
@@ -57,6 +82,11 @@ export const API_Routes = {
   Class,
   Student,
   Teatcher,
-  Superviser
+  Superviser,
+  Exam,
+  Weekly_program,
+  Marks,
+  Time_record,
+  SignIn
 
 };

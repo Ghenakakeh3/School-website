@@ -16,7 +16,12 @@ const AddSuperviser=async (Superviser) => {
   return  axios.post( `${baiseUrl}${API_Routes.Superviser.AddSupervisor}`,Superviser)
 };
 
+const EditSuperviser= (Superviser) => {
 
+  return  axios.put( `${baiseUrl}${API_Routes.Superviser.EditSuperviser}`,Superviser)
+
+
+};
 
 
 
@@ -25,6 +30,7 @@ const AddSuperviser=async (Superviser) => {
 
 export const SupervisersApi = {
     GetAllSupervisers,
-    AddSuperviser
+    AddSuperviser,
+    EditSuperviser
  
 };

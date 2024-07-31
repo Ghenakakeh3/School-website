@@ -9,9 +9,13 @@ import arrowIcon from "../../../../../../assets/icons/arrowDropdown.svg";
 import Add from '../../../../Dashbord_layout/Mangment/Add';
 import * as Yup from "yup";
 import Edit from '../../../../Dashbord_layout/Mangment/Edit';
+import { useParams } from 'react-router-dom';
 
 
-const Daily_inspection = () => {
+const 
+Daily_inspection = () => {
+  const {id} =useParams ()
+  
 
   const [data, setdata] = useState([])
   const { t } = useTranslation("global");
@@ -248,6 +252,7 @@ const Daily_inspection = () => {
 
 
 
+
   const handleAttendance = (studentId, date, status) => {
     setdata([...data, { studentId, date, status }])
 
@@ -291,8 +296,8 @@ const Daily_inspection = () => {
 
 
       <TabsFillter>
-        <div className='flex  gap-16 items-center w-full '>
-          <div className='flex gap-10'>
+        {/* <div className='flex  gap-16 items-center w-full '> */}
+          {/* <div className='flex gap-10'>
             <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
               {data.length} {t("home_Admin_dash.record.0")}
             </span>
@@ -301,14 +306,14 @@ const Daily_inspection = () => {
 
 
 
-          </div>
-          <div className='w-[90%]'>
-            <AttendanceForm students={students} onAttendance={handleAttendance} />
+          </div> */}
+          <div className='w-full'>
+            <AttendanceForm students={students} onAttendance={handleAttendance} SectionId={id }/>
           </div>
   
 
 
-        </div>
+        {/* </div> */}
 
 
       </TabsFillter>

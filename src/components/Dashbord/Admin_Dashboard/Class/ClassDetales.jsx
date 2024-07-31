@@ -127,7 +127,7 @@ const ClassDetales = () => {
       ];
       const links = [
      
-        { name: t("Class_Admin_dash.ClassDetales.0"), to: `/School-website/Admin_dashboard/Class/${Id}/Subjects` },
+        // { name: t("Class_Admin_dash.ClassDetales.0"), to: `/School-website/Admin_dashboard/Class/${Id}/Subjects` },
         { name: t("Class_Admin_dash.ClassDetales.1"), to: `/School-website/Admin_dashboard/Class/${Id}/Registered_students`  },
         { name: t("Class_Admin_dash.ClassDetales.2"), to: `/School-website/Admin_dashboard/Class/${Id}/Weekly_program` },
         { name: t("Class_Admin_dash.ClassDetales.3"), to: `/School-website/Admin_dashboard/Class/${Id}/Time_record` },

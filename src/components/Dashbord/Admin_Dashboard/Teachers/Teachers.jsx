@@ -229,10 +229,10 @@ const handleEdit=(ID)=>{
         className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
       /> */}
 
-<div className="search-bar-container relative ">
+{/* <div className="search-bar-container relative ">
         <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Teachers_Admin_dash.Teachers_Table.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-      </div>
+      </div> */}
    
    
   
@@ -250,21 +250,7 @@ const handleEdit=(ID)=>{
 
 
         </TabsFillter>
-        {/* {data.length >= 1 ? (
-          <Table
-            columns={columns}
-            rows={data}
-            handleEdit={handleEdit}
-            handleDelte={handleDelte}
-            action={{delete: true,update: true }}
-            className={"min-h-screen px-6 pt-2"}
-            RowlinK={true}
-            RowlinK_TO="/Admin_dashboard/Teachers"
-           
-          />
-        ) : (
-          <NoData ></NoData>
-        )} */}
+     
 
 
 

@@ -7,13 +7,7 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { PiUser } from "react-icons/pi";
 import { FaEyeSlash } from "react-icons/fa";
-
-
-
 // import { useDropzone } from "react-dropzone";
-import * as Yup from "yup";
-
-
 const Edit= React.forwardRef(
   (
     {
@@ -33,25 +27,6 @@ const Edit= React.forwardRef(
     function ShowPassword() {
         setshowpass(!showpass);
       }
-  
-
-
-      
-
-
-  // const handleSubmit = (values, { setSubmitting }) => {
-  //   console.log(values)
-  //   // const newRow=[...rows, values]
-  //   // // set_data(newRow)
-  //   // // set_data(rows)
-
-  //   // setSubmitting(false);
-  //   // set_Edit_active(!Edit_active)
-  // };
-
-
-
-
  
     const toggle_Edit = () => {
         set_Edit_active(!Edit_active);

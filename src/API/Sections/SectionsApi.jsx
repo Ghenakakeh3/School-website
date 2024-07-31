@@ -7,7 +7,11 @@ const baiseUrl ="http://www.marahschool.somee.com/api/"
 
 const GetAllSections = async () => {
 
-  return  axios.get( `${baiseUrl}${ API_Routes.Section.GetAll}`)
+  return  axios.get( `${baiseUrl}${ API_Routes.Section.GetAll}`,{
+    headers :{
+      userId:localStorage.getItem("userId")
+    }
+  })
 };
 // const Get_Sections_By_class = async ({queryKey}) => {
 //   const classId=queryKey[1]

@@ -1,115 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
-import Table from '../../Dashbord_layout/TableLayout'
+
 import NoData from '../../Dashbord_layout/NoData/NoData';
 import Radio from '../../../utilities/Radio';
+import { useParams } from 'react-router-dom';
+import { ExamQuery } from '../../../../API/Exam/ExamQuery ';
+import { TableCell, TableHeader, TableRow,Table } from '../../Dashbord_layout/Table';
+import Loading from '../../../utilities/Loading/Loading';
 
 
 const Exams_student  = () => {
-    const Exams = [
-        {
-          ID: "01",
-          Name: "العربية لغتي _ الفصل الأول",
-          Timing: "مايو 11, 2024 8:00ص",
-          Test_type: "فحص",
-          mark: 70,
-          great_mark: 100,
-
-    
-    
-        },
-        {
-            ID: "02",
-            Name:"التربية الفنية",
-            Timing: "20 /8 /2020 10:00pm",
-          Test_type: "مذاكرة",
-          mark: 70,
-          great_mark: 100,
-
-
-      
-      
-          },
-          {
-            ID: "03",
-            Name:"التزبية الدينية الإسلامية",
-            Timing: "20 /8 /2020 10:00pm",
-          Test_type: "فحص",
-          mark: 70,
-          great_mark: 100,
-
-
-      
-      
-          },   {
-            ID: "04",
-            Name:" 20 /8 /2020 10:00pm",
-            Timing: "20 /8 /2020 10:00pm",
-          Test_type: "فحص",
-          mark: 70,
-          great_mark: 100,
-
-            
-      
-          },   {
-            ID: "05",
-            Name:" الموسيقية",
-            Timing: "20 /8 /2020 10:00pm",
-          Test_type: "مذاكرة",
-          mark: 70,
-          great_mark: 100,
-
-            
-      
-          },   {
-            ID: "06",
-            Name:"العلوم _الفصل الأول",
-            Timing: "20 /8 /2020 10:00pm",
-          Test_type: " مذاكرة",
-          mark: 70,
-          great_mark: 100,
-
-
-            
-      
-          },   {
-            ID: "07",
-            Name:"الدراسات الاجتماعية",
-            Timing: "20 /8 /2020 10:00pm",
-          Test_type: "مذاكرة ",
-          mark: 70,
-          great_mark: 100,
-
-                  
-      
-          },
-          {
-            ID: "08",
-            Name:"اللغة والانكليزية  ",
-            Timing: "20 /8 /2020 10:00pm",
-          Test_type: "مذاكرة",
-          mark: 70,
-          great_mark: 100,
-      
-      
-          },
-          
+  
    
-          
-          
-      ];
-    const[data,setdata]=useState(Exams)
     const { t } = useTranslation("global");
     const[valueRadio,setValueRadio]=useState(null) 
+    const { id } = useParams();
+    
+    const { isLoading, data: studentExam, isFetched: FetchedstudentExams, isError, error } = ExamQuery.GetExamsByStudent(id)
 
-  const columns = [
+    console.log(studentExam)
+
+  const TableHeaderArray = [
     t("Students_Admin_dash.Students_Exams.0") ,
     t("Students_Admin_dash.Students_Exams.1") ,
     t("Students_Admin_dash.Students_Exams.2") ,
     t("Students_Admin_dash.Students_Exams.3") ,
     t("Students_Admin_dash.Students_Exams.4") ,
-    t("Students_Admin_dash.Students_Exams.5") ,
+
 
 
 
@@ -148,15 +66,15 @@ const Exams_student  = () => {
 <div className='flex   items-center w-full justify-between'>
   <div className='flex gap-10'>
   <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100 bg-white  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {data.length} {t("home_Admin_dash.record.0")}
+              {studentExam?.data.length} {t("home_Admin_dash.record.0")}
             </span>
-         <div className='flex  items-center gap-5'>
+         {/* <div className='flex  items-center gap-5'>
          <Radio     
                value={valueRadio}
           onChange={handleChange_valueRadio} 
           name="" 
           items={radioItems}/>
-            </div>
+            </div> */}
   </div>
 
         
@@ -164,20 +82,79 @@ const Exams_student  = () => {
        
 
 </TabsFillter>
-{data.length >= 1 ? (
-    <Table
-      columns={columns}
-      rows={data}
-      handleEdit={handleEdit}
-      rowclassName={""}
-      row_className=""
-      action={{delete: false,update: false }}
-      className={"min-h-screen px-6 pt-2 text-mySlate "}
-      RowlinK={false}
-    />
-  ) : (
-    <NoData ></NoData>
-  )}
+<div className='px-10'>
+          <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
+            <TableHeader className="">
+              <TableRow className="">
+                {TableHeaderArray.map((header, index) => (
+                  <TableCell className="py-2" key={index}>{header}</TableCell>
+                ))}
+              </TableRow>
+            </TableHeader>
+      
+
+            <tbody>
+              {isLoading ? (
+                <td colSpan={12}>
+                  <Loading size={60} />
+                </td>
+              ) :
+
+                (studentExam?.data.length === 0 ? (
+                  <td colSpan={12}>
+                    <NoData />
+                  </td>
+                ) : (
+                 
+                  studentExam?.data?.map((exam,index)=>(
+                    <TableRow
+                    key={index}
+                    className={
+                      ""
+                    }
+                    rowIndex={index}
+                  >
+                       
+                       <TableCell> {index +1}</TableCell>
+                       <TableCell> {exam.material.name}</TableCell>
+                       <TableCell> {exam.date}</TableCell>
+                       <TableCell> {exam.type}</TableCell>
+                       <TableCell> {exam.name}</TableCell>
+
+
+
+        
+
+
+
+                 
+
+
+
+                      
+
+                      </TableRow>
+
+                  ))
+                  
+                  
+                 
+                
+                 
+
+
+                   
+                
+                )
+
+                )
+              }
+
+
+            </tbody>
+          </Table>
+        </div>
+
 </div>
   )
 }

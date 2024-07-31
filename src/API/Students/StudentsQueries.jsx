@@ -8,20 +8,32 @@ import axios from "axios";
 
 
 
-const GetAllStudentQuery = () => {
+const GetAllStudentQuery = (Search) => {
 
-return useQuery('get-all-Student',StudentsApi.GetAllStudents)
+return useQuery(['get-all-Student',Search],StudentsApi.GetAllStudents)
 
 
 }
 
+const GetStudentBySectionnQuery = (id) => {
 
-//  const GetStudentByClass = (ClassId) => {
-
-//   return useQuery(['get-Student-by-class',ClassId],StudentsApi.Get_Students_By_class)
+  return useQuery(['get-student-by-section',id],StudentsApi.GetStudentBySection,{
+    select:(data)=>data.data.map(student => ({
+      ...student,
+      name: student.firstName + ' ' + student.lastName // Adjust this as per your data structure
+    })
+  )
+  })
   
   
-//   }
+  }
+  const GetStudentById = (id) => {
+
+    return useQuery(['get-student-by-id',id],StudentsApi.GetStudentById)
+    
+    
+    }
+
 
 const AddStudent=(SuccessAdd) => {
 // return useMutation(StudentsApi.AddStudent())
@@ -43,7 +55,7 @@ const EditStudent =(SuccessEdit) => {
     
   }
 
-// const GetBYIdUserQury = (id) => {
+
 //   const queryResult = useQuery({
 //     queryKey: ["get-User-by-id", id],
 //     queryFn: async () => {
@@ -81,8 +93,10 @@ const EditStudent =(SuccessEdit) => {
 
 export const StudentQuery = {
   GetAllStudentQuery,
+  GetStudentBySectionnQuery,
   AddStudent,
-  EditStudent
+  EditStudent,
+  GetStudentById
 
 
 };

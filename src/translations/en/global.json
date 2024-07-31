@@ -181,12 +181,12 @@
     ],
     "Weekly_program": [
       "Day/time",
-      "8:00",
-      "8:45",
-      "9:30",
-      "10:15",
-      "11:00",
-      "11:45"
+      "sunday",
+      "monday",
+      "tuesday",
+      "Wednesday",
+      "Thursday."
+      
     ],
     "Time_record": [
       "ID",
@@ -262,8 +262,7 @@
       "Subject Name",
       "Timing",
       "test type",
-      "mark",
-      "The great mark"
+    "Test Name"
     ],
     "Time_record": [
       "ID",

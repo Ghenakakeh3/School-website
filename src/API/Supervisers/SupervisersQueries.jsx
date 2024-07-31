@@ -50,6 +50,14 @@ const Add_Superviser=(SuccessAdd) => {
   
     
   }
+  const Edit_Superviser =(SuccessEdit) => {
+    // return useMutation(SectionsApi.AddSection())
+    return useMutation(SupervisersApi.EditSuperviser,{
+      onSuccess:SuccessEdit
+    })
+    
+      
+    }
 
 
 
@@ -59,7 +67,8 @@ const Add_Superviser=(SuccessAdd) => {
 export const SupervisersQuery  = {
     GetAllSupervisersQuery_with_name,
     GetAllSupervisersQuery,
-    Add_Superviser
+    Add_Superviser,
+    Edit_Superviser
 
 
 };

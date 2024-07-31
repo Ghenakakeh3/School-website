@@ -8,13 +8,14 @@ import eye from "../../../../assets/icons/eyepass.svg";
 import * as Yup from "yup";
 import { Formik, useFormik } from "formik";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthDesign from "../AuthDesign/AuthDesign";
 import Typography from "../../../utilities/Typography";
 import { Input } from "../../../utilities/Inputs";
 import Button from "../../../utilities/Button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
+import { SignInQuery } from "../../../../API/SignIn/SignInQuires";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -35,6 +36,13 @@ export default function Login() {
     validateOnMount: false,
     onSubmit: (values) => {
       formik.handleReset();
+      const SignInData = { 
+        email:"string",
+        password:"string"
+       }
+
+
+      SignIn(SignInData)
       
       {values.email==="admin_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Admin_dashboard' ): ""}
       {values.email==="Supervisor_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Supervisor_dashboard' ): ""}
@@ -52,6 +60,16 @@ export default function Login() {
   function ShowPassword() {
     setshowpass(!showpass);
   }
+  const { mutate: SignIn ,isSuccess, isLoading, data: UserData, isFetched: FetchedUserData, isError, error } = SignInQuery.SignInSupervisor()
+  console.log(UserData)
+
+  useEffect(() => {
+    if(isSuccess){
+localStorage.setItem("userId",UserData?.data.id)
+    }
+  }
+  ,[isSuccess])
+  
 
   return (
     <div className="max-w-[1750px] mx-auto my-0 h-screen max-[1100px]:overflow-y-auto max-[1750px]:overflow-hidden">
@@ -113,14 +131,14 @@ export default function Login() {
                 }
               />
 
-              <div className="text-end mb-[-5px]">
+              {/* <div className="text-end mb-[-5px]">
                 <Link
                   className="text-sm texe-mySlate hover:text-secondary transition hover:animate-bounce"
                   to={"/forget-password"}
                 >
                   {t("login.forget")}
                 </Link>
-              </div>
+              </div> */}
             </div>
             <Button type="submit" disabled={!formik.isValid} fullWidth>
               {t("login.button")}

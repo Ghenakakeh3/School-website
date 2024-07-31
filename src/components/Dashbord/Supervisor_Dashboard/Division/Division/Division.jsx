@@ -2,12 +2,11 @@
 
 
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import Typography from '../../../../utilities/Typography'
 import TabsFillter from '../../../Dashbord_layout/TabsFillter'
 import Button from '../../../../utilities/Button'
-import Table from '../../../Dashbord_layout/TableLayout'
 import NoData from '../../../Dashbord_layout/NoData/NoData'
 import Content from '../../../Dashbord_layout/Content/Content';
 import Dropdown from '../../../../utilities/Dropdown';
@@ -16,152 +15,66 @@ import { IoIosAddCircle } from 'react-icons/io';
 import * as Yup from "yup";
 import Add from '../../../Dashbord_layout/Mangment/Add';
 import Edit from '../../../Dashbord_layout/Mangment/Edit';
+import { TableCell, TableHeader, TableRow ,Table } from '../../../Dashbord_layout/Table';
+import Loading from '../../../../utilities/Loading/Loading';
+import { SectionQuery } from '../../../../../API/Sections/SectionsQueries';
+import { ClassQuery } from '../../../../../API/Class/ClassQueries';
+import { Link } from 'react-router-dom';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 
 
 const Division = () => {
-  const rows = [
-    {
-      ID: "01",
-      Division_Name: "الصف الأول",
-      Division_name: "الشعبة الأولى ",
-      Number_of_students: 30,
 
-
-    },
-    {
-      ID: "02",
-
-      Division_Name: "الصف الأول",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-
-    {
-      ID: "03",
-      Division_Name: "الصف الثاني",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-    {
-      ID: "04",
-      Division_Name: "الصف الثاني",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-    {
-      ID: "05",
-      Division_Name: "الصف الثالث",
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-     {
-      ID: "06",
-      Division_Name: "الصف الثالث",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-     {
-      ID: "07",
-      Division_Name: "الصف الرابع",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-     {
-      ID: "08",
-      Division_Name: "الصف الرابع",
-
-      Division_name: "الشعبة  الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-    {
-      ID: "09",
-      Division_Name: " الصف الخامس",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-    , {
-      ID: "10",
-      Division_Name: "الصف الخامس",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-
-    {
-      ID: "11",
-      Division_Name: "الصف السادس",
-
-      Division_name: "الشعبة الأولى",
-      Number_of_students: 30,
-
-
-
-
-    },
-     {
-      ID: "12",
-      Division_Name: "الصف السادس",
-
-      Division_name: "الشعبة الثانية",
-      Number_of_students: 30,
-
-
-
-
-    },
-  ];
   const { t } = useTranslation("global");
   const AddRef = useRef(null)
   const [add_active, set_add_active] = useState(false);
   const [edit_active, set_edit_active] = useState(false);
   const [Edit_active, set_Edit_active] = useState(false); 
   const [Division_Dropdown , set_Division_Dropdown ] = useState("");
-  const [data, set_data] = useState(rows);
   const[edit_content,set_edit_content]=useState({})
+  const [ sectionFetched,set_section_fetched]=useState([])
+  const [ClassFiltterSelected, setClassFiltterSelected] = useState()
 
- 
+  
+  const { isLoading, data: Sections, isFetched: FetchedSection, isError, error } = SectionQuery.GetAllSectionQuery()
+  const { isLoading: isLoadingClass, data: Class, isFetched: isFetchedClass } = ClassQuery.GetAllClassQuery()
+console.log(Sections)
+  useEffect(() => {
+    
+
+
+    if (FetchedSection) {
+      set_section_fetched(Sections.data)
+    }
+  
+
+  }, [FetchedSection])
+    // filtter class
+    const handle_change_filtter_class = (value) => {
+      setClassFiltterSelected(value)
+      // console.log(value)
+  
+      const Class_filter = Sections?.data.filter((section) => {
+  
+        return section.class.id === value.id
+      })
+     
+      set_section_fetched(Class_filter)
+  
+      // if (Class_filter.length === 0) {
+      //   set_data(rows)
+  
+  
+      // }
+      // else {
+      //   set_data(Class_filter)
+  
+  
+      // }
+  
+  
+    };
 
 
   const handleDelte = (ID) => {
@@ -206,7 +119,7 @@ const Division = () => {
   };
 
 
-  const columns = [
+  const TableHeaderArray = [
     t("Division_Supervisor_dash.Division_Table.0") ,
     t("Division_Supervisor_dash.Division_Table.1") ,
     t("Division_Supervisor_dash.Division_Table.2") ,
@@ -394,13 +307,14 @@ const handleEdit=(ID)=>{
           <div  className='flex  gap-10 items-center justify-between  w-full'>
          <div className='flex gap-10'>
          <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {data.length} {t("home_Admin_dash.record.0")}
+              {sectionFetched.length} {t("home_Admin_dash.record.0")}
             </span>
             <Dropdown
+            isFetched={isFetchedClass}
         // value,
-        label={t("Division_Supervisor_dash.Division.0")}
-        options={options_Division}
-        onChange={handleChange_Division_Dropdown}
+        label={t("الصف")}
+        options={Class?.data}
+        onChange={handle_change_filtter_class}
         icon={arrowIcon}
         showSlected={true}
         ulClassname={"w-full "}
@@ -423,7 +337,7 @@ const handleEdit=(ID)=>{
 
 
         </TabsFillter>
-        {data.length >= 1 ? (
+        {/* {data.length >= 1 ? (
           <Table
             columns={columns}
             rows={data}
@@ -436,7 +350,59 @@ const handleEdit=(ID)=>{
           />
         ) : (
           <NoData ></NoData>
-        )}
+        )} */}
+
+<div className='px-10'>
+          <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
+            <TableHeader className="">
+              <TableRow className="">
+                {TableHeaderArray.map((header, index) => (
+                  <TableCell className="py-2" key={index}>{header}</TableCell>
+                ))}
+              </TableRow>
+            </TableHeader>
+        
+
+            <tbody>
+              {isLoading ? (
+                <td colSpan={12}>
+                  <Loading size={60} />
+                </td>
+              ) :
+
+                (sectionFetched.length === 0 ? (
+                  <td colSpan={12}>
+                    <NoData />
+                  </td>
+                ) : (
+                  sectionFetched.map((section, index) => (
+                    <TableRow
+                      key={section.id}
+                      className={
+                        ""
+                      }
+                      rowIndex={index}
+                    >
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}> {index +1}</Link></TableCell>
+
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}> {section.class.name}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}>{section.name}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}>{section.size}</Link></TableCell>
+                    
+
+
+
+                    </TableRow>
+                  ))
+                )
+
+                )
+              }
+
+
+            </tbody>
+          </Table>
+        </div>
         
       </div>
     </Content>

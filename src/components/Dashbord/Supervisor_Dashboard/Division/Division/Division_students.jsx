@@ -7,7 +7,6 @@
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import TabsFillter from '../../../Dashbord_layout/TabsFillter'
-import Table from '../../../Dashbord_layout/TableLayout'
 import NoData from '../../../Dashbord_layout/NoData/NoData';
 
 import Add from '../../../Dashbord_layout/Mangment/Add';
@@ -15,67 +14,14 @@ import * as Yup from "yup";
 import Edit from '../../../Dashbord_layout/Mangment/Edit';
 import { SearchBar } from '../../../../utilities/SearchBar/SearchBar';
 import { SearchResultsList } from '../../../../utilities/SearchBar/SearchResultsList';
+import { useParams } from 'react-router-dom';
+import { StudentQuery } from '../../../../../API/Students/StudentsQueries';
+import { TableCell, TableHeader, TableRow,Table } from '../../../Dashbord_layout/Table';
+import Loading from '../../../../utilities/Loading/Loading';
 
 const Division_students = () => {
-    const Division_students = [
-        {
-          ID: "01",
-            Full_Name: "غنى ماهر كعكة",
-            Number_of_marks: "10",
-            date_of_registration: "1/1/2001",
-            Number_of_days_of_attendance: "30",
-            Attendance_rate: "70%",
-    
-    
-        },
-        {
-          ID: "02",
-            Full_Name: "مريم عبد الباري",
-            Number_of_marks: "10",
-            date_of_registration: "12/3/2001",
-            Number_of_days_of_attendance: "45",
-            Attendance_rate: "90%",
-
-      
-      
-          },
-          {
-            ID: "03",
-            Full_Name: "لارا إدلبي حجي",
-            Number_of_marks: "10",
-            date_of_registration: "7/2/2001",
-            Number_of_days_of_attendance: "42",
-            Attendance_rate: "85%",
-
-      
-      
-          }, 
-            {
-              ID: "04",
-            Full_Name: "زين مكي",
-            Number_of_marks: "10",
-            date_of_registration: "7/2/2001",
-            Number_of_days_of_attendance: "40",
-            Attendance_rate: "70%",
-            
-      
-          },  
-           {
-            ID: "05",
-            Full_Name: "سلام الجنيدي",
-            Number_of_marks: "10",
-            date_of_registration: "7/2/2001",
-            Number_of_days_of_attendance: "42",
-            Attendance_rate: "85%",
-            
-      
-          }, 
-         
-   
-          
-          
-      ];
-    const[data,setdata]=useState(Division_students)
+  
+ 
     const { t } = useTranslation("global");
     const[add_Division_students,setadd_Division_students]=useState(false)
     const AddRef=useRef(null)
@@ -83,21 +29,35 @@ const Division_students = () => {
     const[edit_content,set_edit_content]=useState({})
     const [results, setResults] = useState([]);
     const [selected_result, setselected_result] = useState("");
+    const { id } = useParams();
+
+
+    const { isLoading, data: Students, isFetched: FetchedStudents, isError, error } = StudentQuery.GetStudentBySectionnQuery(id)
+
+    console.log(Students)
+  
     
 
 
-
-  
+    const TableHeaderArray = [
+      t("Students_Admin_dash.Students_Table.1") ,
+      t("Students_Admin_dash.Students_Table.2") ,
+      t("Students_Admin_dash.Students_Table.3") ,
+      t("Students_Admin_dash.Students_Table.4") ,
+      t("Students_Admin_dash.Students_Table.5") ,
+      t("Students_Admin_dash.Students_Table.6") ,
+      t("Students_Admin_dash.Students_Table.7") ,
+      t("Students_Admin_dash.Students_Table.8") ,
+      t("Students_Admin_dash.Students_Table.9") ,
      
-  const columns = [
-    t("Division_Supervisor_dash.Division_students.0") ,
-    t("Division_Supervisor_dash.Division_students.1") ,
-    t("Division_Supervisor_dash.Division_students.2") ,
-    t("Division_Supervisor_dash.Division_students.3") ,
-    t("Division_Supervisor_dash.Division_students.4") ,
-    t("Division_Supervisor_dash.Division_students.5") ,
-
-  ];
+  
+  
+  
+  
+  
+  
+  
+    ];
 
 
   const formConfig_Add = {
@@ -252,14 +212,14 @@ const Division_students = () => {
 <div className='flex   items-center w-full justify-between'>
   <div className='flex gap-10'>
   <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {data.length} {t("home_Admin_dash.record.0")}
+              {Students?.length} {t("home_Admin_dash.record.0")}
             </span>
 
 
-            <div className="search-bar-container relative ">
+            {/* <div className="search-bar-container relative ">
         <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Division_Supervisor_dash.Division_students.1") } />
         {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-      </div>
+      </div> */}
    
   </div>
 
@@ -268,20 +228,80 @@ const Division_students = () => {
        
 
 </TabsFillter>
-{data.length >= 1 ? (
-    <Table
-      columns={columns}
-      rows={data}
-      handleEdit={handleEdit}
-      // handleDelte={handleDelte}
-      action={{delete: false,update: false }}
-      className={"min-h-screen px-6 pt-2"}
-      RowlinK={true}
-      RowlinK_TO="/Admin_dashboard/students"
-    />
-  ) : (
-    <NoData ></NoData>
-  )}
+
+  
+<div className='px-10'>
+          <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
+            <TableHeader className="">
+              <TableRow className="">
+                {TableHeaderArray.map((header, index) => (
+                  <TableCell className="py-2" key={index}>{header}</TableCell>
+                ))}
+              </TableRow>
+            </TableHeader>
+      
+
+            <tbody>
+              {isLoading ? (
+                <td colSpan={12}>
+                  <Loading size={60} />
+                </td>
+              ) :
+
+                (Students?.length === 0 ? (
+                  <td colSpan={12}>
+                    <NoData />
+                  </td>
+                ) : (
+                 
+                  Students?.map((student,index)=>(
+                    <TableRow
+                    key={index}
+                    className={
+                      ""
+                    }
+                    rowIndex={index}
+                  >
+                       
+                       <TableCell>{student.firstName} {student.lastName}</TableCell>
+                      <TableCell> {student.class.name}</TableCell>
+                      <TableCell> {student.section.name}</TableCell>
+                      <TableCell> {student.phoneNumber}</TableCell>
+                      <TableCell> {student.birtDate}</TableCell>
+                      <TableCell> {student.email}</TableCell>
+                      <TableCell> {student.parent.fatherName}</TableCell>
+                      <TableCell> {student.parent.motherName}</TableCell>
+                      <TableCell> {student.parent.phoneNumber}</TableCell>
+
+
+ 
+                 
+
+
+
+                      
+
+                      </TableRow>
+
+                  ))
+                  
+                  
+                 
+                
+                 
+
+
+                   
+                
+                )
+
+                )
+              }
+
+
+            </tbody>
+          </Table>
+        </div>
 </div>
   )
 }

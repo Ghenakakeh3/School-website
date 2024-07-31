@@ -20,12 +20,18 @@ const GetTecherById=(teatcherId) => {
 }
 
 
-//  const GetTeatcherByClass = (ClassId) => {
+const GetTeachersQuery_with_name = () => {
 
-//   return useQuery(['get-Teatcher-by-class',ClassId],TeatchersApi.Get_Teatchers_By_class)
+  return useQuery('get-teacher-with-name', TeatchersApi.GetAllTeatchers,{
+      select:(data)=>data.data.map(teachers => ({
+          ...teachers,
+          name: teachers.firstName + ' ' + teachers.lastName // Adjust this as per your data structure
+        })
+      )
+  })
   
   
-//   }
+  }
 
 const AddTeatcher=(SuccessAdd) => {
 // return useMutation(TeatchersApi.AddTeatcher())
@@ -87,7 +93,8 @@ export const TeatcherQuery = {
   GetAllTeatcherQuery,
   GetTecherById,
   AddTeatcher,
-  EditTeatcher
+  EditTeatcher,
+  GetTeachersQuery_with_name
 
 
 };

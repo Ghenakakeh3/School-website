@@ -189,23 +189,23 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
 
     return (
         <>
-
-            <Typography component={"h3"}>
-                {formConfig.info[0].title}
-            </Typography>
-            <Typography component={"h5"} className="mb-5">
-                {formConfig.info[1].descrption}
-            </Typography>
-            <Formik
+            {formConfig.info[0]?.title !== "" && <Typography component={"h3"}>
+            {formConfig.info[0]?.title}
+            </Typography>}
+            {formConfig.info[0]?.descrption !== "" &&  <Typography component={"h5"} className="mb-5">
+                {formConfig.info[1]?.descrption}
+            </Typography>}
+         <div className="bg-red-500 flex flex-row justify-between">
+         <Formik
                 initialValues={initialValues}
                 validationSchema={Yup.object().shape(formConfig.validationSchema)}
                 onSubmit={onSubmit}
+                
             >
                 {({ isSubmitting }) => (
                     <Form >
-                        {formConfig.fields.map((field,i) => (
-                          
-                           <div key={field.name}>
+                        {formConfig.fields.map((field,i) => (  
+                           <div key={field.name} className="bg-slate-500 flex gap-10">
                                 <label className="block my-2">{field.label}</label>
                                 {/* Render different input types based on field.type */}
                                 {field.type === "select" ? (
@@ -233,14 +233,11 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                                                 <label htmlFor={option.value}>{option.label}</label>
                                             </div>
                                         ))}
-
                                         
                                     </div>
-                                
-
-                                 
                                     </div>
-                                ) :field.type === "date" ? (
+                                ) 
+                                :field.type === "date" ? (
                                 <DatePicker_input
                                 name={field.name}
                                 label={field.label}
@@ -318,6 +315,7 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                     </Form>
                 )}
             </Formik>
+         </div>
         </>
     );
 };

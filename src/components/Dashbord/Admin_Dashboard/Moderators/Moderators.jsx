@@ -43,7 +43,7 @@ const Moderators = () => {
   const [results, setResults] = useState([]);
   const [selected_result, setselected_result] = useState("");
   const [add_active, set_add_active] = useState(false);
-
+console.log(Supervisers_fetched)
 
   const [ClassFiltterSelected, setClassFiltterSelected] = useState()
   const SuccessAdd = () => {
@@ -58,8 +58,10 @@ const Moderators = () => {
   const { isLoading, data: Supervisers, isFetched: FetchedSupervisers, isError, error } = SupervisersQuery.GetAllSupervisersQuery()
   const { isLoading: isLoadingClass, data: Class, isFetched: isFetchedClass } = ClassQuery.GetAllClassQuery()
   const { mutate: Add_Superviser ,isSuccess } = SupervisersQuery.Add_Superviser(SuccessAdd)
+  const { mutate: EditSuperviser } = SupervisersQuery.Edit_Superviser(SuccessEdit)
 
 
+// console.log(Supervisers)
 
 
 
@@ -119,13 +121,14 @@ const Moderators = () => {
 
   const handleEdit_Clicked = (ID) => {
     set_Edit_active(!Edit_active);
-    const Edit_clicKed = Sections?.data.find((section, id) => {
-      return section.id === ID
+
+    const Edit_clicKed = Supervisers?.data.find((Moderator, id) => {
+      return Moderator.id === ID
     })
 
-
+console.log(Edit_clicKed)
     set_edit_content(Edit_clicKed)
-    setClassSelected_Edit(edit_content.class)
+    // setClassSelected_Edit(edit_content.class)
 
 
 
@@ -152,20 +155,22 @@ const Moderators = () => {
   };
 
   const handle_Edit_submit = (values, { setSubmitting }) => {
+    console.log(values)
 
 
-    const section = {
+    const Modrator = {
       id: edit_content.id,
-      name: values.Division,
-      size: values.Number_of_students,
-      classId: ClassSelected_Edit === undefined ? edit_content.class.id : ClassSelected_Edit.id,
-      supervisorId: modraterSelected_edit === undefined ? edit_content.supervisor.id : modraterSelected_edit.id,
-      teatcherId: edit_content.teatchers
+      firstName: values.Modrator_first_name,
+      lastName: values.Modrator_last_name,
+      phoneNumber: values.Phone_Number,
+      email: values.email,
+      // password : values.password
+      // sectionsId: edit_content.teatchers
     }
     // const section={id:edit_content.id,name:values.Division,size :values.Number_of_students, classId:edit_content.class.id,supervisorId:edit_content.supervisor.id,teatcherId:edit_content.teatchers }
 
-
-    EditSection(section)
+console.log(Modrator)
+EditSuperviser(Modrator)
 
 
     // mutate(section)
@@ -192,8 +197,8 @@ const Moderators = () => {
 
 
       {
-        name: "Modrator_name",
-        label: t("Moderators_Admin_dash.Moderators_Table.1"),
+        name: "Modrator_first_name",
+        label: t("Moderators_Admin_dash.Moderators_Table.5"),
         img: arrowIcon,
         type: "input",
         inputType: "text",
@@ -201,30 +206,20 @@ const Moderators = () => {
 
 
       },
-      // {
-      //   name: "Class",
-      //   label: t("Moderators_Admin_dash.Moderators_Table.2"),
-      //   img: arrowIcon,
-      //   type: "Dropdown",
-      //   inputType: "text",
-      //   component: "Dropdown",
-      //   options: Class?.data,
-      //   onChange :handleChange_Moderators_edit_Dropdown
-
-      // },
       {
-        name: "Division_name",
-        label: t("Moderators_Admin_dash.Moderators_Table.3"),
-        img: "<PiUser />",
+        name: "Modrator_last_name",
+        label: t("Moderators_Admin_dash.Moderators_Table.6"),
+        img: arrowIcon,
         type: "input",
         inputType: "text",
         component: "input",
 
 
       },
+
       {
         name: "Phone_Number",
-        label: t("Moderators_Admin_dash.Moderators_Table.4"),
+        label: t("Moderators_Admin_dash.Moderators_Table.2"),
         img: arrowIcon,
         type: "input",
         inputType: "text",
@@ -232,13 +227,38 @@ const Moderators = () => {
 
 
       },
+      {
+        name: "email",
+        label: t("Moderators_Admin_dash.Moderators_Table.3"),
+        img: arrowIcon,
+        type: "input",
+        inputType: "text",
+        component: "input",
+
+
+      },
+      {
+        name: "password",
+        label: t("Moderators_Admin_dash.Moderators_Table.7"),
+        img: arrowIcon,
+        type: "input",
+        inputType: "text",
+        component: "input",
+
+
+      },
+
 
     ],
     initialValues: {
-      Modrator_name: edit_content.Modrator_name,
-      Class: edit_content.Class,
-      Division_name: edit_content.Division_name,
-      Phone_Number: edit_content.phone_number
+   
+
+      Modrator_first_name: edit_content.firstName,
+      Modrator_last_name: edit_content.lastName,
+      Phone_Number: edit_content.phoneNumber,
+      email: edit_content.email,
+      password: edit_content.password
+
 
 
 
@@ -246,8 +266,11 @@ const Moderators = () => {
     },
 
     validationSchema: {
-      Modrator_name: Yup.string(),
-      Division_name: Yup.string(),
+      Modrator_first_name: Yup.string().required(t("Moderators_Admin_dash.Moderators.5")),
+      Modrator_last_name: Yup.string().required(t("Moderators_Admin_dash.Moderators.5")),
+      Phone_Number: Yup.string().required(t("Moderators_Admin_dash.Moderators.6")),
+      email: Yup.string().email().required(t("Moderators_Admin_dash.Moderators.6")),
+      password: Yup.string().required(t("Moderators_Admin_dash.Moderators.6")),
 
 
 
@@ -380,8 +403,9 @@ const Moderators = () => {
             Edit_active={Edit_active}
             set_Edit_active={set_Edit_active}
             formConfig={formConfig_Edit}
-            rows={data}
-            set_data={set_data}
+            handleSubmit={handle_Edit_submit}
+            
+   
 
 
           />
@@ -415,10 +439,10 @@ const Moderators = () => {
                 className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
               />
 
-              <div className="search-bar-container relative ">
+              {/* <div className="search-bar-container relative ">
                 <SearchBar setResults={setResults} selected_result={selected_result} placeholder={t("Moderators_Admin_dash.Moderators_Table.1")} />
                 {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-              </div>
+              </div> */}
 
 
 
@@ -501,7 +525,7 @@ const Moderators = () => {
 
 
                       <TableCell className="flex gap-4 text-xl justify-center mt-2">
-                        <div className="cursor-pointer text-[18px] hover:text-success " onClick={() => { handleEdit_Clicked(section.id) }}>
+                        <div className="cursor-pointer text-[18px] hover:text-success " onClick={() => { handleEdit_Clicked(Superviser.id) }}>
                           <AiOutlineEdit />
 
                         </div>

@@ -69,8 +69,12 @@ const Class = ({ permition }) => {
 
 
 
+
  
   useEffect(() => {
+    
+
+
     if (FetchedSection) {
       set_section_fetched(Sections.data)
     }
@@ -89,7 +93,7 @@ const Class = ({ permition }) => {
 
       return section.class.id === value.id
     })
-    console.log(Class_filter)
+   
     set_section_fetched(Class_filter)
 
     // if (Class_filter.length === 0) {
@@ -398,12 +402,10 @@ const Class = ({ permition }) => {
           <div className='flex  gap-10 items-center justify-between  w-full'>
             <div className='flex gap-10'>
               <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-                {Sections?.data.length} {t("home_Admin_dash.record.0")}
+                {Section_fetched?.length} {t("home_Admin_dash.record.0")}
               </span>
               <Dropdown
                 isFetched={isFetchedClass}
-                // value,
-                // edit_option={Class?.data[0].name}
                 label={t("Class_Admin_dash.Class.0")}
                 options={Class?.data}
                 onChange={handle_change_filtter_class}
@@ -431,20 +433,7 @@ const Class = ({ permition }) => {
 
 
         </TabsFillter>
-        {/* {data.length >= 1 ? (
-          <Table
-            columns={columns}
-            rows={data}
-            handleEdit={handleEdit}
-            handleDelte={handleDelte}
-            action={{ delete: true, update: true }}
-            className={"min-h-screen px-6 pt-2"}
-            RowlinK={true}
-            RowlinK_TO="/Admin_dashboard/Class"
-          />
-        ) : (
-          <NoData ></NoData>
-        )} */}
+   
         <div className='px-10'>
           <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
             <TableHeader className="">

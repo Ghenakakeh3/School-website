@@ -20,11 +20,10 @@ const DivisionsTecher = () => {
     const [techerSelected,settecherSelected]=useState({})
  
     const { isLoading, data:Techer, isFetched: FetchedTechers, isError, error } = TeatcherQuery.GetTecherById(id)
-  console.log(Techer)
-  console.log(techerSelected)
+
   useEffect(()=>{
     if(FetchedTechers){
-      settecherSelected(Techer.data[0])
+      settecherSelected(Techer?.data[0])
 
     }
 
@@ -59,17 +58,7 @@ const DivisionsTecher = () => {
        
 
 </TabsFillter>
-{/* {data.length >= 1 ? (
-    <Table
-      columns={columns}
-      rows={data}
-      action={{delete: false,update: false }}
-      className={"min-h-screen px-6 pt-2"}
-      RowlinK={false}
-    />
-  ) : (
-    <NoData ></NoData>
-  )} */}
+
 
 <div className='px-10'>
           <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
@@ -95,7 +84,7 @@ const DivisionsTecher = () => {
                   </td>
                 ) : (
                  
-                  techerSelected.section?.map((section,index)=>(
+                  techerSelected?.section?.map((section,index)=>(
                     <TableRow
                     key={index}
                     className={
