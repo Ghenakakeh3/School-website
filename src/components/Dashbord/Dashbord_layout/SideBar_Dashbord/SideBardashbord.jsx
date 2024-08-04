@@ -17,12 +17,12 @@ const SideBardashbord = () => {
 
   const Admin_Links=[
     {icon: <AiOutlineNotification />, to:"/School-website/Admin_Adverts"},
-    {icon:  <SlCalender />, to:""},
-    {icon:<BsGraphUp />  ,to:""},
-    {icon: <TbLock /> ,to:""},
-    {icon: <CiLogout /> ,to:""},
-    {icon: <LuUser2 /> ,to:""},
-    {icon: <IoSettingsOutline />  ,to:"/Admin_Settings"},
+    // {icon:  <SlCalender />, to:""},
+    // {icon:<BsGraphUp />  ,to:""},
+    // {icon: <TbLock /> ,to:""},
+    // {icon: <CiLogout /> ,to:""},
+    // {icon: <LuUser2 /> ,to:""},
+    // {icon: <IoSettingsOutline />  ,to:"/Admin_Settings"},
     {icon: <IoIosHelpCircleOutline />  ,to:""},
   
 

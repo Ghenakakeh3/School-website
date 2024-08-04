@@ -63,8 +63,7 @@ console.log(Techers)
     t("Teachers_Admin_dash.Teachers_Table.3") ,
     t("Teachers_Admin_dash.Teachers_Table.4") ,
     t("Teachers_Admin_dash.Teachers_Table.5") ,
-    t("Teachers_Admin_dash.Teachers_Table.6") ,
-
+ 
    
 
 
@@ -300,16 +299,6 @@ const handleEdit=(ID)=>{
                        <TableCell> {techer.phoneNumber} </TableCell>
                        <TableCell ><Link to={`/School-website/Admin_dashboard/Teachers/${techer.id}/Divsions`}className='justify-center text-center flex text-lg'>  <LiaSchoolSolid /></Link> </TableCell>
 
-                      <TableCell className="flex gap-4 text-xl justify-center mt-2 ">
-                        <div className="cursor-pointer text-[18px] hover:text-success " onClick={() => { handleEdit_Clicked(section.id) }}>
-                          <AiOutlineEdit />
-
-                        </div>
-                        <div className="cursor-pointer text-[18px] hover:text-error " onClick={() => { }}>
-                          <RiDeleteBin5Line />
-                        </div>
-
-                      </TableCell>
                     </TableRow>
                   ))
                 )

@@ -36,16 +36,18 @@ export default function Login() {
     validateOnMount: false,
     onSubmit: (values) => {
       formik.handleReset();
+      console.log(values)
       const SignInData = { 
-        email:"string",
-        password:"string"
+        "email": values.email,
+  "password": values.password
        }
 
 
       SignIn(SignInData)
+   
       
-      {values.email==="admin_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Admin_dashboard' ): ""}
-      {values.email==="Supervisor_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Supervisor_dashboard' ): ""}
+      // {values.email==="admin_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Admin_dashboard' ): ""}
+      // {values.email==="Supervisor_email@gmail.com" && values.password==="12345678" ? navigate('/School-website/Supervisor_dashboard' ): ""}
 
      
  
@@ -66,6 +68,9 @@ export default function Login() {
   useEffect(() => {
     if(isSuccess){
 localStorage.setItem("userId",UserData?.data.id)
+UserData?.data.role.roleName==="supervison" ?  navigate('/School-website/Supervisor_dashboard' ):navigate('/School-website/Admin_dashboard' )
+
+
     }
   }
   ,[isSuccess])

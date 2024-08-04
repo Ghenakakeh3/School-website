@@ -9,6 +9,7 @@ import "./Home.css"
 import Table from '../../Dashbord_layout/TableLayout';
 import CircleChart from '../../Dashbord_layout/circle chart/CircleChart';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Modrators_image from '../../../../assets/modrator_image.png'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -396,123 +397,128 @@ const Home_admin = () => {
     // { name: 'Group D', value: 200 },
   ];
   return (
-    <div className=' text-start p-10 '>
-      <Typography component="h3" className="">{t("home_Admin_dash.main.0")}{t("home_Admin_dash.main.1")} <span className='text-orange'>{t("home_Admin_dash.school.0")}</span></Typography>
-      <div className='flex flex-col gap-10'>
-        <div className=' flex gap-5 mt-6 '>
-          <div className='bg-white xl:w-[80%] rounded-md px-5 pt- shadow-md'>
-            {/* links */}
-            <div className='flex gap-6   items-center border-b-2 border-b-myGray-300'>
-              <span>
-                {arabicSplit.day}
-              </span>
+    <div className='mx-auto min-h-screen w-2/3  flex flex-col justify-center items-center'>
+    <img src={Modrators_image} alt="" className='' />
+    <Typography ذ='h3'>{t("Supervisor_Home.0")}</Typography>
+  </div>
+  )
+//     <div className=' text-start p-10 '>
+//       <Typography component="h3" className="">{t("home_Admin_dash.main.0")}{t("home_Admin_dash.main.1")} <span className='text-orange'>{t("home_Admin_dash.school.0")}</span></Typography>
+//       <div className='flex flex-col gap-10'>
+//         <div className=' flex gap-5 mt-6 '>
+//           <div className='bg-white xl:w-[80%] rounded-md px-5 pt- shadow-md'>
+//             {/* links */}
+//             <div className='flex gap-6   items-center border-b-2 border-b-myGray-300'>
+//               <span>
+//                 {arabicSplit.day}
+//               </span>
             
-              {links.map((link, index) => (
-                <span className={`${link.name===class_selected ? "text-orange border-t-2 border-orange transition-all " : ""} hover:text-orange transition text-[18px] cursor-pointer  py-3 `} onClick={() => { setclass_selectede(link.name)  }}>
-                  {link.name}
+//               {links.map((link, index) => (
+//                 <span className={`${link.name===class_selected ? "text-orange border-t-2 border-orange transition-all " : ""} hover:text-orange transition text-[18px] cursor-pointer  py-3 `} onClick={() => { setclass_selectede(link.name)  }}>
+//                   {link.name}
 
-                </span>
+//                 </span>
 
        
 
 
-              ))}
-            </div>
-            {/* t */}
-            <div className=''>
-              {table(class_selected)}
+//               ))}
+//             </div>
+//             {/* t */}
+//             <div className=''>
+//               {table(class_selected)}
           
-            </div>
+//             </div>
 
 
-          </div>
-          <div className='shadow-md '>
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              inline
+//           </div>
+//           <div className='shadow-md '>
+//             <DatePicker
+//               selected={startDate}
+//               onChange={(date) => setStartDate(date)}
+//               inline
              
-            />
-          </div>
-        </div>
+//             />
+//           </div>
+//         </div>
 
-        <div className='flex  justify-between gap '>
+//         <div className='flex  justify-between gap '>
     
-          <div className=' bg-white w-[36%] relative shadow-gray-400 shadow-lg rounded-md'>
+//           <div className=' bg-white w-[36%] relative shadow-gray-400 shadow-lg rounded-md'>
        
         
-          <Swiper style={{ direction: "ltr" }}pagination={pagination} modules={[Pagination]} className="mySwiper"  
->
-        <SwiperSlide> 
-        <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
-      <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
-      <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
-      <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
+//           <Swiper style={{ direction: "ltr" }}pagination={pagination} modules={[Pagination]} className="mySwiper"  
+// >
+//         <SwiperSlide> 
+//         <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
+//       <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
+//       <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
+//       <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
 
 
-      </div>
-       <CircleChart title={t("home_Admin_dash.Time_record.0")} data={Supervisors_time_record}/>
+//       </div>
+//        <CircleChart title={t("home_Admin_dash.Time_record.0")} data={Supervisors_time_record}/>
        
        
-       </SwiperSlide>
-        <SwiperSlide>
-        <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
-      <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
-      <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
-      <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
+//        </SwiperSlide>
+//         <SwiperSlide>
+//         <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
+//       <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
+//       <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
+//       <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
 
 
-      </div>
-      <CircleChart title={t("home_Admin_dash.Time_record.1")} data={Teachers_time_record}/>
-      </SwiperSlide>
-        <SwiperSlide>
-        <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
-      <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
-      <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
-      <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
+//       </div>
+//       <CircleChart title={t("home_Admin_dash.Time_record.1")} data={Teachers_time_record}/>
+//       </SwiperSlide>
+//         <SwiperSlide>
+//         <div className='absolute flex flex-col gap-2 rtl:bottom-[18%] ltr:bottom-[7%] ltr:start-5 rtl:end-5 z-50'>
+//       <Typography component="h4">{t("home_Admin_dash.Time_record.5")} : 100</Typography>
+//       <Typography component="h4" className="text-success">{t("home_Admin_dash.Time_record.6")} : 70</Typography>
+//       <Typography component="h4" className="!text-error">{t("home_Admin_dash.Time_record.7")} :  30 </Typography>
 
 
-      </div>
-      <CircleChart title={t("home_Admin_dash.Time_record.2")} data={Students_time_record}/>
-      </SwiperSlide>
+//       </div>
+//       <CircleChart title={t("home_Admin_dash.Time_record.2")} data={Students_time_record}/>
+//       </SwiperSlide>
    
-      </Swiper>
+//       </Swiper>
   
    
           
-          </div>
-          {/* <div className='bg-white w-[26%] rounded-md shadow-md '> */}
-          {/* <SimpleBarChart /> */}
+//           </div>
+//           {/* <div className='bg-white w-[26%] rounded-md shadow-md '> */}
+//           {/* <SimpleBarChart /> */}
 
-{/* <SimpleAreaChart title={t("home_Admin_dash.Student _absence_chart.0")} /> */}
+// {/* <SimpleAreaChart title={t("home_Admin_dash.Student _absence_chart.0")} /> */}
              
-             {/* </div> */}
-          <div className='bg-white w-[36%] rounded-md  '>
+//              {/* </div> */}
+//           <div className='bg-white w-[36%] rounded-md  '>
           
-     <Student_avrege />
+//      <Student_avrege />
           
-          </div>
+//           </div>
 
 
      
 
 
-          <div className='relative w-[21%] bg-white rounded-md  shadow-md bg-no-repeat bg-center shadow-gray-400 shadow-lg rounded-md' >
+//           <div className='relative w-[21%] bg-white rounded-md  shadow-md bg-no-repeat bg-center shadow-gray-400 shadow-lg rounded-md' >
           
-     <img  className='h-full'src={back_to_school} alt="" />
-     <Typography  component={"h3"} className="absolute top-20 left-4 text-orange font-bold !rtl:font-Aref_Ruqaa !text-[25px] ">{t("home_Admin_dash.back_to_school.0")}</Typography>
+//      <img  className='h-full'src={back_to_school} alt="" />
+//      <Typography  component={"h3"} className="absolute top-20 left-4 text-orange font-bold !rtl:font-Aref_Ruqaa !text-[25px] ">{t("home_Admin_dash.back_to_school.0")}</Typography>
          
-          </div>
+//           </div>
           
-        </div>
+//         </div>
 
 
 
 
 
-      </div>
-    </div>
-  )
+//       </div>
+//     </div>
+//   )
 }
 
 export default Home_admin

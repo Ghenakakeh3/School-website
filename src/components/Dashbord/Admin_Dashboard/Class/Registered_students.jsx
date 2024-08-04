@@ -154,7 +154,7 @@ const Registered_students = () => {
 <div className='flex   items-center w-full justify-between'>
   <div className='flex gap-10'>
   <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {Students?.data.length} {t("home_Admin_dash.record.0")}
+              {Students?.length} {t("home_Admin_dash.record.0")}
             </span>
 
 
@@ -187,13 +187,13 @@ const Registered_students = () => {
                 </td>
               ) :
 
-                (Students?.data.length === 0 ? (
+                (Students?.length === 0 ? (
                   <td colSpan={12}>
                     <NoData />
                   </td>
                 ) : (
                  
-                  Students?.data?.map((student,index)=>(
+                  Students?.map((student,index)=>(
                     <TableRow
                     key={index}
                     className={

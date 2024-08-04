@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import {Field,ErrorMessage, useField} from 'formik'
 import DatePicker, { registerLocale } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
-import ar from "date-fns/locale/ar"; // The locale you want: vi, en, cn, in,..etc .
+import ar from "date-fns/locale/es"; // The locale you want: vi, en, cn, in,..etc .
 
 
 registerLocale("ar", ar);
@@ -12,11 +12,15 @@ registerLocale("ar", ar);
 
 
 const DatePicker_input = ({name,label,initialValues}) => {
+  const [selectedValue,setSelectedValue]=useState()
     const [startDate, setStartDate] = useState(new Date());
     const [field, meta, helpers] = useField(name);
     const { value } = meta;
     const { setValue } = helpers;
     const [endDate, setEndDate] = useState(null);
+    // console.log(value)
+    // console.log(typeof value)
+
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
@@ -45,8 +49,8 @@ const DatePicker_input = ({name,label,initialValues}) => {
 <DatePicker
         {...field}
        {...props}
-        selected={ value }
-        onChange={(date) => setValue(date)}
+        selected={ selectedValue }
+        onChange={(date) => { setSelectedValue(date)   ; console.log(date.setHours(date.getHours()+3)); console.log(date.toISOString()); const IsoDate= date.toISOString() ;setValue(IsoDate)}}
         className={` py-[6px]  px-[16px] w-[28rem] border-[1px] rounded-md  ${touched[field.name] && errors[field.name] ? "border-error" :"border-myGray-400"} focus-within:border-primary   transition-all duration-100 ease-in-out  outline-0 placeholder:focus:opacity-0 `}
         minDate={new Date()}
         // maxDate={addMonths(new Date(5), 5)}
@@ -55,12 +59,14 @@ const DatePicker_input = ({name,label,initialValues}) => {
         showDisabledMonthNavigation
         timeClassName={handleColor}
         showTimeSelect
-        // dateFormat="MMMM d, yyyy h:mmaa"
-        locale='ar'
+        dateFormat={`yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`}
+        locale= "ar"
+        time_24hr= {true} 
         minTime={new Date(0, 0, 0, 8, 0)}
         maxTime=  {new Date(0, 0, 0, 14, 0)}
         filterDate={weekend}
         defaultValue ={true}
+        
        
 
       />

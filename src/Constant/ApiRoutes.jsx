@@ -61,12 +61,14 @@ const Weekly_program={
 
 
 const Marks={
-  GetAllBySection:`${controller.Marks}/GetAllMarksBySection?`,
+  GetAllBySection:`${controller.Marks}/GetAllMarksBySection`,
 }
 const Time_record ={
   GetAllBySection:`${controller.Time_record}/GetDawamBySection`,
   GetAllByStudent:`${controller.Time_record}/GetStudentDawam`,
   GetTeacherTimeRecorde:`${controller.Time_record}/GetTeatcherDawam`,
+  
+  Add_student_dawam:`${controller.Time_record}/AddStudentDawam`,
 }
 
 const SignIn={

@@ -24,9 +24,10 @@ const GetTimeRecorde_Teacher= async ({queryKey}) => {
 return  axios.get( `${baiseUrl}${API_Routes.Time_record.GetTeacherTimeRecorde}?TeatcherId=${TeacherID}`)
 
 };
+const AddStudentdawam=async (Time_recorde) => {
 
-
-
+  return  axios.post( `${baiseUrl}${API_Routes.Time_record.Add_student_dawam}`,Time_recorde)
+};
 
 
 
@@ -42,6 +43,7 @@ return  axios.get( `${baiseUrl}${API_Routes.Time_record.GetTeacherTimeRecorde}?T
 export const TimeRecordApi = {
     GetAllTime_recordBySection,
     GetAllTime_recordBystudent,
-    GetTimeRecorde_Teacher
+    GetTimeRecorde_Teacher,
+    AddStudentdawam
  
 };

@@ -2,10 +2,8 @@
 import React, { useCallback, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useField } from "formik";
 import * as Yup from "yup";
-import { DashInput, InputFile } from "../../../utilities/Inputs";
 import Button from "../../../utilities/Button";
 import Typography from "../../../utilities/Typography";
-import DatePicker from "../../../utilities/DatePicker";
 import DatePicker_input from "../../../utilities/DatePicker";
 import Dropdown from "../../../utilities/Dropdown";
 import { useDropzone } from "react-dropzone";
@@ -188,24 +186,25 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
 
 
     return (
-        <>
+      <div className="">
             {formConfig.info[0]?.title !== "" && <Typography component={"h3"}>
             {formConfig.info[0]?.title}
             </Typography>}
             {formConfig.info[0]?.descrption !== "" &&  <Typography component={"h5"} className="mb-5">
                 {formConfig.info[1]?.descrption}
             </Typography>}
-         <div className="bg-red-500 flex flex-row justify-between">
+         <div className="">
          <Formik
                 initialValues={initialValues}
                 validationSchema={Yup.object().shape(formConfig.validationSchema)}
                 onSubmit={onSubmit}
+                className="bg-black"
                 
             >
                 {({ isSubmitting }) => (
-                    <Form >
+                    <Form className="  " >
                         {formConfig.fields.map((field,i) => (  
-                           <div key={field.name} className="bg-slate-500 flex gap-10">
+                           <div key={field.name} className="flex flex-col  ">
                                 <label className="block my-2">{field.label}</label>
                                 {/* Render different input types based on field.type */}
                                 {field.type === "select" ? (
@@ -316,7 +315,7 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                 )}
             </Formik>
          </div>
-        </>
+        </div>
     );
 };
 export default DynamicForm

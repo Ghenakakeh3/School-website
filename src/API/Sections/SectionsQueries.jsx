@@ -89,7 +89,12 @@ const EditSection =(SuccessEdit) => {
 //   return queryResult;
 // };
 
+const GetSectionsSupperviser=() => {
 
+  return useQuery('get-all-section',SectionsApi.GetAllSections)
+}
+  
+  
 
 
 export const SectionQuery = {

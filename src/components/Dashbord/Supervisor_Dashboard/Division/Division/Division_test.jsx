@@ -54,8 +54,7 @@ const Division_test = () => {
     const { isLoading, data: Exam, isFetched: FetchedExam, isError, error } = ExamQuery.GetExamsBySection(id)
     const {  data: Teachers, isFetched: FetchedTeachers } = TeatcherQuery.GetTeachersQuery_with_name()
   const { mutate: add_test ,isSuccess } = ExamQuery.AddExam()
-
-
+console.log(Exam)
   
   
 
@@ -235,16 +234,16 @@ setTeacher_selected(value)
 }
 
 const handleAddSubmit = (values, { setSubmitting }) => {
-  console.log(typeof values.Timing.toString())
+  console.log(values)
   const newTest={
   "name": values.test_Name,
   "type": values.Test_type === "مذاكرة" ? 1 :0,
-  "date": values.Timing.toString(),
+  "date": values.Timing,
   "teatcherId": teacher_selected.id,
   "sectionId": id
 }
 add_test(newTest)
-console.log(values)
+
 
 
 
@@ -326,6 +325,7 @@ console.log(values)
                  
                   Exam?.data?.map((Exam,index)=>{
                     const date = new Date(Exam.date)
+                    
                   
                     return(
                     
@@ -343,7 +343,7 @@ console.log(values)
                       <TableCell className=" ">{Exam.material.name }</TableCell>
                       <TableCell className=" ">{Exam.name }</TableCell>
 
-                      <TableCell className=" ">{date.getUTCDay()} {date.getUTCMonth() + 1} {date.getUTCFullYear()}</TableCell>
+                      <TableCell className=" ">{date.getDate()}-{date.getUTCMonth() + 1}-{date.getUTCFullYear()}  : {date.getHours()} :{date.getMinutes()}</TableCell>
                       <TableCell className=" ">{Exam.type === 0 ?"فحص" : "مذاكرة" }</TableCell>
 
 
