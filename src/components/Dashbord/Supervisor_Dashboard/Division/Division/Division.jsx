@@ -123,7 +123,7 @@ console.log(Sections)
     t("Division_Supervisor_dash.Division_Table.0") ,
     t("Division_Supervisor_dash.Division_Table.1") ,
     t("Division_Supervisor_dash.Division_Table.2") ,
-    t("Division_Supervisor_dash.Division_Table.3") ,
+    // t("Division_Supervisor_dash.Division_Table.3") ,
 
 
 
@@ -387,7 +387,7 @@ const handleEdit=(ID)=>{
 
                       <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}> {section.class.name}</Link></TableCell>
                       <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}>{section.name}</Link></TableCell>
-                      <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}>{section.size}</Link></TableCell>
+                      {/* <TableCell><Link to={`/School-website/Supervisor_dashboard/Division/${section.id}`}>{section.size}</Link></TableCell> */}
                     
 
 

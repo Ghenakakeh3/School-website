@@ -281,13 +281,11 @@ const formConfig_Add={
     // Add more fields as needed
   ],
   initialValues: {
-
       firstname: "",
       lastname: "",
       phoneNumber: "",
       email: "",
       password : "",
-
       sectionsIds:"",
       ismale:""
 
@@ -304,7 +302,7 @@ const formConfig_Add={
       .max(30,"لا يجب ان يكون الحقل أطول").min(3,"لا يجب أن يكون الحقل  أقصر"),
       phoneNumber: Yup.string().required("هذا الحقل مطلوب").matches(/^[0-9]*$/, 'غير مسموح باستخدام هذا المحرف  في هذا الحقل').min(10,"لايمكن ان يكون هذا الحقل أقصر").max(10,"لايمكن أن يكون هذا الحقل أطول"),
       
-      email: Yup.string().required("هذا الحقل مطلوب").email(),
+      email: Yup.string().required("هذا الحقل مطلوب").email("الصيغة غير صحيحة"),
     
       password : Yup.string().required("هذا الحقل مطلوب"),
   

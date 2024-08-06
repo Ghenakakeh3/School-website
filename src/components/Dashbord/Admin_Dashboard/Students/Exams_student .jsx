@@ -106,7 +106,10 @@ const Exams_student  = () => {
                   </td>
                 ) : (
                  
-                  studentExam?.data?.map((exam,index)=>(
+                  studentExam?.data?.map((exam,index)=>{
+                    const date=new Date(exam.date)
+                    
+                    return(
                     <TableRow
                     key={index}
                     className={
@@ -117,7 +120,7 @@ const Exams_student  = () => {
                        
                        <TableCell> {index +1}</TableCell>
                        <TableCell> {exam.material.name}</TableCell>
-                       <TableCell> {exam.date}</TableCell>
+                       <TableCell> {date.getDay()}- {date.getUTCMonth() +1} -{date.getFullYear()} : {date.getHours()} : {date.getMinutes()}</TableCell>
                        <TableCell> {exam.type}</TableCell>
                        <TableCell> {exam.name}</TableCell>
 
@@ -135,7 +138,7 @@ const Exams_student  = () => {
 
                       </TableRow>
 
-                  ))
+                  )})
                   
                   
                  

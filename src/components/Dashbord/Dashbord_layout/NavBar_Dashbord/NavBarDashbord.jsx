@@ -46,7 +46,7 @@ const NavBarDashbord = () => {
     { name: t("navbar_Supervisor_dash.links.1"), to: "/School-website/Supervisor_dashboard/Division",icon :<FaWindowRestore  /> },
     { name: t("navbar_Supervisor_dash.links.2"), to: "/School-website/Supervisor_dashboard/students" ,icon :<FaUsersLine  /> },
     { name: t("navbar_Supervisor_dash.links.5"), to: "/School-website/Supervisor_dashboard/parents" ,icon :<RiParentLine /> },
-    { name: t("navbar_Supervisor_dash.links.3"), to: "/School-website/Supervisor_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
+    // { name: t("navbar_Supervisor_dash.links.3"), to: "/School-website/Supervisor_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
 
   ];
   const path=location.pathname.split("/")[2]

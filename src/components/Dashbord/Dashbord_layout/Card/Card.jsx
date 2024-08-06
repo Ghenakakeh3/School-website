@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
  export const Card_student = ({ student,edit}) => {
   const { t } = useTranslation("global");
+  const date=new Date(student.creationDate)
   
   return (
     <div className='bg-white flex flex-col  items-center  min-h-screen w-[22%] px-5 pt-10 shadow-current rounded-md'>
@@ -22,8 +23,8 @@ import { useTranslation } from "react-i18next";
           <Typography component={""} className="text-[20px]">رقم هاتف الوالدين : {student?.parent?.phoneNumber }</Typography>
 
           
-          <Typography component={""} className="text-[20px]">{t("Students_Admin_dash.Card_student.3")} : {student.creationDate}</Typography>
-          <Typography component={""} className="text-[20px]">تاريخ االميلاد : {student.birtDate}</Typography>
+          {/* <Typography component={""} className="text-[20px]">{t("Students_Admin_dash.Card_student.3")} :{date.getDay()} {date.getMonth()+1} {date.getFullYear()}</Typography> */}
+          {/* <Typography component={""} className="text-[20px]">تاريخ االميلاد : {student.birtDate}</Typography> */}
           <Typography component={""} className="text-[20px]">البريد الالكتروني : {student.email}</Typography>
           <Typography component={""} className="text-[20px]">رقم هاتف الطالب : {student.phoneNumber}</Typography>
 

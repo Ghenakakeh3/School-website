@@ -35,7 +35,7 @@ const Behvier_notification = ({actions,role}) => {
     t("Students_Admin_dash.Behvier_notification.1") ,
     t("Students_Admin_dash.Behvier_notification.2") ,
     "اسم المشرف المسؤول",
-  actions.delete || actions.update  ?  t("Students_Admin_dash.Behvier_notification.3") :""
+  // actions.delete || actions.update  ?  t("Students_Admin_dash.Behvier_notification.3") :""
    
 
 
