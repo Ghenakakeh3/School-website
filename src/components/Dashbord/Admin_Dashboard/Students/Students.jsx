@@ -30,8 +30,6 @@ const Students = () => {
   const [Edit_active, set_Edit_active] = useState(false); 
   const [Students_Dropdown , set_Students_Dropdown] = useState("");
   const[edit_content,set_edit_content]=useState({})
-  const [results, setResults] = useState([]);
-  const [selected_result, setselected_result] = useState("");
   const [Search, setSearch] = useState("");
 
   const [Student_fetched, set_student_fetched] = useState([])
@@ -80,24 +78,7 @@ console.log(Students)
 
 
   
-  const  handleChange_Students_Dropdown = (value) => {
-    set_Students_Dropdown(value.name)
-    const Students_filter= rows.filter((row)=>{
-       return row. Class===value.name
-    })
-    if(Students_filter.length ===0){
-      set_data(rows)
-   
-     
-    }
-    else{
-      set_data(Students_filter)
 
-
-    }
-
-
-  };
   const  handleChange_Students_edit_Dropdown = (value) => {
   
  
@@ -260,10 +241,7 @@ const handleChange_Search=(value)=>{
         className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
       />
 
-{/* <div className="search-bar-container relative ">
-        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Students_Admin_dash.Students_Table.1") } />
-        {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-      </div> */}
+
          <InputSearch
         name="Search"
         // value={selected_result != "" ?  selected_result : input  }
@@ -295,20 +273,7 @@ const handleChange_Search=(value)=>{
 
 
         </TabsFillter>
-        {/* {data.length >= 1 ? (
-          <Table
-            columns={columns}
-            rows={data}
-            handleEdit={handleEdit}
-            handleDelte={handleDelte}
-            action={{delete: true,update: true }}
-            className={"min-h-screen px-6 pt-2"}
-            RowlinK={true}
-            RowlinK_TO="/School-website/Admin_dashboard/students"
-          />
-        ) : (
-          <NoData ></NoData>
-        )} */}
+   
 
 
 <div className='px-10'>

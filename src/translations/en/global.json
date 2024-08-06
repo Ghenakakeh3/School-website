@@ -341,7 +341,8 @@
       "Division",
       "students",
       "Teachers",
-      "Notes"
+      "Notes",
+      "Parents"
     ]
   },
   "Supervisor_Home":[
@@ -847,5 +848,6 @@
     "Day",
     "Appointment",
     "Table Appointment"
-  ]
+  ],
+  "parents":["father Name","mother Name","Email","phone Number"]
 }

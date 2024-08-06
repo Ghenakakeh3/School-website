@@ -8,10 +8,6 @@ import TabsFillter from '../../Dashbord_layout/TabsFillter'
 import NoData from '../../Dashbord_layout/NoData/NoData';
 import Radio from '../../../utilities/Radio';
 import Button from '../../../utilities/Button';
-import { IoIosAddCircle } from "react-icons/io";
-
-import { IoIosAddCircleOutline } from "react-icons/io";
-
 import Add_acount from '../../Dashbord_layout/Mangment/Acount_mangment/Add_acount';
 import Add from '../../Dashbord_layout/Mangment/Add';
 import * as Yup from "yup";
@@ -25,12 +21,7 @@ const Subject_marks = () => {
 
 
   const { t } = useTranslation("global");
-  const [valueRadio, setValueRadio] = useState(null)
-
-  const AddRef = useRef(null)
-
   const [Edit_active, setEdit_active] = useState(false)
-
   const [edit_content, set_edit_content] = useState({})
   const { id } = useParams();
 
@@ -44,7 +35,7 @@ const Subject_marks = () => {
     t("Class_Admin_dash.Subject_marks.1"),
     t("Class_Admin_dash.Subject_marks.2"),
     t("Class_Admin_dash.Subject_marks.3"),
-    t("Class_Admin_dash.Subject_marks.4"),
+
 
 
 
@@ -52,10 +43,7 @@ const Subject_marks = () => {
 
 
   ];
-  const radioItems = [
-    { value: t("Class_Admin_dash.Subject_marks_filter.0"), label: t("Class_Admin_dash.Subject_marks_filter.0") },
-    { value: t("Class_Admin_dash.Subject_marks_filter.1"), label: t("Class_Admin_dash.Subject_marks_filter.1") },
-  ];
+
 
 
   const formConfig_Edit = {
@@ -191,29 +179,40 @@ const Subject_marks = () => {
                 </td>
               ) : (
 
-                Marks?.data?.map((student, index) => (
-                  <TableRow
-                    key={index}
-                    className={
-                      ""
-                    }
-                    rowIndex={index}
-                  >
+                Marks?.data.map((mark, index) => {
+                  const date = new Date(mark.date)
+                  return (
+                    <TableRow
+                      key={index}
+                      className={
+                        ""
+                      }
+                      rowIndex={index}
+                    >
 
-                    {/* <TableCell>{student.firstName} {student.lastName}</TableCell> */}
+                      <TableCell>{mark.student.firstName} {mark.student.lastName}</TableCell>
+                      <TableCell>{mark.material.name}</TableCell>
+                      <TableCell>{date.getDate()}-{date.getUTCMonth() + 1}-{date.getUTCFullYear()} : {date.getHours()} :{date.getMinutes()}</TableCell>
 
-
-
-
-
-
-
-
+                      <TableCell>{mark.mark} </TableCell>
 
 
-                  </TableRow>
 
-                ))
+
+
+
+
+
+
+
+
+
+
+
+                    </TableRow>
+
+                  )
+                })
 
 
 

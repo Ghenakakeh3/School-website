@@ -443,12 +443,7 @@ const Class = ({ permition }) => {
                 ))}
               </TableRow>
             </TableHeader>
-            {/* {(per?.includes("ViewUser") ||
-            per?.includes("UpdateUser") ||
-            per?.includes("DeleteUser") ||
-            per?.includes("ChangeUserStatus")) && ( */}
-
-            {/* )} */}
+          
 
             <tbody>
               {isLoading ? (

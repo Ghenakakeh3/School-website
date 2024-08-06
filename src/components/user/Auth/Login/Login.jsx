@@ -20,7 +20,7 @@ import { SignInQuery } from "../../../../API/SignIn/SignInQuires";
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
   password: Yup.string()
-    .min(8, "Password Should be of minimum 8 characters length")
+    .min(4, "Password Should be of minimum 8 characters length")
     .required("Password is required"),
 });
 export default function Login() {
@@ -67,7 +67,7 @@ export default function Login() {
 
   useEffect(() => {
     if(isSuccess){
-localStorage.setItem("userId",UserData?.data.id)
+      UserData?.data.role.roleName==="supervison" ?localStorage.setItem("supervisorId",UserData?.data.id):localStorage.removeItem("supervisorId")
 UserData?.data.role.roleName==="supervison" ?  navigate('/School-website/Supervisor_dashboard' ):navigate('/School-website/Admin_dashboard' )
 
 

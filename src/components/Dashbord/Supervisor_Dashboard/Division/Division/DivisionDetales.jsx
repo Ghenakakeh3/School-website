@@ -159,7 +159,9 @@ const DivisionDetales = () => {
 
   >
       <Inner_Links links={links} />
+      <div className='min-h-screen'>
       <Outlet/>
+      </div>
 
     </Content>
   )

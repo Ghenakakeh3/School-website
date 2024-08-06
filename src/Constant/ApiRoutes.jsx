@@ -8,7 +8,12 @@ Exam:"Exam",
 Weekly_program :"WeeklyProggram",
 Marks  :"Marks",
 Time_record   : "WeeklyProggram",
-SignIn:"Students"
+SignIn:"Students",
+Parent:"Parents",
+Behaviers:"Posts",
+Advert:"Posts",
+Posts:"Posts",
+Marial:"Materials"
 
 
 
@@ -35,7 +40,7 @@ const Student={
 }
 const Teatcher={
   GetAll:`${controller.Teatcher}/GetTeachers`,
-  AddTeatcher:`${controller.Student}/AddTecher`,
+  AddTeatcher:`${controller.Teatcher}/AddTecher`,
   GetTecherById:`${controller.Teatcher}/GetTeacherById`
   // EditTeatcher:`${controller.Student}/GetAllStudents`,
 
@@ -62,6 +67,7 @@ const Weekly_program={
 
 const Marks={
   GetAllBySection:`${controller.Marks}/GetAllMarksBySection`,
+  AddMark:`${controller.Marks}/AddMark`,
 }
 const Time_record ={
   GetAllBySection:`${controller.Time_record}/GetDawamBySection`,
@@ -74,7 +80,25 @@ const Time_record ={
 const SignIn={
   superviser:`${controller.SignIn}/SignIn`
 }
-
+const Parents={
+  GetAll:`${controller.Parent}/GetAllParents`,
+  AddParent:`${controller.Parent}/AddParent`
+}
+const Behaviers={
+  GetAllByStudent :`${controller.Behaviers}/GetAllBehavior`,
+  AddBehavier:`${controller.Behaviers}/AddBehavioralObservation`
+}
+const Advert={
+  AddAdvert:`${controller.Advert}/AddAdvert`,
+}
+const Posts={
+  AddPost:`${controller.Posts}/AddPost`,
+  
+  GetAll:`${controller.Posts}/GetAllPosts`,
+}
+const Marial={
+  GetAll:`${controller.Marial}/GetAll`
+}
 
 
 
@@ -89,6 +113,12 @@ export const API_Routes = {
   Weekly_program,
   Marks,
   Time_record,
-  SignIn
+  SignIn,
+  Parents,
+
+  Behaviers,
+  Advert,
+  Posts,
+  Marial
 
 };

@@ -38,7 +38,7 @@ const Registered_students = () => {
     t("Students_Admin_dash.Students_Table.2") ,
     t("Students_Admin_dash.Students_Table.3") ,
     t("Students_Admin_dash.Students_Table.4") ,
-    t("Students_Admin_dash.Students_Table.5") ,
+    // t("Students_Admin_dash.Students_Table.5") ,
     t("Students_Admin_dash.Students_Table.6") ,
     t("Students_Admin_dash.Students_Table.7") ,
     t("Students_Admin_dash.Students_Table.8") ,
@@ -193,7 +193,9 @@ const Registered_students = () => {
                   </td>
                 ) : (
                  
-                  Students?.map((student,index)=>(
+                  Students?.map((student,index)=>{
+                    const date=new Date()
+                    return(
                     <TableRow
                     key={index}
                     className={
@@ -206,7 +208,7 @@ const Registered_students = () => {
                       <TableCell> {student.class.name}</TableCell>
                       <TableCell> {student.section.name}</TableCell>
                       <TableCell> {student.phoneNumber}</TableCell>
-                      <TableCell> {student.birtDate}</TableCell>
+                      {/* <TableCell> {student.birtDate}</TableCell> */}
                       <TableCell> {student.email}</TableCell>
                       <TableCell> {student.parent.fatherName}</TableCell>
                       <TableCell> {student.parent.motherName}</TableCell>
@@ -222,7 +224,7 @@ const Registered_students = () => {
 
                       </TableRow>
 
-                  ))
+                  )})
                   
                   
                  

@@ -136,6 +136,7 @@ setTeacher_selected(value)
 
     ],
     initialValues : {
+      test_Name:"",
       teacher_Name:"",
       Timing: "",
       Test_type: "",
@@ -145,7 +146,7 @@ setTeacher_selected(value)
     },
 
         validationSchema: {
-      test_Name: Yup.string().required("اسم الاختبار مطلوب !"),
+      test_Name: Yup.string().matches(/^[a-zA-Z\u0600-\u06FF\s]+$/,'غير مسموح في هذه الرموز').required("اسم الاختبار مطلوب !"),
       Timing: Yup.date().required(t("Division_Supervisor_dash.Division_test.13")),
       Test_type: Yup.string().required(t("Division_Supervisor_dash.Division_test.12")),
 

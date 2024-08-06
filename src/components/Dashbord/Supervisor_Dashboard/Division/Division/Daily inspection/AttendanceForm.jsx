@@ -16,8 +16,8 @@ import { Time_recordQuery } from '../../../../../../API/Time_record/Time_recordQ
 const AttendanceForm = ({ onAttendance,SectionId }) => {
   const { t } = useTranslation("global");
   const[isSubmitting,set_Submitting]=useState(false)
-  const [student_selected,set_student_selected]=useState({})
-  const [state_selected,set_state_selected]=useState({})
+  const [student_selected,set_student_selected]=useState()
+  const [state_selected,set_state_selected]=useState()
 
   console.log(state_selected)
   const today = new Date()
@@ -206,6 +206,7 @@ className={` py-[6px]  px-[16px] w-full border-[1px] rounded-md  ${touched[field
                                     classNameIcon=""
                                     className={`sm:w-[20rem] w-[10rem]  ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150 `}
                                   />
+                                    {student_selected === undefined && isSubmitting ? <p className='text-error'> هذا الحقل مطلوب</p> :"" }
                                         
                                     
                                 
@@ -236,6 +237,7 @@ className={` py-[6px]  px-[16px] w-full border-[1px] rounded-md  ${touched[field
                                     classNameIcon=""
                                     className={`sm:w-[20rem] w-[16rem]  ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150 `}
                                   />
+                                  {state_selected === undefined && isSubmitting ? <p className='text-error'> هذا الحقل مطلوب</p> :"" }
                                         
                                     
                                 
@@ -305,41 +307,4 @@ export default AttendanceForm;
 
 
 
-{/* <form onSubmit={handleSubmit} className=' flex justify-between items-center '>
-       
-         
-<Dropdown
-// value,
-label={t("Division_Supervisor_dash.Daily_inspection.1")}
-options={Students}
-onChange={handleChange_student_option}
-icon={Arrow_dropdown}
-showSlected={true}
-ulClassname={"w-full "}
-classNameIcon=""
-className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
-/>
 
-
-{/* <div>
-<InputDate
-handleDateChange={handleDateChange}
-/>
-</div> */}
-{/* <Dropdown
-// value,
-label={t("Division_Supervisor_dash.Daily_inspection.3")}
-options={state}
-onChange={handleChange_state_option}
-icon={Arrow_dropdown}
-showSlected={true}
-ulClassname={"w-full "}
-classNameIcon=""
-className="sm:w-[12rem] w-[7rem] ease-in-out  border-b-[1px]   border-b-myGray-100 active:border-b-primary focus-within:border-b-primary duration-150"
-/>
-
-
-
-<Button type="submit" className="flex bg-success items-center gap-2 " >{t("Division_Supervisor_dash.Daily_inspection.7")} <IoIosAddCircle /> </Button>
-
-</form> */} 

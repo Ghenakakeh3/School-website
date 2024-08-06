@@ -32,12 +32,12 @@ const SideBardashbord = () => {
   const Supervisor_links=[
     {icon: <AiOutlineNotification />, to:"/Supervisor_Adverts"},
     {icon:<MdPostAdd /> ,to:"/Posts"},  
-    {icon:<BsGraphUp />  ,to:""},
-    {icon: <TbLock /> ,to:""},
-    {icon: <CiLogout /> ,to:""},
-    {icon: <LuUser2 /> ,to:""},
-    {icon: <IoSettingsOutline />  ,to:"/Admin_Settings"},
-    {icon: <IoIosHelpCircleOutline />  ,to:""},
+    // {icon:<BsGraphUp />  ,to:""},
+    // {icon: <TbLock /> ,to:""},
+    // {icon: <CiLogout /> ,to:""},
+    // {icon: <LuUser2 /> ,to:""},
+    // {icon: <IoSettingsOutline />  ,to:"/Admin_Settings"},
+    // {icon: <IoIosHelpCircleOutline />  ,to:""},
   
 
 

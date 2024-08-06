@@ -2,7 +2,6 @@
 import React, { useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
-import Table from '../../Dashbord_layout/TableLayout'
 import NoData from '../../Dashbord_layout/NoData/NoData';
 import arrowIcon from "../../../../assets/icons/arrowDropdown.svg";
 import Add from '../../Dashbord_layout/Mangment/Add';
@@ -10,53 +9,32 @@ import * as Yup from "yup";
 import Edit from '../../Dashbord_layout/Mangment/Edit';
 import Button from '../../../utilities/Button';
 import { IoIosAddCircle } from 'react-icons/io';
+import { BehaviersQuery } from '../../../../API/Behavier/BehavierQueries';
+import { TableCell, TableHeader, TableRow,Table } from '../../Dashbord_layout/Table';
+import Loading from '../../../utilities/Loading/Loading';
+import {useParams  } from "react-router-dom";
 
 
 
-const Behvier_notification = ({actions}) => {
-    const Behvier_notification = [
-        {
-            ID: "01",
-            Timing: "3/7/2001",
-            notification: "مهذب",
-           
-   
+const Behvier_notification = ({actions,role}) => {
     
-        },
-        {
-            ID: "01",
-            Timing: "3/7/2001",
-            notification: "مهذب",
-           
-   
-    
-        },     {
-            ID: "01",
-            Timing: "3/7/2001",
-            notification: "مهذب",
-           
-   
-    
-        },
-      
 
-   
-          
-          
-      ];
-    const[data,setdata]=useState(Behvier_notification)
     const { t } = useTranslation("global");
     const[add_active,set_add_active]=useState()
     const [Edit_active, set_Edit_active] = useState(false); 
     const[edit_content,set_edit_content]=useState({})
+    const {id}=useParams()
  
+    const { isLoading, data:Behaviers, isFetched: FetchedStudent, isError, error } = BehaviersQuery.GetAllBehaviersByStudent(id)
+    const {mutate:addnote}=BehaviersQuery.AddBehavier()
 
-  
+ 
      
-  const columns = [
-    t("Students_Admin_dash.Behvier_notification.0") ,
+  const TableHeaderArray = [
+  
     t("Students_Admin_dash.Behvier_notification.1") ,
     t("Students_Admin_dash.Behvier_notification.2") ,
+    "اسم المشرف المسؤول",
   actions.delete || actions.update  ?  t("Students_Admin_dash.Behvier_notification.3") :""
    
 
@@ -82,16 +60,7 @@ const Behvier_notification = ({actions}) => {
    
    
 
-      {
-        name: "Timing",
-        label: t("Division_Supervisor_dash.Behvier_notification.2"),
-        img: "showpass ? <FaRegEye /> : <FaEyeSlash />",
-        type: "date",
-        inputType: "text",
-        component: "input",
-  
-
-      },
+     
       {
         name: "notification",
         label: t("Division_Supervisor_dash.Behvier_notification.3"),
@@ -104,7 +73,7 @@ const Behvier_notification = ({actions}) => {
       // Add more fields as needed
     ],
     initialValues: {
-      Timing: "",
+   
       notification: "",
     
 
@@ -116,7 +85,7 @@ const Behvier_notification = ({actions}) => {
 
     validationSchema: {
       notification: Yup.string().required( t("Division_Supervisor_dash.Behvier_notification.4")),
-      Timing: Yup.string().required(t("Division_Supervisor_dash.Division_edit_Subject_marks.10")),
+     
      
 
 
@@ -201,6 +170,19 @@ const Behvier_notification = ({actions}) => {
 
 
   }
+  const handleAddSubmit=(values) => {
+    console.log(values)
+    const NewNotification={
+      "description": values.notification,
+      "supervisorId":localStorage.getItem("supervisorId"),
+      "studentIds": [
+        id
+      ]
+    }
+    addnote(NewNotification)
+    console.log(NewNotification)
+  }
+  
   return (
 <div className='relative bg-white  mt-3 shadow-slate-300 shadow-verfictionShadow rounded-md'>
 
@@ -209,6 +191,8 @@ const Behvier_notification = ({actions}) => {
             formConfig={formConfig_Add} 
               add_active={add_active}
               set_add_active={set_add_active}
+              handleSubmit={handleAddSubmit}
+              
          
 
 
@@ -238,38 +222,87 @@ const Behvier_notification = ({actions}) => {
 <div className='flex   items-center w-full justify-between'>
   <div className='flex gap-10'>
   <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {data.length} {t("home_Admin_dash.record.0")}
+              {Behaviers?.data.length} {t("home_Admin_dash.record.0")}
             </span>
 
 
      
   </div>
 
-{actions.add && (
+{role ==='Supervioser' && (
     <div className=''>
      
     <Button  className="flex bg-success items-center gap-2 " onClick={()=>{set_add_active(true)}}>{t("Division_Supervisor_dash.Behvier_notification.0")} <IoIosAddCircle /> </Button>
     </div>
 )}
 
+
        
 </div>
        
 
 </TabsFillter>
-{data.length >= 1 ? (
-    <Table
-      columns={columns}
-      rows={data}
-      handleEdit={handleEdit}
-      handleDelte={handleDelte}
-      action={{delete: actions.delete ,update:actions.update }}
-      className={"min-h-screen px-6 pt-2"}
-      RowlinK={false}
-    />
-  ) : (
-    <NoData ></NoData>
-  )}
+<div className='px-10'>
+          <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
+            <TableHeader className="">
+              <TableRow className="">
+                {TableHeaderArray.map((header, index) => (
+                  <TableCell className="py-2" key={index}>{header}</TableCell>
+                ))}
+              </TableRow>
+            </TableHeader>
+          
+
+            <tbody>
+              {isLoading ? (
+                <td colSpan={12}>
+                  <Loading size={60} />
+                </td>
+              ) :
+
+                (Behaviers?.data.length === 0 ? (
+                  <td colSpan={12}>
+                    <NoData />
+                  </td>
+                ) : (
+                  Behaviers?.data.map((behavier, index) => {
+                    const date=new Date(behavier.createDate)
+                    return(
+                    <TableRow
+                      key={behavier.id}
+                      className={
+                        ""
+                      }
+                      rowIndex={index}
+                    >
+
+<TableCell className=" ">{date.getDate()}-{date.getUTCMonth() + 1}-{date.getUTCFullYear()}  : {date.getHours()} :{date.getMinutes()}</TableCell>
+
+                      <TableCell>{behavier.description} </TableCell>
+                      <TableCell>{behavier.supervisor.firstName} {behavier.supervisor.lastName}</TableCell>
+
+                      
+
+                     
+          
+
+
+          
+
+
+
+                    
+                    </TableRow>
+                  )})
+                )
+
+                )
+              }
+
+
+            </tbody>
+          </Table>
+        </div>
 </div>
   )
 }

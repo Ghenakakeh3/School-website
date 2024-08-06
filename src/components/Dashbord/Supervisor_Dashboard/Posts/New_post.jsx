@@ -3,23 +3,36 @@ import { Input } from '../../../utilities/Inputs'
 import DynamicForm from '../../Dashbord_layout/Mangment/D_inputs'
 import { useTranslation } from 'react-i18next';
 import * as Yup from "yup";
+import { PostsQuery } from '../../../../API/Posts/PostsQuiers';
 
 
 const New_post = () => {
     const { t } = useTranslation("global");
+    var bodyFormData = new FormData();
+    const {mutate:addPost} =PostsQuery.AddPost()
     const formConfig = {
         info: [
-          { title: t("Class_Admin_dash.Class.2") },
-          { descrption: t("Class_Admin_dash.Class.6") },
-          { button_content: t("Class_Admin_dash.Class.2") }
+          { title: "اضافة منشور جديد" },
+          { descrption: "يمكنك اضافة منشور جديد من هنا" },
+          { button_content: "اضافة المنشور" }
         ],
     
         fields: [
+          {
+            name: "title",
+            label: "العنوان",
+            img: "<PiUser />",
+            type: "input",
+            inputType: "text",
+            component: "input",
+            className:"w-full "
     
+    
+          },
       
           {
             name: "Discrption",
-            label: t("Class_Admin_dash.Class.4"),
+            label: "الوصف ",
             img: "<PiUser />",
             type: "input",
             inputType: "text",
@@ -44,13 +57,14 @@ const New_post = () => {
         ],
         initialValues: {
           Discrption: "",
-          img:""
+          img:"",
+          title:""
       
         },
     
         validationSchema: {
-
-          Discrption: Yup.string().required(t("Class_Admin_dash.Class.8")),
+          title:Yup.string().required("العنوان مطلوب"),
+          Discrption: Yup.string().required("الشرح مطلوب "),
           // img:
      
     
@@ -59,7 +73,22 @@ const New_post = () => {
         }
     
       };
-      const handleSubmit=() => {
+      const handleSubmit=(values) => {
+        console.log(values)
+        bodyFormData.append('Title', values.title);
+        bodyFormData.append('Description', values.Discrption);
+        bodyFormData.append('Image', values.img.path);
+        bodyFormData.append('SupervisorId',localStorage.getItem("supervisorId"));
+
+
+        const newpost={
+          // "Title":values.title,
+          // "Description":values.Discrption,
+          "Image":values.img.path,
+          // "SupervisorId":44
+        }
+        console.log(newpost)
+        addPost(bodyFormData)
         
       }
       

@@ -18,8 +18,9 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { GrNotes } from "react-icons/gr";
 import "./NavBarDashbord.css"
 import { BsPersonWorkspace } from "react-icons/bs";
-import { AiOutlineNotification } from "react-icons/ai";
 
+
+import { RiParentLine } from "react-icons/ri";
 
 
 
@@ -44,8 +45,8 @@ const NavBarDashbord = () => {
     { name: t("navbar_Supervisor_dash.links.0"), to: "/School-website/Supervisor_dashboard" ,icon :<IoHome  />},
     { name: t("navbar_Supervisor_dash.links.1"), to: "/School-website/Supervisor_dashboard/Division",icon :<FaWindowRestore  /> },
     { name: t("navbar_Supervisor_dash.links.2"), to: "/School-website/Supervisor_dashboard/students" ,icon :<FaUsersLine  /> },
+    { name: t("navbar_Supervisor_dash.links.5"), to: "/School-website/Supervisor_dashboard/parents" ,icon :<RiParentLine /> },
     { name: t("navbar_Supervisor_dash.links.3"), to: "/School-website/Supervisor_dashboard/Teachers",icon :<LiaChalkboardTeacherSolid  /> },
-    { name: t("navbar_Supervisor_dash.links.4"), to: "/School-website/Notes",icon :<GrNotes  /> },
 
   ];
   const path=location.pathname.split("/")[2]

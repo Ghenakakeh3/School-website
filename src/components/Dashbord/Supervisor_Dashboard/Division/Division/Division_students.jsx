@@ -44,7 +44,7 @@ const Division_students = () => {
       t("Students_Admin_dash.Students_Table.2") ,
       t("Students_Admin_dash.Students_Table.3") ,
       t("Students_Admin_dash.Students_Table.4") ,
-      t("Students_Admin_dash.Students_Table.5") ,
+      // t("Students_Admin_dash.Students_Table.5") ,
       t("Students_Admin_dash.Students_Table.6") ,
       t("Students_Admin_dash.Students_Table.7") ,
       t("Students_Admin_dash.Students_Table.8") ,
@@ -216,10 +216,7 @@ const Division_students = () => {
             </span>
 
 
-            {/* <div className="search-bar-container relative ">
-        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Division_Supervisor_dash.Division_students.1") } />
-        {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-      </div> */}
+        
    
   </div>
 
@@ -267,7 +264,7 @@ const Division_students = () => {
                       <TableCell> {student.class.name}</TableCell>
                       <TableCell> {student.section.name}</TableCell>
                       <TableCell> {student.phoneNumber}</TableCell>
-                      <TableCell> {student.birtDate}</TableCell>
+                      {/* <TableCell> {student.birtDate}</TableCell> */}
                       <TableCell> {student.email}</TableCell>
                       <TableCell> {student.parent.fatherName}</TableCell>
                       <TableCell> {student.parent.motherName}</TableCell>

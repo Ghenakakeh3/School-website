@@ -7,6 +7,7 @@ import Typography from "../../../utilities/Typography";
 import DatePicker_input from "../../../utilities/DatePicker";
 import Dropdown from "../../../utilities/Dropdown";
 import { useDropzone } from "react-dropzone";
+import Select from 'react-select'
 
 const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
 
@@ -284,7 +285,17 @@ const DynamicForm = ({ formConfig, initialValues, onSubmit }) => {
                                 
 
                                 
-                                :(
+                                    :field.type === "selecte" ? (
+                                          
+                            <Select
+                            value={field.selected_option}
+                            options={field.Options} 
+                            onChange={field.onChange}
+                            isMulti
+                            />
+                                    )
+                                    :
+                                    (
                                     
                                     <Field
                                         name={field.name}

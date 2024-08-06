@@ -29,22 +29,18 @@ const Adverts = () => {
   }, []);
 
   return (
-    <div className=" text-center pt-4 bg-myGray-200 min-h-screen">
-        <Typography component="h2">{t("Adverts.0")}</Typography>
-        <Typography component='h4'>{t("Adverts.1")}</Typography>
-   <div className='bg-white h-[80vh] w-[65%] mx-auto rounded-lg shadow-md mt-6 flex flex-col justify-between '>
-   
-    <div className='  overflow-y-scroll text-start pt-5 px-4 '> 
-    {adverts.map(advert => (
-        <div key={advert.id}  className="bg-sky-900 text-white mb-2 w-fit rounded-3xl py-2 px-4 shadow-md">
-          {advert.text}
+    <div className='text-center pt-4 bg-myGray-200 min-h-screen'>
+          <Send_Adverts />
+      <div className='flex justify-center  w-full flex-wrap gap-10 mt-10 '>
+      {adverts.map(advert => (
+        <div key={advert.id}  className="bg-sky-900 text-white mb-2 w-fi rounded-3xl py-2 px-4 shadow-md w-1/4">
+          <Typography component={"h3"} className={"text-white"}>{advert.text}</Typography>
         </div>
       ))}
+         
+      </div>
     </div>
 
-      <Send_Adverts />
-   </div>
-    </div>
   );
 };
 

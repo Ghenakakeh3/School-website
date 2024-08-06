@@ -53,11 +53,10 @@ const Students_details = ({Admin,Supervisor}) => {
     
       ];
       const Supervisor_links = [
-     
-        { name: t("Students_Admin_dash.Students_links.0"), to: `/School-website/Supervisor_dashboard/students/${id}/Division_materials` },
+
         { name: t("Students_Admin_dash.Students_links.1"), to: `/School-website/Supervisor_dashboard/students/${id}/exams`  },
         { name: t("Students_Admin_dash.Students_links.2"), to: `/School-website/Supervisor_dashboard/students/${id}/Time_record` },
-        { name: t("Students_Admin_dash.Students_links.3"), to: `/School-website/Supervisor_dashboard/students/${id}/Weekly_program` },
+        // { name: t("Students_Admin_dash.Students_links.3"), to: `/School-website/Supervisor_dashboard/students/${id}/Weekly_program` },
         { name: t("Students_Admin_dash.Students_links.4"), to: `/School-website/Supervisor_dashboard/students/${id}/Behvier_notification` },
 
         

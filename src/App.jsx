@@ -46,6 +46,7 @@ import Adverts from './components/Dashbord/Admin_Dashboard/Adverts/Adverts'
 import Supervisor_Home from './components/Dashbord/Supervisor_Dashboard/Home/Supervisor_Home'
 import Posts from './components/Dashbord/Supervisor_Dashboard/Posts/Posts'
 import DivisionsTecher from './components/Dashbord/Admin_Dashboard/Teachers/DivisionsTecher'
+import Parents from './components/Dashbord/Supervisor_Dashboard/Parents/Parents'
 
 
 function App() {
@@ -218,6 +219,8 @@ function App() {
             <Route  path='Daily_inspection' element={<Daily_inspection/>}/>
             <Route  path='Exams' element={<  Division_test/>}/>
             <Route  path='Subject_marks' element={<  Division_Subject_marks/>}/>
+           
+
 
             
           
@@ -234,7 +237,7 @@ function App() {
               <Route  path='exams' element={<Exams_student />}/>
               <Route  path='Time_record' element={<Time_record_student />}/>
               <Route  path='Weekly_program' element={<Weekly_program_student />}/>
-              <Route  path='Behvier_notification' element={<Behvier_notification  actions={{add:true,update:true,delete:true}}/>}/>
+              <Route  path='Behvier_notification' element={<Behvier_notification  actions={{add:true,update:true,delete:true}} role={"Supervioser"}/>}/>
 
 
 
@@ -247,7 +250,7 @@ function App() {
               
 
             </Route>
-
+            <Route  path='parents' element={<Parents/>}/>
 
             </Route>
             {/* Supervisor Adverts */}

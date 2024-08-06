@@ -4,13 +4,12 @@
 
 
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from "react-i18next";
 import Typography from '../../../utilities/Typography'
 import TabsFillter from '../../Dashbord_layout/TabsFillter'
 import { InputSearch } from '../../../utilities/Inputs'
 import Button from '../../../utilities/Button'
-import Table from '../../Dashbord_layout/TableLayout'
 import NoData from '../../Dashbord_layout/NoData/NoData'
 import Content from '../../Dashbord_layout/Content/Content';
 import Dropdown from '../../../utilities/Dropdown';
@@ -19,15 +18,105 @@ import * as Yup from "yup";
 import Edit from '../../Dashbord_layout/Mangment/Edit';
 import { SearchBar } from '../../../utilities/SearchBar/SearchBar';
 import { SearchResultsList } from '../../../utilities/SearchBar/SearchResultsList';
+import { StudentQuery } from '../../../../API/Students/StudentsQueries';
+import { ClassQuery } from '../../../../API/Class/ClassQueries';
+import { TableCell, TableHeader, TableRow ,Table} from '../../Dashbord_layout/Table';
+import Loading from '../../../utilities/Loading/Loading';
+import { Link } from 'react-router-dom';
+import { IoIosAddCircle } from 'react-icons/io';
+import Add from '../../Dashbord_layout/Mangment/Add';
+import { ParentsQuery } from '../../../../API/Parents/ParentsQueries';
+import { SectionQuery } from '../../../../API/Sections/SectionsQueries';
 
 
 const Students_Division = () => {
-  const rows = [
-    {
-      ID: "01",
-      student_Name: "لارا ",
-      Class: "الصف الأول",
-      Division_name: "الشعبة الأولى ",
+
+  const { t } = useTranslation("global");
+  const [add_student, setaadd_student] = useState(false);
+  const [Edit_active, set_Edit_active] = useState(false); 
+  const [Students_Dropdown , set_Students_Dropdown] = useState("");
+  const[edit_content,set_edit_content]=useState({})
+  const [Search, setSearch] = useState("");
+  const [addStudent,setadd_student]=useState(false)
+  const [selectedSection,setSectionSelected]=useState()
+  const [parentSelected,setParentSelected]=useState()
+  const[selectedGender,setGenderSelected]=useState()
+
+  const [Student_fetched, set_student_fetched] = useState([])
+  const [StudentsFiltterSelected, setStudentFiltterSelected] = useState()
+  const [parentOption,setparentOption]=useState([])
+
+  const { isLoading, data:Students, isFetched: FetchedStudent, isError, error } = StudentQuery.GetAllStudentQuery(Search)
+  const{mutate:AddStudent}=StudentQuery.AddStudent()
+  const { isLoading: isLoadingClass, data: Class, isFetched: isFetchedClass } = ClassQuery.GetAllClassQuery()
+  const {data:sections,isSuccess,isLoading:loadingSections,isFetched:isFetchedSection}=SectionQuery.GetAllSectionQuery()
+  const {data:parents, isFetched:isFetchedParent}=ParentsQuery.GetAllparents()
+
+console.log(selectedSection)
+console.log(parentSelected)
+console.log(selectedGender)
+useEffect(() => {
+  const ParentsOptions=parents?.data.map((parent) => ({
+    id:parent.id,
+    name:`الأب: ${parent.fatherName}    الأم  :${parent.motherName}`
+  }
+)
+  )
+  setparentOption(ParentsOptions)
+ 
+}
+,[isFetchedParent])
+
+const Gender=[
+  {id:1,name:"ذكر"},
+  {id:2,name:"أنثى"}
+
+]
+
+  useEffect(() => {
+    if (FetchedStudent) {
+      set_student_fetched(Students.data)
+    }
+
+  }, [FetchedStudent,Search])
+
+
+  const handle_change_filtter_class = (value) => {
+    setStudentFiltterSelected(value)
+    // console.log(value)
+
+    const Class_filter = Students?.data.filter((student) => {
+
+      return student.class.id === value.id
+    })
+
+    set_student_fetched(Class_filter)
+
+    // if (Class_filter.length === 0) {
+    //   set_data(rows)
+
+
+    // }
+    // else {
+    //   set_data(Class_filter)
+
+
+    // }
+
+
+  };
+
+  const TableHeaderArray = [
+
+    t("Students_Admin_dash.Students_Table.1") ,
+    t("Students_Admin_dash.Students_Table.2") ,
+    t("Students_Admin_dash.Students_Table.3") ,
+    t("Students_Admin_dash.Students_Table.4") ,
+    // t("Students_Admin_dash.Students_Table.5") ,
+    t("Students_Admin_dash.Students_Table.6") ,
+    t("Students_Admin_dash.Students_Table.7") ,
+    t("Students_Admin_dash.Students_Table.8") ,
+    t("Students_Admin_dash.Students_Table.9") ,
    
 
 
@@ -36,94 +125,23 @@ const Students_Division = () => {
 
 
 
-    },
-
-     {
-      ID: "02",
-      student_Name: "لارا ",
-      Class: "الصف الأول",
-      Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
-
-    },
-      {
-      ID: "03",
-      student_Name: "لارا ",
-      Class: "الصف الأول",
-      Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
-
-    },
-      {
-      ID: "04",
-      student_Name: "لارا ",
-      Class: "الصف الثا",
-      Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
-
-    },
-      {
-      ID: "05",
-      student_Name: "لارا ",
-      Class: "الصف الأول",
-      Division_name: "الشعبة الأولى ",
-   
-
-
-
-
-
-
-
-    },
 
 
   ];
-  const { t } = useTranslation("global");
-  const [edit_active, set_edit_active] = useState(false);
-  const [Edit_active, set_Edit_active] = useState(false); 
-  const [Students_Dropdown , set_Students_Dropdown] = useState("");
-  const [data, set_data] = useState(rows);
-  const[edit_content,set_edit_content]=useState({})
-  const [results, setResults] = useState([]);
-  const [selected_result, setselected_result] = useState("");
-
-
-
-
-  const handleDelte = (ID) => {
-
-    const f = data.find((ob, id) => {
-      set_edit_active(!edit_active);
-      return ob.ID === ID
-    })
-    const newRow= rows.filter((row)=>{
-       return row.ID !=ID
-    })
  
 
-    set_data(newRow)
 
 
-  }
+
+
+const handleChange_Search=(value)=>{
+  console.log(value)
+  setSearch(value)
+}
+
+
+
+
   
   
   const  handleChange_Students_Dropdown = (value) => {
@@ -153,48 +171,45 @@ set_Edit_active(!Edit_active)
 
 
 
-  const columns = [
-    t("Students_Admin_dash.Students_Table.0") ,
-    t("Students_Admin_dash.Students_Table.1") ,
-    t("Students_Admin_dash.Students_Table.2") ,
-    t("Students_Admin_dash.Students_Table.3") ,
-    t("Students_Admin_dash.Students_Table.4") ,
-
-
-
-
-
-
-  ];
+;
  
-const options_Class =[
-  {name:t("Class_Admin_dash.Class_filter.0") },
-  {name:t("Class_Admin_dash.Class_filter.1") },
-  {name:t("Class_Admin_dash.Class_filter.2") },
-  {name:t("Class_Admin_dash.Class_filter.3") },
-  {name:t("Class_Admin_dash.Class_filter.4") },
-  {name:t("Class_Admin_dash.Class_filter.5") },
-  {name:t("Class_Admin_dash.Class_filter.6") }
 
 
-]
 
 
-const formConfig_Edit = {
-  info :[
-   { title:  t("Students_Admin_dash.Students.1"),},
-  {descrption: t("Students_Admin_dash.Students.2"),},
-  { button_content:t("Students_Admin_dash.Students.1"), }
+const formConfig_Add={
+  info: [
+    { title:"اضاقة طالب" },
+    { descrption:"يمكنك اضافة طالب  من هنا " },
+    { button_content:"اضافة طالب" }
   ],
-         
+
   fields: [
 
-    
+    {
+      name: "firstname",
+      label: "اسم الأول",
+      img: "<MdOutlineDriveFileRenameOutline />",
+      type: "input",
+      inputType: "text",
+      component: "input",
+
+    },
+    {
+      name: "lastname",
+      label: " الكنية ",
+      img: "<MdOutlineDriveFileRenameOutline />",
+      type: "input",
+      inputType: "text",
+      component: "input",
+
+    },
+
 
     {
-      name: "student_Name",
-      label: t("Students_Admin_dash.Students_Table.1"),
-      img: arrowIcon,
+      name: "phoneNumber",
+      label: "رقم الهاتف",
+      img: "showpass ? <FaRegEye /> : <FaEyeSlash />",
       type: "input",
       inputType: "text",
       component: "input",
@@ -202,57 +217,126 @@ const formConfig_Edit = {
 
     },
     {
-      name: "Class",
-      label: t("Students_Admin_dash.Students_Table.2"),
-      img: arrowIcon,
+      name: "email",
+      label: "البريد الالكتروني",
+      img: "showpass ? <FaRegEye /> : <FaEyeSlash />",
+      type: "input",
+      inputType: "text",
+      component: "input",
+
+
+    },    {
+      name: "password",
+      label:"كلمة المرور",
+      img: "showpass ? <FaRegEye /> : <FaEyeSlash />",
+      type: "input",
+      inputType: "text",
+      component: "input",
+
+
+    },
+ 
+    {
+      name: "sections",
+      label:" الشعبة",
+      img: "showpass ? <FaRegEye /> : <FaEyeSlash />",
       type: "Dropdown",
       inputType: "text",
       component: "Dropdown",
-      options: options_Class,
-      onChange :handleChange_Students_edit_Dropdown
+      options: sections?.data,
+      onChange: (value)=>{setSectionSelected(value)},
+      isFetched: isFetchedSection
+
 
     },
     {
-      name: "Division_name",
-      label: t("Students_Admin_dash.Students_Table.3"),
-      img: "<PiUser />",
-      type: "input",
+      name: "parent",
+      label:" الأهل",
+      img: "showpass ? <FaRegEye /> : <FaEyeSlash />",
+      type: "Dropdown",
       inputType: "text",
-      component: "input",
+      component: "Dropdown",
+      options: parentOption,
+      onChange: (value)=>{setParentSelected(value)},
+      isFetched: isFetchedParent
+
+
+    },
+    {
+      name: "ismale",
+      label:" الجنس",
+      img: "showpass ? <FaRegEye /> : <FaEyeSlash />",
+      type: "Dropdown",
+      inputType: "text",
+      component: "Dropdown",
+      options: Gender,
+      onChange: (value)=>{setGenderSelected(value)},
+    
 
 
     },
    
+   
+
+    // Add more fields as needed
   ],
-  initialValues : {
-    student_Name:edit_content.student_Name,
-    Class: edit_content.Class,
-    Division_name:edit_content.Division_name,
- 
+  initialValues: {
+
+      firstname: "",
+      lastname: "",
+      phoneNumber: "",
+      email: "",
+      password : "",
+
+      sectionsIds:"",
+      ismale:""
 
 
 
+
+    // Initialize other fields
   },
 
-      validationSchema: {
-        student_Name: Yup.string(),
-        Division_name: Yup.string(),
-        
+  validationSchema: {
+    firstname: Yup.string().required("هذا الحقل مطلوب").matches(/^[A-Za-zأ-ي]*$/, 'غير مسموح باستخدام هذا المحرف  في هذا الحقل')
+      .max(30,"لا يجب ان يكون الحقل أطول").min(3,"لا يجب أن يكون الحقل  أقصر"),
+      lastname: Yup.string().required("هذا الحقل مطلوب").matches(/^[A-Za-zأ-ي ء]*$/, 'غير مسموح باستخدام هذا المحرف  في هذا الحقل')
+      .max(30,"لا يجب ان يكون الحقل أطول").min(3,"لا يجب أن يكون الحقل  أقصر"),
+      phoneNumber: Yup.string().required("هذا الحقل مطلوب").matches(/^[0-9]*$/, 'غير مسموح باستخدام هذا المحرف  في هذا الحقل').min(10,"لايمكن ان يكون هذا الحقل أقصر").max(10,"لايمكن أن يكون هذا الحقل أطول"),
+      
+      email: Yup.string().required("هذا الحقل مطلوب").email(),
+    
+      password : Yup.string().required("هذا الحقل مطلوب"),
+  
+
+     
+
+
 
 
   }
-  
+
 };
-const handleEdit=(ID)=>{
 
-  const Edit_clicKed=data.find((ob,id)=>{
-    set_Edit_active(!Edit_active);
-    return ob.ID === ID
-  })
-  set_edit_content(Edit_clicKed)
-
+const handleAddSubmit=(values) => {
+  console.log(values)
+  const newStudent={
+    "firstName": values.firstname    ,
+    "lastName": values.lastname,
+    // "birtDate": "2024-08-05T22:08:20.817Z",
+    "phoneNumber": values.phoneNumber,
+    "email": values.email,
+    "password": values.password,
+    "sectionId": selectedSection.id,
+    "parentId": parentSelected.id,
+    "isMale": selectedGender.id===1 ? true :false
+  }
+console.log(newStudent)
+AddStudent(newStudent)
 
 }
+    
+
 
   return (
     <Content
@@ -263,14 +347,14 @@ const handleEdit=(ID)=>{
 
       <div className='relative '>
 
-          {Edit_active ? (
-            <Edit
-               
-              Edit_active={Edit_active}
-              set_Edit_active={set_Edit_active}
-              formConfig={formConfig_Edit}
-              rows={data}
-              set_data={set_data}
+      {add_student? (
+            <Add
+            formConfig={formConfig_Add}
+     
+              add_active={add_student}
+              set_add_active={setaadd_student}
+              handleSubmit={handleAddSubmit}
+          
 
 
             />
@@ -289,13 +373,14 @@ const handleEdit=(ID)=>{
           <div className='flex  gap-10 items-center justify-between  w-full'>
          <div className='flex gap-10'>
          <span className="ps-2 pe-5 py-1 border-[1px] border-solid border-myGray-100  flex items-center  justify-start rounded-lg   text-myGray-500">
-              {data.length} {t("home_Admin_dash.record.0")}
+              {Students?.data.length} {t("home_Admin_dash.record.0")}
             </span>
             <Dropdown
+            isFetched={isFetchedClass}
         // value,
         label={t("Class_Admin_dash.Class.0")}
-        options={options_Class}
-        onChange={handleChange_Students_Dropdown}
+        options={Class?.data}
+        onChange={handle_change_filtter_class}
         icon={arrowIcon}
         showSlected={true}
         ulClassname={"w-full "}
@@ -305,14 +390,30 @@ const handleEdit=(ID)=>{
 
       
 
-<div className="search-bar-container relative ">
-        <SearchBar setResults={setResults} selected_result={selected_result} placeholder={ t("Students_Admin_dash.Students_Table.1") } />
-        {results && results.length > 0 && <SearchResultsList results={results} setselected_result={setselected_result} />}
-      </div>
+<InputSearch
+        name="Search"
+        // value={selected_result != "" ?  selected_result : input  }
+        value={ Search }
+
+        
+        onChange={handleChange_Search}
+        errorMsg=""
+        type="text"
+        handleOnclick=""
+        placeholder={t("Students_Admin_dash.Students_Table.1")}
+      
+      
+       />
+
+
    
    
   
          </div>
+         <div className=''>
+
+<Button className="flex bg-success items-center gap-2 " onClick={() => { setaadd_student(true) }}>اضافة طالب <IoIosAddCircle /> </Button>
+</div>
 
 
 
@@ -326,20 +427,74 @@ const handleEdit=(ID)=>{
 
 
         </TabsFillter>
-        {data.length >= 1 ? (
-          <Table
-            columns={columns}
-            rows={data}
-            handleEdit={handleEdit}
-            handleDelte={handleDelte}
-            action={{delete: true,update: true }}
-            className={"min-h-screen px-6 pt-2"}
-            RowlinK={true}
-            RowlinK_TO="/Supervisor_dashboard/students"
-          />
-        ) : (
-          <NoData ></NoData>
-        )}
+        <div className='px-10'>
+          <Table className="mt-10 text-center text-xs sm:text-xs md:text-sm rounded-md">
+            <TableHeader className="">
+              <TableRow className="">
+                {TableHeaderArray.map((header, index) => (
+                  <TableCell className="py-2" key={index}>{header}</TableCell>
+                ))}
+              </TableRow>
+            </TableHeader>
+ 
+
+            <tbody>
+              {isLoading ? (
+                <td colSpan={12}>
+                  <Loading size={60} />
+                </td>
+              ) :
+
+                (Student_fetched.length === 0 ? (
+                  <td colSpan={12}>
+                    <NoData />
+                  </td>
+                ) : (
+                  Student_fetched.map((student, index) => (
+                    <TableRow
+                      key={student.id}
+                      className={
+                        ""
+                      }
+                      rowIndex={index}
+                    >
+
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.firstName} {student.lastName}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.class.name}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.section.name}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.phoneNumber}</Link></TableCell>
+                      {/* <TableCell><Link to={`/School-website/Admin_dashboard/students/${student.id}`}> {student.birtDate}</Link></TableCell> */}
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.email}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.parent.fatherName}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.parent.motherName}</Link></TableCell>
+                      <TableCell><Link to={`/School-website/Supervisor_dashboard/students/${student.id}`}> {student.parent.phoneNumber}</Link></TableCell>
+
+
+          
+
+
+
+                      {/* <TableCell className="flex gap-4 text-xl justify-center mt-2">
+                        <div className="cursor-pointer text-[18px] hover:text-success " onClick={() => { handleEdit_Clicked(section.id) }}>
+                          <AiOutlineEdit />
+
+                        </div>
+                        <div className="cursor-pointer text-[18px] hover:text-error " onClick={() => { }}>
+                          <RiDeleteBin5Line />
+                        </div>
+
+                      </TableCell> */}
+                    </TableRow>
+                  ))
+                )
+
+                )
+              }
+
+
+            </tbody>
+          </Table>
+        </div>
         
       </div>
     </Content>

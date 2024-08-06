@@ -12,6 +12,10 @@ return useQuery(['get-all-Marks',SectionID], MarksApi.GetAllMarksBySection)
 
 
 }
+const AddMark=() => {
+    return useMutation(MarksApi.AddMark)
+}
+
 
 
 
@@ -19,7 +23,8 @@ return useQuery(['get-all-Marks',SectionID], MarksApi.GetAllMarksBySection)
 
 
 export const MarksQuery  = {
-    GetAllMarksBySection
+    GetAllMarksBySection,
+    AddMark
 
 
 };

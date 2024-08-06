@@ -11,6 +11,10 @@ const GetAllMarksBySection = async ({queryKey}) => {
   return  axios.get( `${baiseUrl}${API_Routes.Marks.GetAllBySection}?SectionId=${SectionID}`)
  
 };
+const AddMark=async (Mark) => {
+
+  return  axios.post( `${baiseUrl}${API_Routes.Marks.AddMark}`,Mark)
+};
 
 
 
@@ -28,5 +32,6 @@ const GetAllMarksBySection = async ({queryKey}) => {
 
 export const MarksApi = {
     GetAllMarksBySection,
+    AddMark
  
 };

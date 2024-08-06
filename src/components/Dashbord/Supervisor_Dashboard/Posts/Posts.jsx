@@ -6,32 +6,18 @@ import Typography from '../../../utilities/Typography';
 import Button from '../../../utilities/Button';
 import New_post from './New_post';
 import ClickOutside from '../../../utilities/Click_Outsite';
+import { PostsQuery } from '../../../../API/Posts/PostsQuiers';
 // import * as Popover from '@radix-ui/react-popover';
 
 const Posts = () => {
-    const posts=[
-        {image: post_iamge, discrption:"this is a discrption "},
-        {image: post_iamge, discrption:"this is a discrption "},
-        {image: post_iamge, discrption:"this is a discrption "},
-        {image: post_iamge, discrption:"this is a discrption "},
-        {image: post_iamge, discrption:"this is a discrption "},
-
-    ]
-    const [data, setData] = useState(posts);
+   
+ 
     const { t } = useTranslation("global");
     const[newpost,setnewpost]=useState(false)
-  const wrapperRef = useRef();
 
+const {data:posts}=PostsQuery.GetAlPosts()
+console.log(posts)
 
-//   useEffect(() => {
-//     axios.get('https://jsonplaceholder.typicode.com/posts')
-//       .then(response => {
-//         setData(response.data);
-//       })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   }, []);
 const Toggle_new_post=() => {
   setnewpost(false)
 }
@@ -40,12 +26,13 @@ const Toggle_new_post=() => {
     <>
    
 <div className=' bg-myGray-200 py-10 relative  '>
-<div className={` w-[50%] mx-auto mt-5 ${newpost ? "opacity-25" : ""}`}>
-          {data.map(post => (
+<div className={` w-[50%] mx-auto mt-5  ${newpost ? "opacity-25" : ""}`}>
+          {posts?.data.map(post => (
       
             <div className='bg-white my-6 shadow-md text-center  flex flex-col rounded-md px-4 py-5'>
-                <Typography component='h6'>   {post.discrption}</Typography>
-                <img src={post_iamge} alt="" />
+              <Typography component={"h3"} className={"mb-5"}>{post.title}</Typography>
+                <Typography component='h6'>   {post.description}</Typography>
+                <img src={post.image} alt="" />
                 
             </div>
     
